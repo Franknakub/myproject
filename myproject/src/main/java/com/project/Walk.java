@@ -1,9 +1,5 @@
 package com.project;
-
-
-import javafx.application.Application;
-import javafx.stage.Stage;
-
+// Java Map class, used for storing game variables
 import java.util.Map;
 
 // FXGL classes
@@ -17,15 +13,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+public class Walk {
 
-public class App extends Application {
-    @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Hello JavaFX");
-        primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
+    
+    
 }
