@@ -4,6 +4,7 @@ package com.Component;
 import static com.almasb.fxgl.dsl.FXGL.texture;
 
 import com.almasb.fxgl.core.math.FXGLMath;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
@@ -20,28 +21,28 @@ public class ControllerComponent extends Component{
 
     public void moveLeft() {
 
-        velocityX = -100;
+        velocityX = -200;
         entity.setScaleX(1);
 
     }
 
     public void moveRight() {
 
-        velocityX = 100;
+        velocityX = 200;
         entity.setScaleX(1);
 
     }
 
     public void moveUp() {
 
-        velocityY = -100;
+        velocityY = -200;
         entity.setScaleX(1);
 
     }
 
     public void moveDown() {
 
-        velocityY = 100;
+        velocityY = 200;
         entity.setScaleX(1);
 
     }
@@ -59,12 +60,17 @@ public class ControllerComponent extends Component{
 
     if (FXGLMath.abs(velocityX) < 1) {
         velocityX = 0;
-    }
+          }
 
     if (FXGLMath.abs(velocityY) < 1) {
         velocityY = 0;
+         }
+
+         FXGL.set("pixelsMoved", velocityX);
     }
-}
+
+
+
     @Override
     public void onAdded() {
 
