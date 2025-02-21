@@ -66,7 +66,7 @@ public class ControllerComponent extends Component{
         velocityY = 0;
          }
 
-         FXGL.set("pixelsMoved", velocityX);
+         /*FXGL.set("pixelsMoved", velocityX);*/
     }
 
 
