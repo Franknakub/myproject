@@ -3,6 +3,7 @@ package com.Factory;
 
 import static com.almasb.fxgl.dsl.FXGL.texture;
 
+import com.Component.AnimationComponent;
 import com.Component.ControllerComponent;
 import com.Type.PlayerType;
 import com.almasb.fxgl.dsl.FXGL;
@@ -26,7 +27,7 @@ public class CharacterFactory implements EntityFactory{
     public Entity newPlayerCharacter(SpawnData data){
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
-        physics.setFixtureDef(new FixtureDef().restitution(0));
+       
         
        
     
@@ -34,13 +35,13 @@ public class CharacterFactory implements EntityFactory{
 
         return FXGL.entityBuilder()
                 .type(PlayerType.Hero)
-                .view(texture("Karee.png",128,128))
+                //.view(texture("Actor1.png",128,128))
                 .bbox(new HitBox(BoundingShape.box(64,64)))
                 .at(0,0)
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new ControllerComponent())
-                
+                .with(new AnimationComponent("testplayer.png"))
                
                 .build(); 
 
@@ -54,15 +55,13 @@ public class CharacterFactory implements EntityFactory{
         physics.setBodyType(BodyType.STATIC);
      
      
- 
-    
          return FXGL.entityBuilder()
                 .type(EnemyType.LowEnemy)
                 .view(texture("Rex.png",128,128))
-                 .with(physics)
-                 .at(0,40)
-                 .bbox(new HitBox(BoundingShape.box(25,25)))
-                 .build();
+                .with(physics)
+                .at(0,100)
+                .bbox(new HitBox(BoundingShape.box(25,25)))
+                .build();
                 
      }
 }
