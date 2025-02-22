@@ -12,6 +12,7 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
+
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.PhysicsWorld;
@@ -33,7 +34,7 @@ public class App extends GameApplication {
 
     Entity player;
     Entity Enemy;
-    Level map;
+    public Level map;
 
     public static void main(String[] args) {
         launch(args);
@@ -80,8 +81,18 @@ public class App extends GameApplication {
         player = FXGL.spawn("Player");
 
         Enemy = FXGL.spawn("LowEnemy");
-               
-        map = FXGL.getAssetLoader().loadLevel("tiledset/scene1.tmx", new TMXLevelLoader());
+
+        FXGL.setLevelFromMap("scene1.tmx");
+        map = FXGL.getAssetLoader().loadLevel(FXGL.gets("scene1.tmx"), new TMXLevelLoader());
+        FXGL.spawn("abyss zone");
+        FXGL.spawn("prop");
+        FXGL.spawn("spawn point");
+        FXGL.spawn("Background");
+
+        
+        
+        
+        //map = FXGL.getAssetLoader().loadLevel("assets/tiledset/scene1.tmx", new TMXLevelLoader());
 
         FXGL.getGameWorld().setLevel(map);
 

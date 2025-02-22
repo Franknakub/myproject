@@ -52,9 +52,7 @@ public class AnimationComponent extends Component {
         texture = new AnimatedTexture(idleDown);
         texture.loopAnimationChannel(idleDown);
         
-      
-        
-
+    
     }
 
     public AnimatedTexture getTexture() {

@@ -1,2 +1,13 @@
-com\project\Walk.class
+com\project\App$2.class
+com\Factory\BackgroundFactory.class
+com\project\HP.class
+com\Factory\CharacterFactory.class
+com\Type\PlayerType.class
 com\project\App.class
+com\Component\AnimationComponent.class
+com\project\App$1.class
+com\project\App$4.class
+com\Component\ControllerComponent.class
+com\Type\SceneType.class
+com\project\App$3.class
+com\Type\EnemyType.class
