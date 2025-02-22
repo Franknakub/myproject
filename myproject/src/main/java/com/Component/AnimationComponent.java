@@ -32,21 +32,21 @@ public class AnimationComponent extends Component {
         Image image = FXGL.image(nameFile);
 
 
-        int columns = 6;   
-        int rows = 10;     
+        int columns = 3;   
+        int rows = 4;     
 
         int frameW = (int) image.getWidth() / columns;
         int frameH = (int) image.getHeight() / rows;
 
 
-        left = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(1), 6, 8);
-        right = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(1), 6, 11);
-        up = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(1), 12, 17);
-        down = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(1), 18, 23);
-        idleDown = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(1), 0, 5);
-        idleUp = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(1), 17, 17);
-        idleRight = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(1), 11, 11);
-        idleLeft = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(1), 8, 8);
+        left = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 3, 5);
+        right = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 6, 8);
+        up = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 9, 11);
+        down = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 0, 2);
+        idleDown = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 0, 0);
+        idleUp = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 9, 9);
+        idleRight = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 6, 6);
+        idleLeft = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 3, 3);
 
 
         texture = new AnimatedTexture(idleDown);

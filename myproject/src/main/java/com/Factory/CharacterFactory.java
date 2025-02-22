@@ -30,12 +30,12 @@ public class CharacterFactory implements EntityFactory{
        
         return FXGL.entityBuilder()
                 .type(PlayerType.Hero)
-                .bbox(new HitBox(BoundingShape.box(128,128)))
+                .bbox(new HitBox(BoundingShape.box(64,64)))
                 .at(0,0)
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new ControllerComponent())
-                .with(new AnimationComponent("testplayer.png"))
+                .with(new AnimationComponent("Actor1.png"))
                
                 .build(); 
 
@@ -51,11 +51,9 @@ public class CharacterFactory implements EntityFactory{
      
          return FXGL.entityBuilder()
                 .type(EnemyType.LowEnemy)
-                //.view(texture("Rex.png",128,128))
-                .viewWithBBox(new Rectangle(10,10,Color.BLACK))
+                .viewWithBBox(texture("Rex.png",128,128))
                 .with(physics)
-                
-                .bbox(new HitBox(BoundingShape.box(1,1)))
+                //.bbox(new HitBox(BoundingShape.box(64,64)))
                 .at(0,100)
                 .build();
                 
