@@ -2,6 +2,7 @@ package com.project;
 
 import com.Component.AnimationComponent;
 import com.Component.ControllerComponent;
+import com.Factory.BackgroundFactory;
 import com.Factory.CharacterFactory;
 import com.Type.PlayerType;
 import com.almasb.fxgl.app.GameApplication;
@@ -30,8 +31,10 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
 
-      Entity player ;
-     Entity Enemy;
+    Entity player;
+    Entity Enemy;
+    Level map;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -42,6 +45,8 @@ public class App extends GameApplication {
         settings.setHeight(720);
         settings.setTitle("Final Journey");
         settings.setVersion("Alpha");
+
+        settings.setDeveloperMenuEnabled(true);
     }
 
     @Override
@@ -51,11 +56,6 @@ public class App extends GameApplication {
     }
 
    
-
-    
-
-
-      
 
     //   private static Entity getPlayer() {
     //    return FXGL.getGameWorld().getSingleton(PlayerType.Hero);
@@ -75,14 +75,15 @@ public class App extends GameApplication {
     protected void initGame() {
         
         FXGL.getGameWorld().addEntityFactory(new CharacterFactory());
+        FXGL.getGameWorld().addEntityFactory(new BackgroundFactory());
 
         player = FXGL.spawn("Player");
 
         Enemy = FXGL.spawn("LowEnemy");
                
-        //Level map = FXGL.getAssetLoader().loadLevel("Mainmap.tmx", new TMXLevelLoader());
+        map = FXGL.getAssetLoader().loadLevel("tiledset/scene1.tmx", new TMXLevelLoader());
 
-        //FXGL.getGameWorld().setLevel(map);
+        FXGL.getGameWorld().setLevel(map);
 
         FXGL.getGameScene().getViewport().bindToEntity(player ,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
         

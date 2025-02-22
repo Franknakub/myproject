@@ -48,10 +48,6 @@ public class ControllerComponent extends Component{
          
     }
 
-
-
-
-
     public void moveLeft() {
 
         velocityX = -200;
