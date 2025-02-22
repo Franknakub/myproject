@@ -28,15 +28,9 @@ public class CharacterFactory implements EntityFactory{
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
        
-        
-       
-    
-     
-
         return FXGL.entityBuilder()
                 .type(PlayerType.Hero)
-                //.view(texture("Actor1.png",128,128))
-                .bbox(new HitBox(BoundingShape.box(64,64)))
+                .bbox(new HitBox(BoundingShape.box(128,128)))
                 .at(0,0)
                 .with(physics)
                 .with(new CollidableComponent(true))
@@ -57,10 +51,12 @@ public class CharacterFactory implements EntityFactory{
      
          return FXGL.entityBuilder()
                 .type(EnemyType.LowEnemy)
-                .view(texture("Rex.png",128,128))
+                //.view(texture("Rex.png",128,128))
+                .viewWithBBox(new Rectangle(10,10,Color.BLACK))
                 .with(physics)
+                
+                .bbox(new HitBox(BoundingShape.box(1,1)))
                 .at(0,100)
-                .bbox(new HitBox(BoundingShape.box(25,25)))
                 .build();
                 
      }

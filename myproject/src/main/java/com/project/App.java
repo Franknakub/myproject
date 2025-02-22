@@ -31,7 +31,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 public class App extends GameApplication {
 
       Entity player ;
-     
+     Entity Enemy;
     public static void main(String[] args) {
         launch(args);
     }
@@ -78,14 +78,14 @@ public class App extends GameApplication {
 
         player = FXGL.spawn("Player");
 
-        Entity Enemy = FXGL.spawn("LowEnemy");
+        Enemy = FXGL.spawn("LowEnemy");
                
         //Level map = FXGL.getAssetLoader().loadLevel("Mainmap.tmx", new TMXLevelLoader());
 
         //FXGL.getGameWorld().setLevel(map);
 
         FXGL.getGameScene().getViewport().bindToEntity(player ,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
-
+        
     }
 
     @Override
@@ -152,6 +152,8 @@ public class App extends GameApplication {
         textHP.setTranslateY(100); 
         myHP.setTranslateX(100); 
         myHP.setTranslateY(100);
+
+        
 
         myHP.textProperty().bind(getWorldProperties().intProperty("pixelsMoved").asString());
 

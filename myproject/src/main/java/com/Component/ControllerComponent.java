@@ -55,14 +55,10 @@ public class ControllerComponent extends Component{
     public void moveLeft() {
 
         velocityX = -200;
-        entity.setScaleX(-1);
-
+        entity.setScaleX(1);
        
         animation.walkLeft();
        
-         
-        
-        
 
     }
 
