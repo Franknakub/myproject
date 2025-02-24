@@ -2,6 +2,6 @@ package com.Type;
 
 public enum SceneType {
 
-    Wall,Prop,Spawns
+    Wall,Prop,Spawns,Background
 
 }

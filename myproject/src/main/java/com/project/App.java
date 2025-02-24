@@ -74,12 +74,13 @@ public class App extends GameApplication {
     }
 
    
+ 
 
     @Override
     protected void initGame() {
         
         FXGL.getGameWorld().addEntityFactory(new CharacterFactory());
-        // FXGL.getGameWorld().addEntityFactory(new BackgroundFactory());
+        FXGL.getGameWorld().addEntityFactory(new BackgroundFactory());
 
         player = FXGL.spawn("spawn point");
 

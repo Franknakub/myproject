@@ -20,11 +20,19 @@ public class BackgroundFactory implements EntityFactory {
     PhysicsComponent physics = new PhysicsComponent();
     
    
+    @Spawns("Background")
+    public Entity spawnBackground(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .view(new Rectangle(data.<Integer>get("width"), data.<Integer>get("height"), Color.BLACK))
+                .with(new IrremovableComponent())
+                .zIndex(-100)
+                .build();
+    }
 
     @Spawns("abyss zone")
     public Entity spawnWall(SpawnData data) {
         
-        //physics.setBodyType(BodyType.STATIC);
+        physics.setBodyType(BodyType.STATIC);
         return FXGL.entityBuilder(data)
                 .type(SceneType.Wall)
                  .at(data.getX(),data.getY())
@@ -45,25 +53,25 @@ public class BackgroundFactory implements EntityFactory {
                 .build();
     }
 
-    // @Spawns("spawn point")
-    // public Entity spawnpoint(SpawnData data) {
-    //     //physics.setBodyType(BodyType.STATIC);
+     @Spawns("spawn point")
+     public Entity spawnpoint(SpawnData data) {
+         physics.setBodyType(BodyType.STATIC);
 
-    //     return FXGL.entityBuilder(data)
-    //             .type(SceneType.Spawns)
-    //             .at(data.getX(),data.getY())
-    //             .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-    //             .with(new PhysicsComponent())
-    //             .build();
-    // }
+         return FXGL.entityBuilder(data)
+                 .type(SceneType.Spawns)
+                 .at(data.getX(),data.getY())
+                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                 .with(new PhysicsComponent())
+                 .build();
+     }
 
-    //  @Spawns("Background")
-    // public Entity spawnBackground(SpawnData data) {
-    //     return FXGL.entityBuilder(data)
-    //             .view(new Rectangle(data.<Integer>get("width"), data.<Integer>get("height"), Color.BLACK))
-    //             .with(new IrremovableComponent())
-    //             .zIndex(-100)
-    //             .build();
-    // }
+      //@Spawns("Background")
+     //ublic Entity spawnBackground(SpawnData data) {
+       //  return FXGL.entityBuilder(data)
+         //        .view(new Rectangle(data.<Integer>get("width"), data.<Integer>get("height"), Color.BLACK))
+           //      .with(new IrremovableComponent())
+             //    .zIndex(-100)
+               //  .build();
+     //}
     
 }
