@@ -5,6 +5,7 @@ import static com.almasb.fxgl.dsl.FXGL.texture;
 
 import com.Component.AnimationComponent;
 import com.Component.ControllerComponent;
+import com.Component.InteractComponent;
 import com.Type.PlayerType;
 import com.Type.SceneType;
 import com.almasb.fxgl.dsl.FXGL;
@@ -24,7 +25,7 @@ import javafx.scene.paint.Color;
 
 
 public class CharacterFactory implements EntityFactory{
-    @Spawns("Player")
+    @Spawns("spawn point")
     public Entity newPlayerCharacter(SpawnData data){
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
@@ -37,14 +38,14 @@ public class CharacterFactory implements EntityFactory{
                 .with(new CollidableComponent(true))
                 .with(new ControllerComponent())
                 .with(new AnimationComponent("Actor1.png"))
-               
+                .with(new InteractComponent("filetext.txt"))
                 .build(); 
 
 
    
     }
 
-    @Spawns("LowEnemy")
+    @Spawns("spawn enemy")
     public Entity spawnEnermy(SpawnData data) {
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.STATIC);

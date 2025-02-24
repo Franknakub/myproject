@@ -2,6 +2,7 @@ package com.project;
 
 import com.Component.AnimationComponent;
 import com.Component.ControllerComponent;
+import com.Component.InteractComponent;
 import com.Factory.BackgroundFactory;
 import com.Factory.CharacterFactory;
 import com.Type.PlayerType;
@@ -67,6 +68,8 @@ public class App extends GameApplication {
             
     @Override
     protected void initGameVars(Map<String, Object> vars) {
+
+        vars.put("map1", "scene1.tmx");
         vars.put("pixelsMoved", 0);
     }
 
@@ -76,25 +79,17 @@ public class App extends GameApplication {
     protected void initGame() {
         
         FXGL.getGameWorld().addEntityFactory(new CharacterFactory());
-        FXGL.getGameWorld().addEntityFactory(new BackgroundFactory());
+        // FXGL.getGameWorld().addEntityFactory(new BackgroundFactory());
 
-        player = FXGL.spawn("Player");
+        player = FXGL.spawn("spawn point");
 
-        Enemy = FXGL.spawn("LowEnemy");
-
-        FXGL.setLevelFromMap("scene1.tmx");
-        map = FXGL.getAssetLoader().loadLevel(FXGL.gets("scene1.tmx"), new TMXLevelLoader());
-        FXGL.spawn("abyss zone");
-        FXGL.spawn("prop");
-        FXGL.spawn("spawn point");
-        FXGL.spawn("Background");
+        Enemy = FXGL.spawn("spawn enemy");
 
         
-        
-        
-        //map = FXGL.getAssetLoader().loadLevel("assets/tiledset/scene1.tmx", new TMXLevelLoader());
-
-        FXGL.getGameWorld().setLevel(map);
+        // map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
+        // FXGL.setLevelFromMap("scene1.tmx");
+        // FXGL.spawn("abyss zone");
+        // FXGL.spawn("prop");
 
         FXGL.getGameScene().getViewport().bindToEntity(player ,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
         
@@ -139,7 +134,6 @@ public class App extends GameApplication {
             }
         }, KeyCode.W);
 
-
         FXGL.getInput().addAction(new UserAction("Down") {
             @Override
             protected void onAction() {
@@ -151,7 +145,17 @@ public class App extends GameApplication {
                 player.getComponent(ControllerComponent.class).stop();
             }
         }, KeyCode.S);
+
+        
+        FXGL.getInput().addAction(new UserAction("interact") {
+            @Override
+            protected void onAction() {
+                player.getComponent(InteractComponent.class).interact();
+            }
+        }, KeyCode.E);
+    
        
+
         
     }
 
