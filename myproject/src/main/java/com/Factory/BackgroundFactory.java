@@ -53,17 +53,7 @@ public class BackgroundFactory implements EntityFactory {
                 .build();
     }
 
-     @Spawns("spawn point")
-     public Entity spawnpoint(SpawnData data) {
-         physics.setBodyType(BodyType.STATIC);
-
-         return FXGL.entityBuilder(data)
-                 .type(SceneType.Spawns)
-                 .at(data.getX(),data.getY())
-                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                 .with(new PhysicsComponent())
-                 .build();
-     }
+   
 
       //@Spawns("Background")
      //ublic Entity spawnBackground(SpawnData data) {
