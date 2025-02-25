@@ -87,11 +87,11 @@ public class App extends GameApplication {
         Enemy = FXGL.spawn("spawn enemy");
 
         
-         map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
-         FXGL.setLevelFromMap("scene1.tmx");
-         FXGL.spawn("abyss zone");
-         FXGL.spawn("prop");
-         FXGL.spawn("Background", new SpawnData(0,0).put("width", 1280).put("height", 720));
+        map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
+        FXGL.setLevelFromMap("scene1.tmx");
+        FXGL.spawn("abyss zone");
+        FXGL.spawn("prop");
+        FXGL.spawn("Background", new SpawnData(0,0).put("width", 1280).put("height", 720));
 
         FXGL.getGameScene().getViewport().bindToEntity(player ,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
         
