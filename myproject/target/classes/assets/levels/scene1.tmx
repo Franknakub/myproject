@@ -25,10 +25,10 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1059" name="Objects" tilewidth="16" tileheight="16" tilecount="0" columns="48">
+ <tileset firstgid="1059" name="Objects" tilewidth="16" tileheight="16" tilecount="1927" columns="48">
   <image source="Objects.png" trans="ff00ff" width="768" height="704"/>
  </tileset>
- <tileset firstgid="2986" name="water_detilazation" tilewidth="16" tileheight="16" tilecount="0" columns="43">
+ <tileset firstgid="2986" name="water_detilazation" tilewidth="16" tileheight="16" tilecount="1300" columns="43">
   <image source="water_detilazation.png" trans="ff00ff" width="688" height="576"/>
  </tileset>
  <tileset firstgid="4286" name="Animation5" tilewidth="16" tileheight="16" tilecount="0" columns="36">
