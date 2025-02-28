@@ -552,9 +552,9 @@
   <object id="41" type="prop" x="346" y="281.5" width="88" height="100"/>
  </objectgroup>
  <objectgroup id="13" name="spawn point">
-  <object id="42" type="spawn point" x="252.667" y="972.873" width="22" height="17"/>
+  <object id="42" type="spawn point" x="247.167" y="962.873" width="27.5" height="27"/>
  </objectgroup>
  <objectgroup id="14" name="spawn enemy" class="spawn enemy">
-  <object id="43" type="spawn enemy" x="166.667" y="420"/>
+  <object id="43" type="spawn enemy" x="191.32" y="350.347" width="27.022" height="22.9789" rotation="359.988"/>
  </objectgroup>
 </map>

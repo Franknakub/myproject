@@ -43,10 +43,11 @@ public class App extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings settings) {
-        settings.setWidth(1920);
-        settings.setHeight(1080);
+        settings.setWidth(1280);
+        settings.setHeight(720);
         settings.setTitle("Final Journey");
         settings.setVersion("Alpha");
+        settings.setFullScreenAllowed(true);
         settings.setFullScreenFromStart(true);
         settings.setDeveloperMenuEnabled(true);
     }
@@ -90,10 +91,10 @@ public class App extends GameApplication {
 
         
         
-        Enemy = FXGL.spawn("spawn enemy");
+        
         player = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
        
-        //FXGL.spawn("Background", new SpawnData(0,0).put("width", 1280).put("height", 720));
+       
 
         FXGL.getGameScene().getViewport().bindToEntity(player,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
         

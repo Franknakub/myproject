@@ -20,14 +20,7 @@ public class BackgroundFactory implements EntityFactory {
     PhysicsComponent physics = new PhysicsComponent();
     
    
-    @Spawns("Background")
-    public Entity spawnBackground(SpawnData data) {
-        return FXGL.entityBuilder(data)
-                .view(new Rectangle(data.<Integer>get("width"), data.<Integer>get("height"), Color.BLACK))
-                .with(new IrremovableComponent())
-                .zIndex(-100)
-                .build();
-    }
+   
 
     @Spawns("abyss zone")
     public Entity spawnWall(SpawnData data) {
@@ -55,13 +48,6 @@ public class BackgroundFactory implements EntityFactory {
 
    
 
-      //@Spawns("Background")
-     //ublic Entity spawnBackground(SpawnData data) {
-       //  return FXGL.entityBuilder(data)
-         //        .view(new Rectangle(data.<Integer>get("width"), data.<Integer>get("height"), Color.BLACK))
-           //      .with(new IrremovableComponent())
-             //    .zIndex(-100)
-               //  .build();
-     //}
+      
     
 }

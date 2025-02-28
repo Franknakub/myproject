@@ -55,7 +55,7 @@ public class CharacterFactory implements EntityFactory{
                 .type(EnemyType.LowEnemy)
                 .viewWithBBox(texture("Rex.png",128,128))
                 .with(physics)
-                .bbox(new HitBox(BoundingShape.box(64,64)))
+                //.bbox(new HitBox(BoundingShape.box(64,64)))
                 //.at(0,100)
                 .build();
                 
