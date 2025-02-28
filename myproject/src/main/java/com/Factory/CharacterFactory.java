@@ -30,10 +30,10 @@ public class CharacterFactory implements EntityFactory{
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
        
-        return FXGL.entityBuilder()
+        return FXGL.entityBuilder(data)
                 .type(PlayerType.Hero)
                 .bbox(new HitBox(BoundingShape.box(64,64)))
-                .at(0,0)
+                
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new ControllerComponent())
@@ -51,12 +51,12 @@ public class CharacterFactory implements EntityFactory{
         physics.setBodyType(BodyType.STATIC);
      
      
-         return FXGL.entityBuilder()
+         return FXGL.entityBuilder(data)
                 .type(EnemyType.LowEnemy)
                 .viewWithBBox(texture("Rex.png",128,128))
                 .with(physics)
-                //.bbox(new HitBox(BoundingShape.box(64,64)))
-                .at(0,100)
+                .bbox(new HitBox(BoundingShape.box(64,64)))
+                //.at(0,100)
                 .build();
                 
      }
