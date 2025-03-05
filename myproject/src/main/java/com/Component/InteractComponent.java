@@ -25,7 +25,7 @@ public void interact() {
         List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy);
         for (int i = 0; i < enemies.size(); i++) { 
             if (entity.distance(enemies.get(i)) < 150) {
-                Cutscene cutscene = FXGL.getAssetLoader().loadCutscene(filename);
+                Cutscene cutscene = FXGL.getAssetLoader().loadCutscene("filetext.txt");
                 FXGL.getCutsceneService().startCutscene(cutscene);
                 break;
 

@@ -38,6 +38,7 @@ public class CharacterFactory implements EntityFactory{
                 .with(new CollidableComponent(true))
                 .with(new ControllerComponent())
                 .with(new AnimationComponent("Actor1.png"))
+                
                 .with(new InteractComponent("filetext.txt"))
                 .build(); 
 
