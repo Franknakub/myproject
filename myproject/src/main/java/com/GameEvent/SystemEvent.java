@@ -20,7 +20,7 @@ public class SystemEvent {
                 
         
             Texture rexCombatScene = FXGL.getAssetLoader().loadTexture("assets/textures/testscenecombat.jpg");
-             rexCombatScene.setFitWidth(FXGL.getAppWidth());
+            rexCombatScene.setFitWidth(FXGL.getAppWidth());
             rexCombatScene.setFitHeight(FXGL.getAppHeight());
             FXGL.getGameScene().addUINode(rexCombatScene);
                

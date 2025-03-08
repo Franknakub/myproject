@@ -121,12 +121,8 @@ public class ControllerComponent extends Component{
 
         physics = entity.getComponent(PhysicsComponent.class);
 
+        entity.getTransformComponent().setScaleOrigin(new Point2D(width / 2, height / 2));
         
-            entity.getTransformComponent().setScaleOrigin(new Point2D(width / 2, height / 2));
-        
-        
-       
-
     }
 
 
