@@ -36,6 +36,7 @@ public class App extends GameApplication {
     Entity player;
     Entity Enemy;
     public Level map;
+    
 
     public static void main(String[] args) {
         launch(args);
@@ -71,6 +72,7 @@ public class App extends GameApplication {
     protected void initGameVars(Map<String, Object> vars) {
 
         vars.put("map1", "scene1.tmx");
+       
       //  vars.put("pixelsMoved", 0);
     }
 
@@ -86,7 +88,8 @@ public class App extends GameApplication {
 
        
         
-        //map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
+        map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
+        
         FXGL.setLevelFromMap("scene1.tmx");
 
         
@@ -99,6 +102,8 @@ public class App extends GameApplication {
         FXGL.getGameScene().getViewport().bindToEntity(player,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
         
     }
+
+   
 
     @Override
     protected void initInput() {
