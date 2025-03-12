@@ -1,6 +1,6 @@
 package com.Type;
 
-public enum GameMode {
+public enum GameModeType {
     EXPLORATION, COMBAT
 
 }

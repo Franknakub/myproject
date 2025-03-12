@@ -90,7 +90,8 @@ public class App extends GameApplication {
         
         map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
         
-        FXGL.setLevelFromMap("scene1.tmx");
+        //FXGL.setLevelFromMap("scene1.tmx");
+        FXGL.getGameWorld().setLevel(map);
 
         
         

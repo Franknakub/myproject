@@ -32,16 +32,13 @@ public class CharacterFactory implements EntityFactory{
        
         return FXGL.entityBuilder(data)
                 .type(PlayerType.Hero)
-                .bbox(new HitBox(BoundingShape.box(8,8)))
-                
+                .bbox(new HitBox(BoundingShape.box(8,8)))           
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new ControllerComponent())
                 .with(new AnimationComponent("Actor1.png"))
-                
                 .with(new InteractComponent("filetext.txt"))
                 .build(); 
-
 
    
     }
@@ -61,6 +58,56 @@ public class CharacterFactory implements EntityFactory{
                 .build();
                 
      }
+
+     @Spawns("setenemy")
+     public Entity setenemy(SpawnData data) {
+         PhysicsComponent physics = new PhysicsComponent();
+         physics.setBodyType(BodyType.STATIC);
+      
+      
+          return FXGL.entityBuilder(data)
+                 .type(EnemyType.LowEnemy)
+                 .viewWithBBox(texture("Rex.png",128,128))
+                 .with(physics)
+                 //.bbox(new HitBox(BoundingShape.box(64,64)))
+                 //.at(0,100)
+                 .build();
+                 
+      }
+
+
+      @Spawns("sethero")
+     public Entity sethero(SpawnData data) {
+         PhysicsComponent physics = new PhysicsComponent();
+         physics.setBodyType(BodyType.STATIC);
+      
+      
+          return FXGL.entityBuilder(data)
+                 .type(PlayerType.Hero)
+                 .viewWithBBox(texture("Rex.png",128,128))
+                 .with(physics)
+                 //.bbox(new HitBox(BoundingShape.box(64,64)))
+                 //.at(0,100)
+                 .build();
+                 
+      }
+
+      @Spawns("setcamera")
+      public Entity setcamera(SpawnData data) {
+          PhysicsComponent physics = new PhysicsComponent();
+          physics.setBodyType(BodyType.STATIC);
+       
+       
+           return FXGL.entityBuilder(data)
+                  .type(PlayerType.Camera)
+                  
+                  .with(physics)
+                  //.bbox(new HitBox(BoundingShape.box(64,64)))
+                  //.at(0,100)
+                  .build();
+                  
+       }
+
 
     
 }

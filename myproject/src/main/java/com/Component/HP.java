@@ -1,4 +1,4 @@
-package com.project;
+package com.Component;
 // Java Map class, used for storing game variables
 import java.util.Map;
 

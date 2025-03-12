@@ -1,6 +1,6 @@
 package com.GameEvent;
 
-import com.Type.GameMode;
+import com.Type.GameModeType;
 import com.almasb.fxgl.dsl.FXGL;
 
 import javafx.event.Event;
@@ -14,10 +14,7 @@ public class CombatMode extends Event{
     = new EventType<>(Event.ANY, "RexCombatMode");
    
 
-
-     
         
-
         public CombatMode(EventType<? extends Event> eventType) {
             super(eventType);
         }

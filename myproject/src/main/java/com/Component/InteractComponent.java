@@ -31,6 +31,7 @@ public void interact() {
             if (entity.distance(enemies.get(i)) < 150) {
                 Cutscene cutscene = FXGL.getAssetLoader().loadCutscene("filetext.txt");
                 FXGL.getCutsceneService().startCutscene(cutscene);
+                
                 scene.combat();
 
                 break;
