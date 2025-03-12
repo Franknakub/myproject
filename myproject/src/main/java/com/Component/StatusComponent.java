@@ -15,7 +15,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 
-public class HP {
+public class StatusComponent {
 
     
     }

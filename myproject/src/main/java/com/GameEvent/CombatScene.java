@@ -7,15 +7,15 @@ import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.scene.control.DialogEvent;
 
-public class CombatMode extends Event{
+public class CombatScene extends Event{
 
         
-    public static final EventType<CombatMode> REXCOMBATODE
+    public static final EventType<CombatScene> REXCOMBATODE
     = new EventType<>(Event.ANY, "RexCombatMode");
    
 
         
-        public CombatMode(EventType<? extends Event> eventType) {
+        public CombatScene(EventType<? extends Event> eventType) {
             super(eventType);
         }
 

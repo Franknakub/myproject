@@ -5,6 +5,7 @@ import com.Component.ControllerComponent;
 import com.Component.InteractComponent;
 import com.Factory.BackgroundFactory;
 import com.Factory.CharacterFactory;
+import com.GameEvent.SystemEvent;
 import com.Type.PlayerType;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
@@ -36,6 +37,7 @@ public class App extends GameApplication {
     Entity player;
     Entity Enemy;
     public Level map;
+   
     
 
     public static void main(String[] args) {
@@ -74,6 +76,7 @@ public class App extends GameApplication {
         vars.put("map1", "scene1.tmx");
        
       //  vars.put("pixelsMoved", 0);
+      FXGL.set("currentLevel", 1);
     }
 
    
@@ -89,21 +92,24 @@ public class App extends GameApplication {
        
         
         map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
-        
-        //FXGL.setLevelFromMap("scene1.tmx");
-        FXGL.getGameWorld().setLevel(map);
+        //FXGL.getGameWorld().setLevel(map);
+        FXGL.setLevelFromMap("scene1.tmx");
 
-        
-        
+        SystemEvent.combat();
         
         player = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
-       
-       
-
+        
         FXGL.getGameScene().getViewport().bindToEntity(player,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
+        FXGL.getGameScene().getViewport().setZoom(1.5);
+        int mapWidth = (int) map.getWidth();
+        int mapHeight = (int) map.getHeight();
+
+        FXGL.getGameScene().getViewport().setBounds(-10000/2, 0, mapWidth+150, mapHeight);
+        //FXGL.getGameScene().getViewport().setLazy(true);
         
     }
 
+    
    
 
     @Override
