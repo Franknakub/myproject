@@ -18,6 +18,8 @@
 
   <dependencyManagement>
     <dependencies>
+
+    
     
       <dependency>
         <groupId>org.junit</groupId>
@@ -30,11 +32,38 @@
   </dependencyManagement>
 
   <dependencies>
+
+   
+
+     <!-- Core Library -->
     <dependency>
-  <groupId>com.github.almasb</groupId>
-  <artifactId>fxgl</artifactId>
-  <version>21.1</version>
-</dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx</artifactId>
+        <version>1.13.1</version>
+    </dependency>
+
+    <!-- Desktop Backend -->
+    <dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx-backend-lwjgl3</artifactId>
+        <version>1.13.1</version>
+    </dependency>
+
+    <!-- OpenGL Utilities -->
+    <dependency>
+      <groupId>com.badlogicgames.gdx</groupId>
+      <artifactId>gdx-platform</artifactId>
+      <version>1.13.1</version>
+      <classifier>natives-desktop</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.almasb</groupId>
+      <artifactId>fxgl</artifactId>
+      <version>21.1</version>
+    </dependency>
+
+    
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>

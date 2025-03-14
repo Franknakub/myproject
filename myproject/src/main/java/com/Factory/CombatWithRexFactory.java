@@ -23,6 +23,7 @@ public class CombatWithRexFactory implements EntityFactory {
           return FXGL.entityBuilder(data)
                  .type(EnemyType.LowEnemy)
                  .viewWithBBox(texture("Rex.png",128*3,128*3))
+                 .with(new StatusComponent("Rex",100,50))
                  .with(physics)
                  //.bbox(new HitBox(BoundingShape.box(64,64)))
                  //.at(0,100)
@@ -41,7 +42,7 @@ public class CombatWithRexFactory implements EntityFactory {
                  .type(PlayerType.Hero)
                  .viewWithBBox(texture("Rex.png",128*3,128*3))
                  .with(physics)
-                 .with(new StatusComponent("kuay",100,50))
+                 .with(new StatusComponent("Harold",101,50))
                  //.bbox(new HitBox(BoundingShape.box(64,64)))
                  //.at(0,100)
                  .build();

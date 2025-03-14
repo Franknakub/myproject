@@ -18,12 +18,12 @@ import javafx.scene.text.Text;
 
 public class StatusComponent extends Component {
     String nameCharacter;
-    int HPCharacter;
+    int hpCharacter;
     int manaCharcter;
   
   public StatusComponent(String name,int HP,int mana){
     this.nameCharacter = name;
-    this.HPCharacter = HP ;
+    this.hpCharacter = HP ;
     this.manaCharcter = mana;
   }
 
@@ -33,7 +33,7 @@ public class StatusComponent extends Component {
 
   public void setHPCharacter(int HP){
     if(HP>=0){
-        this.HPCharacter=HP;
+        this.hpCharacter=HP;
     }
     else{
         System.out.println("HP must be over 0");
@@ -42,7 +42,7 @@ public class StatusComponent extends Component {
   
   public void setManaCharacter(int mana){
     if(mana>=0){
-        this.HPCharacter=mana;
+        this.manaCharcter = mana;
     }
     else{
         System.out.println("MANA must be over 0");
@@ -55,7 +55,7 @@ public class StatusComponent extends Component {
   }
 
   public int getHPCharacter(){
-    return this.HPCharacter;
+    return this.hpCharacter;
   }
   
   public int getManaCharacter(){

@@ -6,6 +6,8 @@ import com.GameEvent.CombatScene;
 import com.GameEvent.SystemEvent;
 import com.Type.EnemyType;
 import com.Type.PlayerType;
+import com.UI.ActionButtonUI;
+import com.UI.StatusUI;
 import com.almasb.fxgl.cutscene.Cutscene;
 import com.almasb.fxgl.cutscene.CutsceneService;
 import com.almasb.fxgl.dsl.FXGL;
@@ -17,8 +19,9 @@ public class InteractComponent extends Component{
 
  
     private String filename;
-    
+    private StatusUI statusUI;
     public EventBus eventBus;
+    private ActionButtonUI actionButtonUI;
    
 
     public InteractComponent( String filename) {
@@ -30,21 +33,30 @@ public class InteractComponent extends Component{
 
 
 public void interact() {
+
+    statusUI = new StatusUI();
     if (entity.getType() == PlayerType.Hero) {
+
         List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy);
 
         for (int i = 0; i < enemies.size(); i++) { 
             if (entity.distance(enemies.get(i)) < 150) {
                 Cutscene cutscene = FXGL.getAssetLoader().loadCutscene(filename);
                     CutsceneService cutsceneService = FXGL.getCutsceneService();
-                    
+                    statusUI = new StatusUI();
+                    FXGL.getGameScene().removeUINode(statusUI.getVBox());
+                    statusUI.remove();
                 
                     cutsceneService.startCutscene(cutscene, () -> {
 
                        
-                      
+                        
+
+                       
 
                         SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.REXCOMBATODE));
+                        actionButtonUI = new ActionButtonUI();
+                        FXGL.getGameScene().addUINode(actionButtonUI.getVBox());
                     });
                 
                 

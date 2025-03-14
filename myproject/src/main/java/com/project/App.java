@@ -1,5 +1,5 @@
 package com.project;
-
+import com.badlogic.gdx.Game;
 import com.Component.AnimationComponent;
 import com.Component.ControllerComponent;
 import com.Component.InteractComponent;
@@ -7,6 +7,7 @@ import com.Factory.BackgroundFactory;
 import com.Factory.CharacterFactory;
 import com.GameEvent.SystemEvent;
 import com.Type.PlayerType;
+import com.UI.StatusUI;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
@@ -28,16 +29,24 @@ import javafx.scene.text.Text;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.ApplicationListener;
+
 
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class App extends GameApplication {
 
-    Entity player;
-    Entity Enemy;
-    public Level map;
-   
+    private Entity player;
+    private Entity Enemy;
+    private Level map;
+    private StatusUI statusUI;
+    
     
 
     public static void main(String[] args) {
@@ -76,7 +85,7 @@ public class App extends GameApplication {
         vars.put("map1", "scene1.tmx");
        
       //  vars.put("pixelsMoved", 0);
-      FXGL.set("currentLevel", 1);
+      //FXGL.set("currentLevel", 1);
     }
 
    
@@ -95,7 +104,7 @@ public class App extends GameApplication {
         //FXGL.getGameWorld().setLevel(map);
         FXGL.setLevelFromMap("scene1.tmx");
 
-        //SystemEvent.combat();
+        SystemEvent.combat();
         
         player = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
         
@@ -106,7 +115,10 @@ public class App extends GameApplication {
 
         FXGL.getGameScene().getViewport().setBounds(-10000/2, 0, mapWidth+150, mapHeight);
         FXGL.getGameScene().getViewport().setLazy(true);
-        
+
+       
+        statusUI = new StatusUI();
+        FXGL.getGameScene().addUINode(statusUI.getVBox());
     }
 
     
@@ -179,19 +191,21 @@ public class App extends GameApplication {
 
     @Override
     protected void initUI() {
-        Text textHP = new Text("HP");
-        Text myHP = new Text();
-        textHP.setTranslateX(50);
-        textHP.setTranslateY(100); 
-        myHP.setTranslateX(100); 
-        myHP.setTranslateY(100);
+        // Text textHP = new Text("HP");
+        // Text myHP = new Text();
+        // textHP.setTranslateX(50);
+        // textHP.setTranslateY(100); 
+        // myHP.setTranslateX(100); 
+        // myHP.setTranslateY(100);
 
         
 
        // myHP.textProperty().bind(getWorldProperties().intProperty("pixelsMoved").asString());
 
-        getGameScene().addUINode(myHP);
-        getGameScene().addUINode(textHP);
+        // getGameScene().addUINode(myHP);
+        // getGameScene().addUINode(textHP);
+       
+    
         
     }
 

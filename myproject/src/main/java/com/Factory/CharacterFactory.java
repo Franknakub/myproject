@@ -6,6 +6,7 @@ import static com.almasb.fxgl.dsl.FXGL.texture;
 import com.Component.AnimationComponent;
 import com.Component.ControllerComponent;
 import com.Component.InteractComponent;
+import com.Component.StatusComponent;
 import com.Type.PlayerType;
 import com.Type.SceneType;
 import com.almasb.fxgl.dsl.FXGL;
@@ -38,6 +39,7 @@ public class CharacterFactory implements EntityFactory{
                 .with(new ControllerComponent())
                 .with(new AnimationComponent("Actor1.png"))
                 .with(new InteractComponent("filetext.txt"))
+                .with(new StatusComponent("Harold",100,50))
                 .build(); 
 
    
