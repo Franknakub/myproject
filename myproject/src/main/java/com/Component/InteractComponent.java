@@ -40,6 +40,10 @@ public void interact() {
                     
                 
                     cutsceneService.startCutscene(cutscene, () -> {
+
+                       
+                      
+
                         SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.REXCOMBATODE));
                     });
                 

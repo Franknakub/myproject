@@ -95,7 +95,7 @@ public class App extends GameApplication {
         //FXGL.getGameWorld().setLevel(map);
         FXGL.setLevelFromMap("scene1.tmx");
 
-        SystemEvent.combat();
+        //SystemEvent.combat();
         
         player = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
         
@@ -105,7 +105,7 @@ public class App extends GameApplication {
         int mapHeight = (int) map.getHeight();
 
         FXGL.getGameScene().getViewport().setBounds(-10000/2, 0, mapWidth+150, mapHeight);
-        //FXGL.getGameScene().getViewport().setLazy(true);
+        FXGL.getGameScene().getViewport().setLazy(true);
         
     }
 

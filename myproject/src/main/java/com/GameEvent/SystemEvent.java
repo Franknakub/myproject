@@ -35,9 +35,9 @@ public class SystemEvent {
             
             FXGL.getGameWorld().addEntityFactory(new CombatWithRexFactory());
             FXGL.setLevelFromMap("battle1.tmx");
+
             List<Entity> cameras = FXGL.getGameWorld().getEntitiesByType(PlayerType.Camera);
             Entity Camera = cameras.get(0);
-            
             FXGL.getGameScene().getViewport().bindToEntity(Camera, FXGL.getAppWidth() /2, FXGL.getAppHeight() /2);
             FXGL.getGameScene().getViewport().setZoom(0.75/1.05);
 

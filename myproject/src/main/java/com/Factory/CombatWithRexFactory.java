@@ -10,6 +10,8 @@ import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import static com.almasb.fxgl.dsl.FXGL.texture;
+
+import com.Component.StatusComponent;
 public class CombatWithRexFactory implements EntityFactory {
 
      @Spawns("setenemy")
@@ -39,6 +41,7 @@ public class CombatWithRexFactory implements EntityFactory {
                  .type(PlayerType.Hero)
                  .viewWithBBox(texture("Rex.png",128*3,128*3))
                  .with(physics)
+                 .with(new StatusComponent("kuay",100,50))
                  //.bbox(new HitBox(BoundingShape.box(64,64)))
                  //.at(0,100)
                  .build();
