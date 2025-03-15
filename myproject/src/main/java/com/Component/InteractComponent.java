@@ -37,26 +37,23 @@ public void interact() {
     statusUI = new StatusUI();
     if (entity.getType() == PlayerType.Hero) {
 
+        statusUI = new StatusUI();
+        FXGL.getGameScene().removeUINode(statusUI.getVBox());
+        statusUI.remove();
+
         List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy);
 
         for (int i = 0; i < enemies.size(); i++) { 
             if (entity.distance(enemies.get(i)) < 150) {
                 Cutscene cutscene = FXGL.getAssetLoader().loadCutscene(filename);
                     CutsceneService cutsceneService = FXGL.getCutsceneService();
-                    statusUI = new StatusUI();
-                    FXGL.getGameScene().removeUINode(statusUI.getVBox());
-                    statusUI.remove();
+                    
                 
                     cutsceneService.startCutscene(cutscene, () -> {
 
-                       
-                        
-
-                       
-
                         SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.REXCOMBATODE));
                         actionButtonUI = new ActionButtonUI();
-                        FXGL.getGameScene().addUINode(actionButtonUI.getVBox());
+                        FXGL.getGameScene().addUINode(actionButtonUI.getHBox());
                     });
                 
                 

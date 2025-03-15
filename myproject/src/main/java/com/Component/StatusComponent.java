@@ -61,4 +61,6 @@ public class StatusComponent extends Component {
   public int getManaCharacter(){
     return this.manaCharcter;
   }
+
+ 
     }
