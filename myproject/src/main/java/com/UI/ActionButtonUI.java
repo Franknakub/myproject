@@ -30,7 +30,7 @@ public class ActionButtonUI {
         // สร้าง VBox สำหรับปุ่ม
         vbox = new VBox(20);
         vbox.setTranslateX(50); // ตำแหน่ง X
-        vbox.setTranslateY(FXGL.getAppHeight() - 200); // ตำแหน่ง Y (ล่างจอ)
+        vbox.setTranslateY(FXGL.getAppHeight() -200); // ตำแหน่ง Y (ล่างจอ)
 
         // ปุ่มโจมตี
         attackButton = new Button("Attack");

@@ -28,9 +28,9 @@ public class StatusUI {
         this.status = FXGL.getGameWorld().getSingleton(PlayerType.Hero).getComponent(StatusComponent.class);
         // สร้าง VBox สำหรับวางเลย์เอาต์
         vbox = new VBox(10);
-        vbox.setStyle("-fx-background-color: rgba(0, 0, 0, 0.92); -fx-padding: 10;");
+        vbox.setStyle("-fx-background-color: rgba(40, 20, 20, 0.92); -fx-padding: 10;");
         
-        vbox.setTranslateX(FXGL.getAppWidth() - 200); // ตั้งค่าให้ VBox อยู่ทางขวา
+        vbox.setTranslateX(FXGL.getAppWidth() -200); // ตั้งค่าให้ VBox อยู่ทางขวา
         vbox.setTranslateY(10);
 
         // สร้าง Label สำหรับแสดงข้อมูลเริ่มต้น
