@@ -83,9 +83,13 @@ public class App extends GameApplication {
     protected void initGameVars(Map<String, Object> vars) {
 
         vars.put("map1", "scene1.tmx");
+        vars.put("Name", "Harold");
+        vars.put("HP", 100);
+        vars.put("Mana", 100);
+
+        vars.put("Phase", "Exploration");
+        
        
-      //  vars.put("pixelsMoved", 0);
-      //FXGL.set("currentLevel", 1);
     }
 
    
@@ -117,8 +121,7 @@ public class App extends GameApplication {
         FXGL.getGameScene().getViewport().setLazy(true);
 
        
-        statusUI = new StatusUI();
-        FXGL.getGameScene().addUINode(statusUI.getVBox());
+        
     }
 
     
@@ -126,52 +129,69 @@ public class App extends GameApplication {
 
     @Override
     protected void initInput() {
-    
+
+       
         FXGL.getInput().addAction(new UserAction("Right") {
         @Override
         protected void onAction() {
+            if (FXGL.gets("Phase") == "Exploration"){
             player.getComponent(ControllerComponent.class).moveRight();
+            }
         }
 
         @Override
         protected void onActionEnd() {
+            if (FXGL.gets("Phase") == "Exploration"){
             player.getComponent(ControllerComponent.class).stop();
+            }
         }
         }, KeyCode.D);
 
         FXGL.getInput().addAction(new UserAction("Left") {
         @Override
         protected void onAction() {
+            if(FXGL.gets("Phase") == "Exploration"){
                 player.getComponent(ControllerComponent.class).moveLeft();
+             }
             }
 
         @Override
         protected void onActionEnd() {
+            if(FXGL.gets("Phase") == "Exploration"){
             player.getComponent(ControllerComponent.class).stop();
+            }
         }
         }, KeyCode.A);
 
         FXGL.getInput().addAction(new UserAction("Up") {
         @Override
         protected void onAction() {
+            if(FXGL.gets("Phase") == "Exploration"){
                 player.getComponent(ControllerComponent.class).moveUp();
+              }
             }
 
         @Override
         protected void onActionEnd() {
+            if(FXGL.gets("Phase") == "Exploration"){
                 player.getComponent(ControllerComponent.class).stop();
+                }
             }
         }, KeyCode.W);
 
         FXGL.getInput().addAction(new UserAction("Down") {
             @Override
             protected void onAction() {
+                if(FXGL.gets("Phase") == "Exploration"){
                 player.getComponent(ControllerComponent.class).moveDown();
+                }
             }
 
             @Override
             protected void onActionEnd() {
+                if(FXGL.gets("Phase") == "Exploration"){
                 player.getComponent(ControllerComponent.class).stop();
+                }
             }
         }, KeyCode.S);
 
@@ -179,11 +199,13 @@ public class App extends GameApplication {
         FXGL.getInput().addAction(new UserAction("Interact") {
             @Override
             protected void onAction() {
+                if(FXGL.gets("Phase") == "Exploration"){
                 player.getComponent(InteractComponent.class).interact();
+                }
             }
         }, KeyCode.E);
     
-       
+        
 
         
     }
@@ -191,21 +213,9 @@ public class App extends GameApplication {
 
     @Override
     protected void initUI() {
-        // Text textHP = new Text("HP");
-        // Text myHP = new Text();
-        // textHP.setTranslateX(50);
-        // textHP.setTranslateY(100); 
-        // myHP.setTranslateX(100); 
-        // myHP.setTranslateY(100);
-
-        
-
-       // myHP.textProperty().bind(getWorldProperties().intProperty("pixelsMoved").asString());
-
-        // getGameScene().addUINode(myHP);
-        // getGameScene().addUINode(textHP);
        
-    
+        statusUI = new StatusUI();
+        FXGL.getGameScene().addUINode(statusUI.getVBox());
         
     }
 

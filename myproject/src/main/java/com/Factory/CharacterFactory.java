@@ -39,7 +39,7 @@ public class CharacterFactory implements EntityFactory{
                 .with(new ControllerComponent())
                 .with(new AnimationComponent("Actor1.png"))
                 .with(new InteractComponent("filetext.txt"))
-                .with(new StatusComponent("Harold",100,50))
+                .with(new StatusComponent(FXGL.gets("Name"),FXGL.geti("HP"),FXGL.geti("Mana")))
                 .build(); 
 
    

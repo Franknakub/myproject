@@ -17,50 +17,41 @@ import javafx.scene.text.Text;
 
 
 public class StatusComponent extends Component {
+
     String nameCharacter;
-    int hpCharacter;
-    int manaCharcter;
+   public int hpCharacter;
+   public int manaCharcter;
   
-  public StatusComponent(String name,int HP,int mana){
-    this.nameCharacter = name;
-    this.hpCharacter = HP ;
-    this.manaCharcter = mana;
-  }
+        public StatusComponent(String name,int HP,int mana){
+          this.nameCharacter = name;
+          this.hpCharacter = HP ;
+          this.manaCharcter = mana;
+        }
 
-  public void setNameCharacter(String name){
-    this.nameCharacter = name;
-  }
+        public void setNameCharacter(String name){
+          this.nameCharacter = name;
+        }
 
-  public void setHPCharacter(int HP){
-    if(HP>=0){
-        this.hpCharacter=HP;
-    }
-    else{
-        System.out.println("HP must be over 0");
-    }
-  }
-  
-  public void setManaCharacter(int mana){
-    if(mana>=0){
-        this.manaCharcter = mana;
-    }
-    else{
-        System.out.println("MANA must be over 0");
+        public void setHPCharacter(int HP){
+              this.hpCharacter=HP;
+        }
+        
+        public void setManaCharacter(int mana){
+              this.manaCharcter = mana;  
+      
+        }
 
-    }
-  }
+        public String getName(){
+          return this.nameCharacter;
+        }
 
-  public String getName(){
-    return this.nameCharacter;
-  }
-
-  public int getHPCharacter(){
-    return this.hpCharacter;
-  }
-  
-  public int getManaCharacter(){
-    return this.manaCharcter;
-  }
+        public int getHPCharacter(){
+          return this.hpCharacter;
+        }
+        
+        public int getManaCharacter(){
+          return this.manaCharcter;
+        }
 
  
     }

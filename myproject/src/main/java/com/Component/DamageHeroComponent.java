@@ -5,17 +5,17 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 
-public class DamageComponent extends Component {
+public class DamageHeroComponent extends Component {
     private static int attack;
     private static Entity targetEnemy; 
     
 
-    public DamageComponent(int attack) {
+    public DamageHeroComponent(int attack) {
         this.attack = attack;
         this.targetEnemy = targetEnemy;
     }
 
-    public int getDamage() {
+    public static int getDamage() {
         return attack;
     }
 
@@ -23,16 +23,7 @@ public class DamageComponent extends Component {
         this.attack = damage;
     }
 
-    public void setTargetEnemy(){
-
-        this.targetEnemy = OrderCombat.getTargetEnemy();
-
-    }
-
-    public Entity getTargetEnemy() {
-        return targetEnemy;
-    }
-
+    
 
 
      public static void decreaseHP() {
@@ -43,7 +34,9 @@ public class DamageComponent extends Component {
             status.setHPCharacter(status.getHPCharacter() - attack);
             if (status.getHPCharacter() <= 0) {
                 FXGL.getGameWorld().removeEntity(targetEnemy);
-                FXGL.getNotificationService().pushNotification("💀 " + targetEnemy.getType() + " has been defeated!");
+                FXGL.getNotificationService().pushNotification("💀 " + status.getName() + " has been defeated!");
             }
         }
+
+       
 }

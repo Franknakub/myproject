@@ -3,7 +3,7 @@ package com.Combat;
 import java.util.List;
 import java.util.Optional;
 
-import com.Component.DamageComponent;
+import com.Component.DamageHeroComponent;
 import com.Component.StatusComponent;
 import com.Type.EnemyType;
 import com.almasb.fxgl.dsl.FXGL;
@@ -12,7 +12,9 @@ import com.almasb.fxgl.entity.component.Component;
 
 public class OrderCombat {
 
-    private static int attack;
+
+    private static boolean isPlayerTurn = true;
+   
     private static Entity targetEnemy; 
             
                 
@@ -25,21 +27,44 @@ public class OrderCombat {
             public static Entity getTargetEnemy() {
                 return targetEnemy;
             }
+
+            public static boolean getIsPlayerTurn() {
+                return isPlayerTurn;
+            }
+            
+            public static void setPlayerTurn(boolean isPlayerTurn) {
+                OrderCombat.isPlayerTurn = isPlayerTurn;
+            }
         
             
             // ✅ โจมตีศัตรูที่เลือก
             public void attack() {
-                if (targetEnemy != null) {
-                    StatusComponent enemyStatus = targetEnemy.getComponent(StatusComponent.class);
-                    DamageComponent.decreaseHP(); // ลด HP ศัตรู
-                    FXGL.getNotificationService().pushNotification("⚔ Attacked " + targetEnemy.getType() + " for " + attack + " damage!");
+                if (!isPlayerTurn) {
+                    FXGL.getNotificationService().pushNotification("❌ It's not your turn!");
+                    return;
+                }
+
+               else if (targetEnemy != null) {
+                    targetEnemy = getTargetEnemy();
+
+                     StatusComponent enemystatus = targetEnemy.getComponent(StatusComponent.class);
+
+                    DamageHeroComponent.decreaseHP(); // ลด HP ศัตรู
+                    FXGL.getNotificationService().pushNotification("⚔ Attacked " + enemystatus.getName() + " for " + DamageHeroComponent.getDamage() + " damage!");
+                    isPlayerTurn = false;
+
+                    EnemyCombat.enemyAttack(); // ศัตรูตอบโจมตี
+                    
                 } else {
+                     
                     FXGL.getNotificationService().pushNotification("❌ No target selected!");
                 }
             }
         
             // ✅ หนีจากการต่อสู้
             public void flee() {
+                FXGL.getNotificationService().onMainLoopPausing();
+                
                 FXGL.getNotificationService().pushNotification("🏃‍♂ You fled from battle!");
             }
             

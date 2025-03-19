@@ -12,7 +12,8 @@ import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import static com.almasb.fxgl.dsl.FXGL.texture;
 
 import com.Combat.OrderCombat;
-import com.Component.DamageComponent;
+import com.Component.DamageEnemyComponent;
+import com.Component.DamageHeroComponent;
 import com.Component.StatusComponent;
 public class CombatWithRexFactory implements EntityFactory {
 
@@ -26,7 +27,7 @@ public class CombatWithRexFactory implements EntityFactory {
                  .type(EnemyType.LowEnemy)
                  .viewWithBBox(texture("Rex.png",128*3,128*3))
                  .with(new StatusComponent("Rex",100,50))
-                 .with(new DamageComponent(10))
+                 .with(new DamageEnemyComponent(100))
                  .with(physics)
                  //.bbox(new HitBox(BoundingShape.box(64,64)))
                  //.at(0,100)
@@ -40,13 +41,12 @@ public class CombatWithRexFactory implements EntityFactory {
          PhysicsComponent physics = new PhysicsComponent();
          physics.setBodyType(BodyType.STATIC);
       
-      
           return FXGL.entityBuilder(data)
-                 .type(PlayerType.Hero)
+                 .type(PlayerType.Combat)
                  .viewWithBBox(texture("Karee.png",128*3,128*3))
                  .with(physics)
-                 .with(new StatusComponent("Harold",101,50))
-                 .with(new DamageComponent(20))
+                 .with(new StatusComponent(FXGL.gets("Name"),FXGL.geti("HP"),FXGL.geti("Mana")))
+                 .with(new DamageHeroComponent(20))
                  //.bbox(new HitBox(BoundingShape.box(64,64)))
                  //.at(0,100)
                  .build();

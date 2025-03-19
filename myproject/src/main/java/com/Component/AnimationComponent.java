@@ -43,10 +43,10 @@ public class AnimationComponent extends Component {
         right = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 6, 8);
         up = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 9, 11);
         down = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 0, 2);
-        idleDown = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 0, 0);
-        idleUp = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 9, 9);
-        idleRight = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 6, 6);
-        idleLeft = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 3, 3);
+        idleDown = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 1, 1);
+        idleUp = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 10, 10);
+        idleRight = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 7, 7);
+        idleLeft = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 4, 4);
 
 
         texture = new AnimatedTexture(idleDown);
