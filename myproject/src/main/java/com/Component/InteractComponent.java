@@ -37,7 +37,7 @@ public void interact() {
     statusUI = new StatusUI();
     if (entity.getType() == PlayerType.Hero) {
 
-        FXGL.set("Phase", "Combat");
+        
 
         List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy);
 
@@ -52,9 +52,8 @@ public void interact() {
                 
                     //cutsceneService.startCutscene(cutscene, () -> {
 
-                        SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.REXCOMBATODE));
-                        actionButtonUI = new ActionButtonUI();
-                        FXGL.getGameScene().addUINode(actionButtonUI.getHBox());
+                        SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.REXCOMBATMODE));
+                        
                    //});
                 
                 

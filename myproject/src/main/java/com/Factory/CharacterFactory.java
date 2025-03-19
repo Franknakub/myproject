@@ -33,7 +33,7 @@ public class CharacterFactory implements EntityFactory{
        
         return FXGL.entityBuilder(data)
                 .type(PlayerType.Hero)
-                .bbox(new HitBox(BoundingShape.box(8,8)))           
+                .bbox(new HitBox(BoundingShape.box(40,50)))           
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new ControllerComponent())

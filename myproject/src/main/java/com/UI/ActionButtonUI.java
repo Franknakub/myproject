@@ -85,9 +85,9 @@ public class ActionButtonUI {
 
     // ✅ เมธอดลบ UI ออกจาก GameScene
     public void remove() {
-        if (vbox != null) {
-            FXGL.getGameScene().removeUINode(vbox);
-            vbox = null;
+        if (hbox != null) {
+            FXGL.getGameScene().removeUINode(hbox);
+            hbox = null;
         }
     }
 }

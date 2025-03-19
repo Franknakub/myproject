@@ -10,8 +10,10 @@ import javafx.scene.control.DialogEvent;
 public class CombatScene extends Event{
 
         
-    public static final EventType<CombatScene> REXCOMBATODE
+    public static final EventType<CombatScene> REXCOMBATMODE
     = new EventType<>(Event.ANY, "RexCombatMode");
+
+    
    
 
         

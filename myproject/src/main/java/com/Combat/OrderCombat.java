@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import com.Component.DamageHeroComponent;
 import com.Component.StatusComponent;
+import com.GameEvent.BackMainScene;
+import com.GameEvent.CombatScene;
+import com.GameEvent.SystemEvent;
 import com.Type.EnemyType;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -63,9 +66,15 @@ public class OrderCombat {
         
             // ✅ หนีจากการต่อสู้
             public void flee() {
-                FXGL.getNotificationService().onMainLoopPausing();
+                if (isPlayerTurn == false) {
+                    FXGL.getNotificationService().pushNotification("❌ It's not your turn!");
+                    return;
+                }
                 
                 FXGL.getNotificationService().pushNotification("🏃‍♂ You fled from battle!");
+
+                SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENE));
+                isPlayerTurn = true;
             }
             
             

@@ -46,6 +46,7 @@ public class App extends GameApplication {
     private Entity Enemy;
     private Level map;
     private StatusUI statusUI;
+    private static App instance;
     
     
 
@@ -82,14 +83,25 @@ public class App extends GameApplication {
     @Override
     protected void initGameVars(Map<String, Object> vars) {
 
+       
+
         vars.put("map1", "scene1.tmx");
         vars.put("Name", "Harold");
         vars.put("HP", 100);
         vars.put("Mana", 100);
-
-        vars.put("Phase", "Exploration");
+        vars.put("Phase", true);
+        // vars.put("lastPlayerX", lastX);
+        // vars.put("lastPlayerY", lastY);
         
        
+    }
+
+    public static void setPlayer(Entity newPlayer) {
+        instance.player = newPlayer;
+    }
+
+    public static Entity getPlayer() {
+        return instance.player;
     }
 
    
@@ -97,6 +109,7 @@ public class App extends GameApplication {
 
     @Override
     protected void initGame() {
+        instance = this;
         
         getGameScene().setBackgroundColor(Color.BLACK); 
         FXGL.getGameWorld().addEntityFactory(new CharacterFactory());
@@ -134,14 +147,14 @@ public class App extends GameApplication {
         FXGL.getInput().addAction(new UserAction("Right") {
         @Override
         protected void onAction() {
-            if (FXGL.gets("Phase") == "Exploration"){
+            if (FXGL.getb("Phase") == true){
             player.getComponent(ControllerComponent.class).moveRight();
             }
         }
 
         @Override
         protected void onActionEnd() {
-            if (FXGL.gets("Phase") == "Exploration"){
+            if (FXGL.getb("Phase") == true){
             player.getComponent(ControllerComponent.class).stop();
             }
         }
@@ -150,14 +163,14 @@ public class App extends GameApplication {
         FXGL.getInput().addAction(new UserAction("Left") {
         @Override
         protected void onAction() {
-            if(FXGL.gets("Phase") == "Exploration"){
+            if(FXGL.getb("Phase") == true){
                 player.getComponent(ControllerComponent.class).moveLeft();
              }
             }
 
         @Override
         protected void onActionEnd() {
-            if(FXGL.gets("Phase") == "Exploration"){
+            if(FXGL.getb("Phase") == true){
             player.getComponent(ControllerComponent.class).stop();
             }
         }
@@ -166,14 +179,14 @@ public class App extends GameApplication {
         FXGL.getInput().addAction(new UserAction("Up") {
         @Override
         protected void onAction() {
-            if(FXGL.gets("Phase") == "Exploration"){
+            if(FXGL.getb("Phase") == true){
                 player.getComponent(ControllerComponent.class).moveUp();
               }
             }
 
         @Override
         protected void onActionEnd() {
-            if(FXGL.gets("Phase") == "Exploration"){
+            if(FXGL.getb("Phase") == true){
                 player.getComponent(ControllerComponent.class).stop();
                 }
             }
@@ -182,14 +195,14 @@ public class App extends GameApplication {
         FXGL.getInput().addAction(new UserAction("Down") {
             @Override
             protected void onAction() {
-                if(FXGL.gets("Phase") == "Exploration"){
+                if(FXGL.getb("Phase") == true){
                 player.getComponent(ControllerComponent.class).moveDown();
                 }
             }
 
             @Override
             protected void onActionEnd() {
-                if(FXGL.gets("Phase") == "Exploration"){
+                if(FXGL.getb("Phase") == true){
                 player.getComponent(ControllerComponent.class).stop();
                 }
             }
@@ -199,7 +212,7 @@ public class App extends GameApplication {
         FXGL.getInput().addAction(new UserAction("Interact") {
             @Override
             protected void onAction() {
-                if(FXGL.gets("Phase") == "Exploration"){
+                if(FXGL.getb("Phase") == true){
                 player.getComponent(InteractComponent.class).interact();
                 }
             }

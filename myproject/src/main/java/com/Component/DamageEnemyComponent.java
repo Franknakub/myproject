@@ -1,6 +1,8 @@
 package com.Component;
 
 import com.Combat.OrderCombat;
+import com.GameEvent.BackMainScene;
+import com.GameEvent.SystemEvent;
 import com.Type.PlayerType;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -39,6 +41,8 @@ public class DamageEnemyComponent extends Component {
         if (playerStatus.getHPCharacter() <= 0) {
             FXGL.getGameWorld().removeEntity(Hero);
             FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+            SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENE));
+                OrderCombat.setPlayerTurn (true);
         }
            
         

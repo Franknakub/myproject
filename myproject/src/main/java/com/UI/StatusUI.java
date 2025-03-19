@@ -104,7 +104,7 @@ public class StatusUI {
 
         if (vbox != null) {
             FXGL.getGameScene().removeUINode(vbox);
-            
+            vbox = null;
         }
     }
 }
