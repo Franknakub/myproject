@@ -11,6 +11,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -23,14 +24,15 @@ public class ActionButtonUI {
     private OrderCombat combat;
     private VBox enemySelectionBox;
     private HBox hbox;
+    private ScrollPane scrollPane;
 
     public ActionButtonUI() {
-         combat = new OrderCombat();
+        combat = new OrderCombat();
 
         // สร้าง VBox สำหรับปุ่ม
         vbox = new VBox(20);
-        vbox.setTranslateX(50); // ตำแหน่ง X
-        vbox.setTranslateY(FXGL.getAppHeight() -200); // ตำแหน่ง Y (ล่างจอ)
+        //vbox.setTranslateX(50); // ตำแหน่ง X
+        //vbox.setTranslateY(FXGL.getAppHeight() -200); // ตำแหน่ง Y (ล่างจอ)
 
         // ปุ่มโจมตี
         attackButton = new Button("Attack");
@@ -45,18 +47,25 @@ public class ActionButtonUI {
         fleeButton.setTextFill(Color.BLACK);
 
         enemySelectionBox = new VBox(10);
-        enemySelectionBox.setTranslateX(50);
-        enemySelectionBox.setTranslateY(FXGL.getAppHeight() - 270); // กล่องสำหรับแสดงปุ่มเลือกศัตรู
+        //enemySelectionBox.setTranslateX(50);
+        //enemySelectionBox.setTranslateY(FXGL.getAppHeight() - 270); // กล่องสำหรับแสดงปุ่มเลือกศัตรู
         updateEnemySelectionUI(); // อัปเดต UI เลือกศัตรู
-        
+        scrollPane = new ScrollPane(enemySelectionBox);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefHeight(200); 
+
+
         vbox.getChildren().addAll(attackButton, fleeButton);
         vbox.setTranslateX(100);
+
         hbox = new HBox(10);
-
-        hbox.getChildren().addAll(enemySelectionBox, vbox);
-
-        // ✅ เพิ่ม UI ลงใน GameScene
-        
+        hbox.getChildren().addAll(scrollPane, vbox);
+        hbox.setTranslateY(FXGL.getAppHeight() - 250);                
+        hbox.setTranslateY(FXGL.getAppHeight() -200);
+        hbox.setTranslateX(50);
+        hbox.setStyle("-fx-background-color: rgb(0, 0, 0); -fx-padding: 10; -fx-border-color: white; -fx-border-width: 2;");
+        hbox.setPrefWidth(FXGL.getAppWidth() - 900); // ตั้งค่าความกว้างของ hbox
+        hbox.setPrefHeight(20); // ตั้งค่าความสูงของ hbox
     }
 
     private void updateEnemySelectionUI() {

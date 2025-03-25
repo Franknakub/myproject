@@ -17,10 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class BackgroundFactory implements EntityFactory {
-    PhysicsComponent physics = new PhysicsComponent();
-    
-   
-   
+    PhysicsComponent physics = new PhysicsComponent();   
 
     @Spawns("abyss zone")
     public Entity spawnWall(SpawnData data) {

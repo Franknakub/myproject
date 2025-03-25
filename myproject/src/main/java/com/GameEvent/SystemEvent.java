@@ -30,10 +30,8 @@ public class SystemEvent {
     
             public static void combat() {
         
-        
               eventBus = FXGL.getEventBus();
-        
-              
+                
               eventBus.addEventHandler(CombatScene.REXCOMBATMODE, event -> {
         
                   FXGL.set("Phase", false);
@@ -67,8 +65,7 @@ public class SystemEvent {
               FXGL.getGameScene().setBackgroundColor(Color.BLACK);
     
               Entity newPlayer = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
-        
-              
+                      
               App.setPlayer(newPlayer);
               FXGL.getGameScene().getViewport().unbind();
               FXGL.getGameScene().getViewport().bindToEntity(newPlayer,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);

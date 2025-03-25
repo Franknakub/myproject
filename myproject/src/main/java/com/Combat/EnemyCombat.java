@@ -24,7 +24,7 @@ public class EnemyCombat {
         DamageEnemyComponent enemyDamage = targetEnemy.getComponent(DamageEnemyComponent.class);
         StatusComponent enemyStatus = targetEnemy.getComponent(StatusComponent.class);
         if (player != null) {
-            
+           
             FXGL.getNotificationService().pushNotification("💥 Enemy attacks you with " + enemyDamage.getDamage() + " damage!");
             
             OrderCombat.setPlayerTurn(true);

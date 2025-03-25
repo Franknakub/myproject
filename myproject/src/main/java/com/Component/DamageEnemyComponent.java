@@ -42,7 +42,7 @@ public class DamageEnemyComponent extends Component {
             FXGL.getGameWorld().removeEntity(Hero);
             FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
             SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENE));
-                OrderCombat.setPlayerTurn (true);
+            OrderCombat.setPlayerTurn (true);
         }
            
         

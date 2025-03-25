@@ -53,21 +53,28 @@ public class OrderCombat {
                      StatusComponent enemystatus = targetEnemy.getComponent(StatusComponent.class);
 
                     DamageHeroComponent.decreaseHP(); // ลด HP ศัตรู
+                    
+                   
                     FXGL.getNotificationService().pushNotification("⚔ Attacked " + enemystatus.getName() + " for " + DamageHeroComponent.getDamage() + " damage!");
                     isPlayerTurn = false;
 
                     EnemyCombat.enemyAttack(); // ศัตรูตอบโจมตี
                     
                 } else {
-                     
+                    
+                   
                     FXGL.getNotificationService().pushNotification("❌ No target selected!");
+                   
                 }
             }
         
             // ✅ หนีจากการต่อสู้
             public void flee() {
                 if (isPlayerTurn == false) {
+                    
+                   
                     FXGL.getNotificationService().pushNotification("❌ It's not your turn!");
+                   
                     return;
                 }
                 
