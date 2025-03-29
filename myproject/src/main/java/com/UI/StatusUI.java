@@ -1,7 +1,7 @@
 package com.UI;
 
 import com.Component.StatusComponent;
-import com.Type.PlayerType;
+import com.Type.Player.PlayerType;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 

@@ -2,13 +2,16 @@ package com.Combat;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-import com.Component.DamageHeroComponent;
 import com.Component.StatusComponent;
+import com.Component.CharecterHero.DamageHeroComponent;
 import com.GameEvent.BackMainScene;
 import com.GameEvent.CombatScene;
 import com.GameEvent.SystemEvent;
-import com.Type.EnemyType;
+import com.Type.Enemy.EnemyType;
+import com.Type.Player.PlayerType;
+import com.UI.ActionButtonUI;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
@@ -17,7 +20,7 @@ public class OrderCombat {
 
 
     private static boolean isPlayerTurn = true;
-   
+    private static int count = 0;
     private static Entity targetEnemy; 
             
                 
@@ -40,7 +43,7 @@ public class OrderCombat {
             }
         
             
-            // ✅ โจมตีศัตรูที่เลือก
+
             public void attack() {
                 if (!isPlayerTurn) {
                     FXGL.getNotificationService().pushNotification("❌ It's not your turn!");
@@ -50,15 +53,40 @@ public class OrderCombat {
                else if (targetEnemy != null) {
                     targetEnemy = getTargetEnemy();
 
-                     StatusComponent enemystatus = targetEnemy.getComponent(StatusComponent.class);
+                     StatusComponent enemyStatus = targetEnemy.getComponent(StatusComponent.class);
 
-                    DamageHeroComponent.decreaseHP(); // ลด HP ศัตรู
+                    DamageHeroComponent.decreaseHP();
+                    FXGL.getNotificationService().pushNotification("⚔ Attacked " + enemyStatus.getName() + " for " + DamageHeroComponent.getDamage() + " damage!");
+                    count++;
+                    List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero,PlayerType.Combat)
+                    .stream()   
+                    .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
+                    .collect(Collectors.toList());
+
+                    List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnermy, EnemyType.BossMonster)
+                    .stream()
+                    .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
+                    .collect(Collectors.toList());
+
+
+                   if(enemies.isEmpty()) {
+                        FXGL.getNotificationService().pushNotification("🎉 All enemies have been defeated!");
+                        SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENEIFWIN)); 
+                    }
+
+                    if(count >= players.size()){
+                        count = 0;
                     
-                   
-                    FXGL.getNotificationService().pushNotification("⚔ Attacked " + enemystatus.getName() + " for " + DamageHeroComponent.getDamage() + " damage!");
-                    isPlayerTurn = false;
-
-                    EnemyCombat.enemyAttack(); // ศัตรูตอบโจมตี
+                    if (!enemies.isEmpty()) {
+                        isPlayerTurn = false;
+                        EnemyCombat.enemyAttack(); 
+                     } 
+                        
+                    }
+                    FXGL.getGameScene().getUINodes().stream() //เก็บUIทั้งหมดที่อยู่ใน Scene
+                    .filter(ActionButtonUI.class::isInstance) //เลือกเฉพาะ UI ที่เป็น ActionButtonUI
+                    .map(ActionButtonUI.class::cast)  //แปลงเป็น ActionButtonUI
+                    .forEach(ActionButtonUI::updateEnemySelectionUI); //LoopUI ให้เป็นของ ActionButtonUI  
                     
                 } else {
                     

@@ -1,12 +1,13 @@
 package com.UI;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.lwjgl.system.linux.Stat;
 
 import com.Combat.OrderCombat;
 import com.Component.StatusComponent;
-import com.Type.EnemyType;
+import com.Type.Enemy.EnemyType;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 
@@ -29,27 +30,21 @@ public class ActionButtonUI {
     public ActionButtonUI() {
         combat = new OrderCombat();
 
-        // สร้าง VBox สำหรับปุ่ม
         vbox = new VBox(20);
-        //vbox.setTranslateX(50); // ตำแหน่ง X
-        //vbox.setTranslateY(FXGL.getAppHeight() -200); // ตำแหน่ง Y (ล่างจอ)
-
-        // ปุ่มโจมตี
+        
         attackButton = new Button("Attack");
         attackButton.setFont(Font.font(18));
         attackButton.setOnAction(e -> combat.attack());
         attackButton.setTextFill(Color.BLACK);
-
-        // ปุ่มหนี
+      
         fleeButton = new Button("Flee");
         fleeButton.setFont(Font.font(18));
         fleeButton.setOnAction(e -> combat.flee());
         fleeButton.setTextFill(Color.BLACK);
 
         enemySelectionBox = new VBox(10);
-        //enemySelectionBox.setTranslateX(50);
-        //enemySelectionBox.setTranslateY(FXGL.getAppHeight() - 270); // กล่องสำหรับแสดงปุ่มเลือกศัตรู
-        updateEnemySelectionUI(); // อัปเดต UI เลือกศัตรู
+        
+        updateEnemySelectionUI(); 
         scrollPane = new ScrollPane(enemySelectionBox);
         scrollPane.setFitToWidth(true);
         scrollPane.setPrefHeight(200); 
@@ -64,22 +59,25 @@ public class ActionButtonUI {
         hbox.setTranslateY(FXGL.getAppHeight() -200);
         hbox.setTranslateX(50);
         hbox.setStyle("-fx-background-color: rgb(0, 0, 0); -fx-padding: 10; -fx-border-color: white; -fx-border-width: 2;");
-        hbox.setPrefWidth(FXGL.getAppWidth() - 900); // ตั้งค่าความกว้างของ hbox
-        hbox.setPrefHeight(20); // ตั้งค่าความสูงของ hbox
+        hbox.setPrefWidth(FXGL.getAppWidth() - 900); 
+        hbox.setPrefHeight(20); 
     }
 
-    private void updateEnemySelectionUI() {
-        enemySelectionBox.getChildren().clear(); // ล้างปุ่มเก่าทั้งหมด
+    public void updateEnemySelectionUI() {
+        enemySelectionBox.getChildren().clear(); 
         
-        List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy); // ดึงศัตรูทั้งหมด
+        List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnermy, EnemyType.BossMonster)
+            .stream()
+            .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
+            .collect(Collectors.toList()); 
     
         for (Entity enemy : enemies) {
-            if (enemy.hasComponent(StatusComponent.class)) { // เช็กว่ามี StatusComponent ก่อน
+            if (enemy.hasComponent(StatusComponent.class)) { 
                 String enemyName = enemy.getComponent(StatusComponent.class).getName();
                 
                 Button enemyButton = new Button("🎯 Target: " + enemyName);
                 enemyButton.setFont(Font.font(16));
-                enemyButton.setOnAction(e -> combat.setTargetEnemy(enemy)); // เลือกเป้าหมาย
+                enemyButton.setOnAction(e -> combat.setTargetEnemy(enemy)); 
                 
                 enemySelectionBox.getChildren().add(enemyButton);
             }
@@ -92,7 +90,7 @@ public class ActionButtonUI {
         return hbox;
     }
 
-    // ✅ เมธอดลบ UI ออกจาก GameScene
+    
     public void remove() {
         if (hbox != null) {
             FXGL.getGameScene().removeUINode(hbox);

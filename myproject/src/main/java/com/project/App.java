@@ -1,12 +1,12 @@
 package com.project;
 import com.badlogic.gdx.Game;
-import com.Component.AnimationComponent;
-import com.Component.ControllerComponent;
-import com.Component.InteractComponent;
-import com.Factory.BackgroundFactory;
-import com.Factory.CharacterFactory;
+import com.Component.CharecterHero.AnimationComponent;
+import com.Component.CharecterHero.ControllerComponent;
+import com.Component.CharecterHero.InteractComponent;
+import com.Factory.FactoryInMain.BackgroundFactory;
+import com.Factory.FactoryInMain.CharacterFactory;
 import com.GameEvent.SystemEvent;
-import com.Type.PlayerType;
+import com.Type.Player.PlayerType;
 import com.UI.StatusUI;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
@@ -47,8 +47,8 @@ public class App extends GameApplication {
     private Level map;
     private StatusUI statusUI;
     private static App instance;
-    
-    
+    double lastX;
+    double lastY;
 
     public static void main(String[] args) {
         launch(args);
@@ -90,8 +90,9 @@ public class App extends GameApplication {
         vars.put("HP", 100);
         vars.put("Mana", 100);
         vars.put("Phase", true);
-        // vars.put("lastPlayerX", lastX);
-        // vars.put("lastPlayerY", lastY);
+        
+        vars.put("lastPlayerX", lastX);
+        vars.put("lastPlayerY", lastY);
         
        
     }
