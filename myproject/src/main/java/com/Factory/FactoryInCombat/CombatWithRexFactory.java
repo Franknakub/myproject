@@ -15,6 +15,7 @@ import com.Combat.OrderCombat;
 import com.Component.StatusComponent;
 import com.Component.CharecterEnemy.DamageEnemyComponent;
 import com.Component.CharecterHero.DamageHeroComponent;
+import com.Skill.HeavyAttack;
 public class CombatWithRexFactory implements EntityFactory {
 
      @Spawns("setenemy")
@@ -27,7 +28,7 @@ public class CombatWithRexFactory implements EntityFactory {
                  .type(EnemyType.LowEnemy)
                  .viewWithBBox(texture("Rex.png",128*3,128*3))
                  .with(new StatusComponent("Rex",100,50,100,100))
-                 .with(new DamageEnemyComponent(20))
+                 .with(new DamageEnemyComponent(30))
                  .with(physics)
                  //.bbox(new HitBox(BoundingShape.box(64,64)))
                  //.at(0,100)
@@ -46,7 +47,7 @@ public class CombatWithRexFactory implements EntityFactory {
                  .viewWithBBox(texture("Karee.png",128*3,128*3))
                  .with(physics)
                  .with(new StatusComponent(FXGL.gets("Name"),FXGL.geti("HP"),FXGL.geti("Mana"),FXGL.geti("maxHP"),FXGL.geti("maxMana")))
-                 .with(new DamageHeroComponent(20))
+                 .with(new DamageHeroComponent(51,new HeavyAttack(40,20)))
                  //.bbox(new HitBox(BoundingShape.box(64,64)))
                  //.at(0,100)
                  .build();
