@@ -90,6 +90,8 @@ public class App extends GameApplication {
         vars.put("HP", 100);
         vars.put("Mana", 100);
         vars.put("Phase", true);
+        vars.put("maxHP", 100);
+        vars.put("maxMana", 100);
         
         vars.put("lastPlayerX", lastX);
         vars.put("lastPlayerY", lastY);

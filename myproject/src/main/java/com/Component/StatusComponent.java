@@ -19,26 +19,39 @@ import javafx.scene.text.Text;
 public class StatusComponent extends Component {
 
     String nameCharacter;
-   public int hpCharacter;
-   public int manaCharcter;
+   public int hp;
+   public int mana;
+   public int maxHP;
+   public int maxMana;
   
-        public StatusComponent(String name,int HP,int mana){
+        public StatusComponent(String name,int HP,int mana,int maxHP,int maxMana) {
           this.nameCharacter = name;
-          this.hpCharacter = HP ;
-          this.manaCharcter = mana;
+          this.hp = HP;
+          this.mana = mana;
+          this.maxHP = maxHP;
+          this.maxMana = maxMana;
         }
 
         public void setNameCharacter(String name){
           this.nameCharacter = name;
         }
 
+        public int getMaxManaCharacter(){
+
+          return maxMana;
+        } 
+
+        public int getMaxHPCharacter(){
+
+          return maxHP;
+        }
+
         public void setHPCharacter(int HP){
-              this.hpCharacter=HP;
+              this.hp = HP;
         }
         
         public void setManaCharacter(int mana){
-              this.manaCharcter = mana;  
-      
+              this.mana = mana;  
         }
 
         public String getName(){
@@ -46,11 +59,11 @@ public class StatusComponent extends Component {
         }
 
         public int getHPCharacter(){
-          return this.hpCharacter;
+          return this.hp;
         }
         
         public int getManaCharacter(){
-          return this.manaCharcter;
+          return this.mana;
         }
 
  

@@ -58,6 +58,7 @@ public class OrderCombat {
                     DamageHeroComponent.decreaseHP();
                     FXGL.getNotificationService().pushNotification("⚔ Attacked " + enemyStatus.getName() + " for " + DamageHeroComponent.getDamage() + " damage!");
                     count++;
+                    
                     List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero,PlayerType.Combat)
                     .stream()   
                     .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
@@ -80,6 +81,7 @@ public class OrderCombat {
                     if (!enemies.isEmpty()) {
                         isPlayerTurn = false;
                         EnemyCombat.enemyAttack(); 
+                       
                      } 
                         
                     }
@@ -89,8 +91,6 @@ public class OrderCombat {
                     .forEach(ActionButtonUI::updateEnemySelectionUI); //LoopUI ให้เป็นของ ActionButtonUI  
                     
                 } else {
-                    
-                   
                     FXGL.getNotificationService().pushNotification("❌ No target selected!");
                    
                 }

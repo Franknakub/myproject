@@ -2,7 +2,9 @@ package com.Combat;
 
 import static com.almasb.fxgl.dsl.FXGL.play;
 
+import java.io.ObjectInputFilter.Status;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import com.Component.StatusComponent;
@@ -17,25 +19,56 @@ public class EnemyCombat {
 
     private static Entity player;
 
-    private static Entity targetEnemy; 
+   
     
     public static void enemyAttack() {
 
-        StatusComponent playerStatus = player.getComponent(StatusComponent.class);
-        DamageEnemyComponent enemyDamage = targetEnemy.getComponent(DamageEnemyComponent.class);
-        StatusComponent enemyStatus = targetEnemy.getComponent(StatusComponent.class);
-        if (player != null) {           
+
+        List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnermy, EnemyType.BossMonster)
+        .stream()
+        .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
+        .collect(Collectors.toList());
+
+      
+
+        Random random = new Random();
+
+        for(Entity enemy : enemies) { 
+        
+           int randomIndex = random.nextInt(enemies.size());
+
+        StatusComponent enemyStatus = enemy.getComponent(StatusComponent.class);    
+        DamageEnemyComponent enemyDamage = enemy.getComponent(DamageEnemyComponent.class);
             
-            OrderCombat.setPlayerTurn(true);
 
-            DamageEnemyComponent.decreaseHP();
+        switch (randomIndex) {
+            case 0:
 
+                if (enemyStatus.getManaCharacter() >= 10) {
+                    enemyStatus.setManaCharacter(enemyStatus.getManaCharacter() - 10);
+                    FXGL.getNotificationService().pushNotification("💥 Enemy attacks you with " + enemyDamage.getDamage() + " damage!");
+                   enemyDamage.decreaseHP();
+                }else enemyDamage.decreaseHP();
+                    break;
+            case 1:
+                enemyDamage.decreaseHP();
+                break;
+            default:
+                enemyDamage.decreaseHP();
+
+                break;
+        }
            
+ 
             
         }
+
+        
+
+     OrderCombat.setPlayerTurn(true);
     }
 
-
+    
 
 
 }

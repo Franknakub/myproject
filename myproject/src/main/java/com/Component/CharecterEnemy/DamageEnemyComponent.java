@@ -36,29 +36,19 @@ public class DamageEnemyComponent extends Component {
 
     public static void decreaseHP() {
 
-        List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnermy, EnemyType.BossMonster)
-                    .stream()
-                    .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
-                    .collect(Collectors.toList());
-
         List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero ,PlayerType.Combat)
                     .stream()
                     .filter(player -> player.getComponent(StatusComponent.class).getHPCharacter() > 0)
                     .collect(Collectors.toList());
 
-        
-
-        for(Entity enemy : enemies) { 
 
         Random random = new Random();
         Entity targetPlayer = players.get(random.nextInt(players.size()));
         StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
-        DamageEnemyComponent enemyStatus = enemy.getComponent(DamageEnemyComponent.class);
-        int attacks = enemyStatus.getDamage();
+        
 
-        FXGL.set("HP", playerStatus.getHPCharacter() - attacks);
-        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - attacks);
-        FXGL.getNotificationService().pushNotification("💥 Enemy attacks you with " + attacks + " damage!");    
+        FXGL.set("HP", playerStatus.getHPCharacter() - attack);
+        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - attack);  
        
         
         if (playerStatus.getHPCharacter() <= 0) {
@@ -70,7 +60,7 @@ public class DamageEnemyComponent extends Component {
             
         } 
         
-    }
+    
     
         if(players.isEmpty()){
 

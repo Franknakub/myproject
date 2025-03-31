@@ -39,7 +39,6 @@ public class DamageHeroComponent extends Component {
                 FXGL.getGameWorld().removeEntity(targetEnemy);
                 FXGL.getNotificationService().pushNotification("💀 " + status.getName() + " has been defeated!");
 
-               
             }
         }
 
