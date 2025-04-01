@@ -25,15 +25,13 @@ public class AnimationComponent extends Component {
 
 
 
-    public AnimationComponent (String nameFile) {
+    public AnimationComponent (String nameFile,int columns,int rows) {
 
        
 
         Image image = FXGL.image(nameFile);
 
-
-        int columns = 3;   
-        int rows = 4;     
+  
 
         int frameW = (int) image.getWidth() / columns;
         int frameH = (int) image.getHeight() / rows;
@@ -48,7 +46,7 @@ public class AnimationComponent extends Component {
         idleRight = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 7, 7);
         idleLeft = new AnimationChannel(image, columns, frameW, frameH, Duration.seconds(0.75), 4, 4);
 
-
+      
         texture = new AnimatedTexture(idleDown);
         texture.loopAnimationChannel(idleDown);
         

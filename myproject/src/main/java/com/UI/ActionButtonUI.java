@@ -5,23 +5,25 @@ import java.util.stream.Collectors;
 
 import com.Combat.OrderCombat;
 import com.Component.StatusComponent;
+import com.Component.Skill.SkillComponent;
+import com.Component.Skill.SkillComponent2;
+import com.Component.Skill.SkillComponent3;
 import com.Type.Enemy.EnemyType;
+import com.Type.Player.PlayerType;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 
 public class ActionButtonUI {
     private VBox vbox;
-    private VBox skillBox; // เพิ่ม VBox สำหรับแสดงสกิล
+    private VBox skillBox; 
     private Button attackButton;
     private Button fleeButton;
     private Button skillButton;
@@ -29,89 +31,184 @@ public class ActionButtonUI {
     private VBox enemySelectionBox;
     private HBox hbox;
     private ScrollPane scrollPane;
+    private int playerIndex = 0; 
+    private Entity player;
+    private List<Entity> players;
 
     public ActionButtonUI() {
+       
+        players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero, PlayerType.Combat, PlayerType.Mage)
+            .stream()   
+            .filter(p -> p.getComponent(StatusComponent.class).getHPCharacter() > 0)
+            .collect(Collectors.toList());
+
+        if (players.isEmpty()) {
+            System.out.println("❌ ไม่มีผู้เล่นที่มีชีวิตอยู่!");
+            return;
+        }
+
+        player = players.get(playerIndex);
         combat = new OrderCombat();
 
         vbox = new VBox(20);
         
+     
         attackButton = new Button("Attack");
         attackButton.setFont(Font.font(18));
-        attackButton.setOnAction(e -> combat.attack());
+        attackButton.setOnAction(e -> {
+            combat.setPlayer(player);
+            combat.attack();
+            nextPlayerTurn(); 
+            
+        });
         attackButton.setTextFill(Color.BLACK);
+      
       
         fleeButton = new Button("Flee");
         fleeButton.setFont(Font.font(18));
         fleeButton.setOnAction(e -> combat.flee());
         fleeButton.setTextFill(Color.BLACK);
 
+    
         skillButton = new Button("Skill");
         skillButton.setFont(Font.font(18));
-        skillButton.setOnAction(e -> toggleSkillBox()); // เรียก toggleSkillBox() เมื่อกดปุ่ม
+        skillButton.setOnAction(e -> toggleSkillBox()); 
         skillButton.setTextFill(Color.BLACK);
 
         enemySelectionBox = new VBox(10);
-        updateEnemySelectionUI(); 
+        updateEnemySelectionUI();
 
         scrollPane = new ScrollPane(enemySelectionBox);
         scrollPane.setFitToWidth(true);
         scrollPane.setPrefHeight(200); 
 
-        // สร้าง VBox สำหรับแสดงสกิล แต่ยังไม่เพิ่มใน HBox
+
         skillBox = new VBox(10);
         skillBox.setStyle("-fx-background-color: rgba(40, 40, 40, 0.9); -fx-padding: 10;");
-        skillBox.setVisible(false); // ซ่อน skillBox ไว้ก่อน
-        skillBox.setTranslateX(190); // ตั้งค่าตำแหน่ง X ของ skillBox
-        // เพิ่มปุ่มสกิลใน skillBox
-        // Button skill1 = new Button("🔥 Fireball");
-        // skill1.setFont(Font.font(16));
-        // skill1.setOnAction(e -> {
-        //     combat.useSkill("Fireball");
-        //     skillBox.setVisible(false);
-        // });
+        skillBox.setVisible(false);
+        skillBox.setTranslateX(190);
 
-        // Button skill2 = new Button("❄ Ice Blast");
-        // skill2.setFont(Font.font(16));
-        // skill2.setOnAction(e -> {
-        //     combat.useSkill("Ice Blast");
-        //     skillBox.setVisible(false);
-        // });
+        updateSkillUI(); 
 
-        Button skill3 = new Button("Heavy Attack");
-        skill3.setFont(Font.font(16));
-        skill3.setOnAction(e -> {
-            combat.useSkill();
-            skillBox.setVisible(false);
-        });
         
-
-        skillBox.getChildren().addAll(skill3);
-
-        // เพิ่ม VBox หลักและ ScrollPane เข้าไปใน HBox
         vbox.getChildren().addAll(attackButton, skillButton, fleeButton);
         vbox.setTranslateX(100);
 
         hbox = new HBox(10);
-        hbox.getChildren().addAll(scrollPane, vbox, skillBox); // เพิ่ม skillBox เข้าไปใน HBox
-        hbox.setTranslateY(FXGL.getAppHeight() - 250);                
+        hbox.getChildren().addAll(scrollPane, vbox, skillBox);
+      //  hbox.setTranslateY(FXGL.getAppHeight() - 250);                
         hbox.setTranslateX(50);
         hbox.setStyle("-fx-background-color: rgb(0, 0, 0); -fx-padding: 10; -fx-border-color: white; -fx-border-width: 2;");
-        hbox.setPrefWidth(FXGL.getAppWidth() - 900); 
-        hbox.setPrefHeight(20); 
+        hbox.setPrefWidth(500); // กำหนดความกว้างของ hbox
+        hbox.setPrefHeight(100); // กำหนดความสูงของ hbox
+        
+        hbox.setAlignment(Pos.CENTER); 
+        hbox.setTranslateX((FXGL.getAppWidth() - hbox.getPrefWidth()) / 2); // จัดให้อยู่ตรงกลางในแนวนอน
+        hbox.setTranslateY(FXGL.getAppHeight() - hbox.getPrefHeight() - 80); // จัดให้อยู่ด้านล่าง (20 คือระยะห่างจากขอบล่าง)
     }
 
-    // เมธอดสำหรับแสดง/ซ่อน skillBox
+
+
+
+
+   
+    private void nextPlayerTurn() {
+        playerIndex++; 
+        if (playerIndex >= players.size()) {
+            playerIndex = 0; 
+
+        }
+        
+        player = players.get(playerIndex);
+
+
+        updateSkillUI();
+    }
+
+    
+    private void updateSkillUI() {
+        skillBox.getChildren().clear(); 
+
+        List<SkillComponent> skills = player.getComponents().stream()
+            .filter(component -> component instanceof SkillComponent)
+            .map(component -> (SkillComponent) component)
+            .collect(Collectors.toList());
+
+            
+
+        for (SkillComponent skill : skills) {
+            Button skillButton = new Button(skill.getSkillName());
+            skillButton.setFont(Font.font(16));
+            skillButton.setOnAction(e -> {
+                combat.setPlayer(player);
+                combat.useSkill();
+                skillBox.setVisible(false);
+                nextPlayerTurn(); 
+            });
+
+            skillBox.getChildren().add(skillButton);
+        }
+
+
+        List<SkillComponent2> skills1 = player.getComponents().stream()
+            .filter(component ->component instanceof SkillComponent2)
+            .map(component -> (SkillComponent2) component)
+            .collect(Collectors.toList());
+
+            
+
+        for (SkillComponent2 skill : skills1) {
+            Button skillButton = new Button(skill.getSkillName());
+            skillButton.setFont(Font.font(16));
+            skillButton.setOnAction(e -> {
+                combat.setPlayer(player);
+                combat.useSkill2();
+                skillBox.setVisible(false);
+                nextPlayerTurn(); 
+            });
+
+            skillBox.getChildren().add(skillButton);
+        }
+
+        List<SkillComponent3> skills2 = player.getComponents().stream()
+            .filter(component ->component instanceof SkillComponent3)
+            .map(component -> (SkillComponent3) component)
+            .collect(Collectors.toList());
+
+            
+
+        for (SkillComponent3 skill : skills2) {
+            Button skillButton = new Button(skill.getSkillName());
+            skillButton.setFont(Font.font(16));
+            skillButton.setOnAction(e -> {
+                combat.setPlayer(player);
+                combat.useSkill3();
+                skillBox.setVisible(false);
+                nextPlayerTurn(); 
+            });
+
+            skillBox.getChildren().add(skillButton);
+        }
+
+
+        
+    }
+
+ 
     private void toggleSkillBox() {
         skillBox.setVisible(!skillBox.isVisible());
     }
 
+    
     public void updateEnemySelectionUI() {
         enemySelectionBox.getChildren().clear(); 
         
         List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnermy, EnemyType.BossMonster)
             .stream()
             .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
-            .collect(Collectors.toList()); 
+            .collect(Collectors.toList());
+            
+            
     
         for (Entity enemy : enemies) {
             if (enemy.hasComponent(StatusComponent.class)) { 

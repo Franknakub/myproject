@@ -38,7 +38,7 @@ public class CharacterFactory implements EntityFactory{
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new ControllerComponent())
-                .with(new AnimationComponent("Actor1.png"))
+                .with(new AnimationComponent("Actor1.png",3,4))
                 .with(new InteractComponent("filetext.txt"))
                 .with(new StatusComponent(FXGL.gets("Name"),FXGL.geti("HP"),FXGL.geti("Mana"),FXGL.geti("maxHP"),FXGL.geti("maxMana")))
                 .build(); 

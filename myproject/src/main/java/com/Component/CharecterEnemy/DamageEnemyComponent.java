@@ -36,7 +36,7 @@ public class DamageEnemyComponent extends Component {
 
     public static void decreaseHP() {
 
-        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero ,PlayerType.Combat)
+        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero ,PlayerType.Combat, PlayerType.Mage)
                     .stream()
                     .filter(player -> player.getComponent(StatusComponent.class).getHPCharacter() > 0)
                     .collect(Collectors.toList());

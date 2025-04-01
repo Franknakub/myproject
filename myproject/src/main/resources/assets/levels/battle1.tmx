@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="128" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="6">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="128" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="7">
  <tileset firstgid="1" name="Battleground4" tilewidth="16" tileheight="16" tilecount="8040" columns="120">
   <image source="Battleground4.png" trans="ff00ff" width="1920" height="1080"/>
  </tileset>
@@ -79,6 +79,9 @@
    <point/>
   </object>
   <object id="5" name="sethero" type="sethero" x="1494" y="580">
+   <point/>
+  </object>
+  <object id="6" name="setmage" type="setmage" x="1612" y="770.667">
    <point/>
   </object>
  </objectgroup>

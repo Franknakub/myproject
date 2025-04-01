@@ -116,7 +116,7 @@ public class ControllerComponent extends Component{
         double height = entity.getHeight();
 
   
-        animation = new AnimationComponent("Actor1.png");
+        animation = new AnimationComponent("Actor1.png",3,4);
         entity.getViewComponent().addChild(animation.getTexture());
 
         physics = entity.getComponent(PhysicsComponent.class);

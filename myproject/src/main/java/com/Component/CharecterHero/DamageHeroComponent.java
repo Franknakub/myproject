@@ -2,40 +2,33 @@ package com.Component.CharecterHero;
 
 import com.Combat.OrderCombat;
 import com.Component.StatusComponent;
+import com.Component.Skill.SkillComponent;
+import com.Component.Skill.SkillComponent2;
+import com.Component.Skill.SkillComponent3;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.action.Action;
 import com.almasb.fxgl.entity.component.Component;
 import com.GameEvent.BackMainScene;
 import com.GameEvent.SystemEvent;
+import com.Skill.HeavyAttack;
+import com.Skill.InfinityEdge;
 import com.Skill.Skill;
 import com.Type.Player.PlayerType;
+import com.UI.ActionButtonUI;
 
 public class DamageHeroComponent extends Component {
     private static int attack;
     private static Entity targetEnemy; 
-    private Skill skill;
     private static Entity player;
 
-    public DamageHeroComponent(int attack,Skill skill) {
+    public DamageHeroComponent(int attack) {
         this.attack = attack;
-        this.skill = skill;
+        
     }
 
-    public int getSkillDamage() {
-        return skill.getskilldamage();
-    }
 
-    public void setSkillDamage(Skill skill) {
-        this.skill = skill;
-    }
-
-    public String getSkillName() {
-        return skill.getskillname();
-    }
-
-    public int getManacost() {
-        return skill.getManacost();
-    }
+ 
 
     public static int getDamage() {
         return attack;
@@ -52,22 +45,51 @@ public class DamageHeroComponent extends Component {
 
             targetEnemy = OrderCombat.getTargetEnemy();
 
+            
+
+            player = OrderCombat.getPlayer();
+
+
+            DamageHeroComponent attack = player.getComponent(DamageHeroComponent.class);
+
             StatusComponent status = targetEnemy.getComponent(StatusComponent.class);
-            status.setHPCharacter(status.getHPCharacter() - attack);
+
+            status.setHPCharacter(status.getHPCharacter() - attack.getDamage());
             if (status.getHPCharacter() <= 0) {
                 FXGL.getGameWorld().removeEntity(targetEnemy);
                 FXGL.getNotificationService().pushNotification("💀 " + status.getName() + " has been defeated!");
 
             }
         }
-        public static void useSkill() {
+        public static void useSkill1() {
 
             targetEnemy = OrderCombat.getTargetEnemy();
-            player = FXGL.getGameWorld().getEntitiesByType(PlayerType.Combat).get(0);
-            DamageHeroComponent damage = player.getComponent(DamageHeroComponent.class);
+
+            player = OrderCombat.getPlayer();
+            
+            SkillComponent damage = player.getComponent(SkillComponent.class);
             StatusComponent status = targetEnemy.getComponent(StatusComponent.class);
-            status.setHPCharacter(status.getHPCharacter() - damage.getSkillDamage());
-            System.out.println("Skill Damage: " + damage.getSkillDamage());
+
+             status.setHPCharacter(status.getHPCharacter() - damage.getSkillDamage());
+          
+            if (status.getHPCharacter() <= 0) {
+                FXGL.getGameWorld().removeEntity(targetEnemy);
+                FXGL.getNotificationService().pushNotification("💀 " + status.getName() + " has been defeated!");
+
+            }           
+         }
+
+         public static void useSkill2() {
+
+            targetEnemy = OrderCombat.getTargetEnemy();
+
+            player = OrderCombat.getPlayer();
+            
+            SkillComponent2 damage = player.getComponent(SkillComponent2.class);
+            StatusComponent status = targetEnemy.getComponent(StatusComponent.class);
+
+             status.setHPCharacter(status.getHPCharacter() - damage.getSkillDamage());
+          
             if (status.getHPCharacter() <= 0) {
                 FXGL.getGameWorld().removeEntity(targetEnemy);
                 FXGL.getNotificationService().pushNotification("💀 " + status.getName() + " has been defeated!");
@@ -76,6 +98,26 @@ public class DamageHeroComponent extends Component {
  
             
          }
+         public static void useSkill3() {
+
+            targetEnemy = OrderCombat.getTargetEnemy();
+
+            player = OrderCombat.getPlayer();
+            
+            SkillComponent3 damage = player.getComponent(SkillComponent3.class);
+            StatusComponent status = targetEnemy.getComponent(StatusComponent.class);
+
+             status.setHPCharacter(status.getHPCharacter() - damage.getSkillDamage());
+          
+            if (status.getHPCharacter() <= 0) {
+                FXGL.getGameWorld().removeEntity(targetEnemy);
+                FXGL.getNotificationService().pushNotification("💀 " + status.getName() + " has been defeated!");
+
+            }
+ 
+            
+         }
+ 
  
 
        
