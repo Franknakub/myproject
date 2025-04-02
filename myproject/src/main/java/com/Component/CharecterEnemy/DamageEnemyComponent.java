@@ -36,7 +36,7 @@ public class DamageEnemyComponent extends Component {
 
     public static void decreaseHP() {
 
-        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero ,PlayerType.Combat, PlayerType.Mage)
+        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Combat, PlayerType.Mage)
                     .stream()
                     .filter(player -> player.getComponent(StatusComponent.class).getHPCharacter() > 0)
                     .collect(Collectors.toList());
@@ -47,8 +47,10 @@ public class DamageEnemyComponent extends Component {
         StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
         
 
-        FXGL.set("HP", playerStatus.getHPCharacter() - attack);
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - attack);
         playerStatus.setHPCharacter(playerStatus.getHPCharacter() - attack);  
+
+        FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
        
         
         if (playerStatus.getHPCharacter() <= 0) {
@@ -58,16 +60,31 @@ public class DamageEnemyComponent extends Component {
             if(players.isEmpty()){
             FXGL.getGameController().startNewGame();
             OrderCombat.setPlayerTurn (true);
+           
             }
 
             
         } 
         
-    
+       CheckHPPlayer();
     
       
 
 
 }
+
+    public static void CheckHPPlayer() {
+        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero ,PlayerType.Combat, PlayerType.Mage)
+                .stream()
+                .filter(player -> player.getComponent(StatusComponent.class).getHPCharacter() > 0)
+                .collect(Collectors.toList());
+
+                
+
+        if (players.isEmpty()) {
+            FXGL.getGameController().startNewGame();
+            OrderCombat.setPlayerTurn (true);
+        }
+    }
 
 }

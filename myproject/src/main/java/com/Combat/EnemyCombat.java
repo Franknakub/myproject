@@ -46,7 +46,7 @@ public class EnemyCombat {
 
                 if (enemyStatus.getManaCharacter() >= 10) {
                     enemyStatus.setManaCharacter(enemyStatus.getManaCharacter() - 10);
-                    FXGL.getNotificationService().pushNotification("💥 Enemy attacks you with " + enemyDamage.getDamage() + " damage!");
+                    FXGL.getNotificationService().pushNotification("💥 Enemy attacks with " + enemyDamage.getDamage() + " damage!");
                    enemyDamage.decreaseHP();
                 }else enemyDamage.decreaseHP();
                     break;

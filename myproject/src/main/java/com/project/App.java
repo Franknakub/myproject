@@ -93,6 +93,7 @@ public class App extends GameApplication {
 
         vars.put("map1", "scene1.tmx");
         vars.put("map2", "scene2.tmx");
+
         vars.put("Name", "Reid");
         vars.put("HP", 150);
         vars.put("Mana", 100);
@@ -103,7 +104,7 @@ public class App extends GameApplication {
        
         vars.put("Namem", "Magia");
         vars.put("HPm", 100);
-        vars.put("Manam", 200);
+        vars.put("Manam", 100);
         vars.put("Phasem", true);
         vars.put("maxHPm", 100);
         vars.put("maxManam", 200);

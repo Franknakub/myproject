@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 
 import com.Component.StatusComponent;
 import com.Component.CharecterHero.DamageHeroComponent;
-import com.Component.Skill.SkillComponent;
+import com.Component.Skill.SkillComponent1;
+import com.Component.Skill.SkillComponent1;
 import com.Component.Skill.SkillComponent2;
 import com.Component.Skill.SkillComponent3;
 import com.GameEvent.BackMainScene;
@@ -80,6 +81,7 @@ public class OrderCombat {
                     check();
                     
                 } else {
+                    System.out.println("No target selected.");
                     FXGL.getNotificationService().pushNotification("❌ No target selected!");
                    
                 }
@@ -119,28 +121,26 @@ public class OrderCombat {
                 player = getPlayer();
                 targetEnemy = getTargetEnemy();
 
-                if (targetEnemy == null) {
+                Check1();
+            
+                SkillComponent1 skill1 = player.getComponent(SkillComponent1.class);
+                StatusComponent statusPlayer = player.getComponent(StatusComponent.class);
+
+                if(targetEnemy == null) {
                     FXGL.getNotificationService().pushNotification("❌ No target selected!");
                     return;
                 }
-                if (player == null) {
-                    FXGL.getNotificationService().pushNotification("❌ No player selected!");
-                    return;
-                }
-            
-                if (!player.hasComponent(SkillComponent.class)) {
-                    FXGL.getNotificationService().pushNotification("❌ Player does not have SkillComponent!");
-                    return;
-                }
-            
-                SkillComponent skill = player.getComponent(SkillComponent.class);
-                StatusComponent statusPlayer = player.getComponent(StatusComponent.class);
-            
-                if (statusPlayer.getManaCharacter() >= skill.getmanaCost()) {
 
+            
+                else if (statusPlayer.getManaCharacter() >= skill1.getmanaCost()) {
+
+                    FXGL.set(statusPlayer.getNameManaCharacter(), statusPlayer.getManaCharacter() - skill1.getmanaCost());
+                    System.out.println("Mana: " + statusPlayer.getManaCharacter());
+                    statusPlayer.setManaCharacter(statusPlayer.getManaCharacter() - skill1.getmanaCost()); 
+                    System.out.println("Mana: " + statusPlayer.getManaCharacter());
                     
-                    FXGL.set("Mana", statusPlayer.getManaCharacter() - skill.getmanaCost());
-                    FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill.getSkillName() + " damage "+skill.getSkillDamage()+"!");
+                    FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill1.getmanaCost()+ "!");
+                    FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill1.getSkillName() + " damage "+skill1.getSkillDamage()+"!");
                     DamageHeroComponent.useSkill1();
                     count++;
                     check();
@@ -154,28 +154,23 @@ public class OrderCombat {
                 player = getPlayer();
                 targetEnemy = getTargetEnemy();
 
-                if (targetEnemy == null) {
+                Check1();
+            
+                SkillComponent2 skill2 = player.getComponent(SkillComponent2.class);
+                StatusComponent statusPlayer = player.getComponent(StatusComponent.class);
+
+                if(targetEnemy == null) {
                     FXGL.getNotificationService().pushNotification("❌ No target selected!");
                     return;
                 }
-                if (player == null) {
-                    FXGL.getNotificationService().pushNotification("❌ No player selected!");
-                    return;
-                }
-            
-                if (!player.hasComponent(SkillComponent2.class)) {
-                    FXGL.getNotificationService().pushNotification("❌ Player does not have SkillComponent!");
-                    return;
-                }
-            
-                SkillComponent2 skill = player.getComponent(SkillComponent2.class);
-                StatusComponent statusPlayer = player.getComponent(StatusComponent.class);
-            
-                if (statusPlayer.getManaCharacter() >= skill.getmanaCost()) {
 
+            
+                else if (statusPlayer.getManaCharacter() >= skill2.getmanaCost()) {
+
+                    FXGL.set(statusPlayer.getNameManaCharacter(), statusPlayer.getManaCharacter() - skill2.getmanaCost());
+                    statusPlayer.setManaCharacter(statusPlayer.getManaCharacter() - skill2.getmanaCost()); 
                     
-                    FXGL.set("Mana", statusPlayer.getManaCharacter() - skill.getmanaCost());
-                    FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill.getSkillName() + " damage "+skill.getSkillDamage()+"!");
+                    FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill2.getSkillName() + " damage "+skill2.getSkillDamage()+"!");
                     DamageHeroComponent.useSkill2();
                     count++;
                     check();
@@ -189,28 +184,24 @@ public class OrderCombat {
                 player = getPlayer();
                 targetEnemy = getTargetEnemy();
 
-                if (targetEnemy == null) {
+                Check1();
+            
+                SkillComponent3 skill3 = player.getComponent(SkillComponent3.class);
+                StatusComponent statusPlayer = player.getComponent(StatusComponent.class);
+                if(targetEnemy == null) {
                     FXGL.getNotificationService().pushNotification("❌ No target selected!");
                     return;
                 }
-                if (player == null) {
-                    FXGL.getNotificationService().pushNotification("❌ No player selected!");
-                    return;
-                }
-            
-                if (!player.hasComponent(SkillComponent3.class)) {
-                    FXGL.getNotificationService().pushNotification("❌ Player does not have SkillComponent!");
-                    return;
-                }
-            
-                SkillComponent3 skill = player.getComponent(SkillComponent3.class);
-                StatusComponent statusPlayer = player.getComponent(StatusComponent.class);
-            
-                if (statusPlayer.getManaCharacter() >= skill.getmanaCost()) {
 
+            
+                else if (statusPlayer.getManaCharacter() >= skill3.getmanaCost()) {
+
+                    FXGL.set(statusPlayer.getNameManaCharacter(), statusPlayer.getManaCharacter() - skill3.getmanaCost());
                     
-                    FXGL.set("Mana", statusPlayer.getManaCharacter() - skill.getmanaCost());
-                    FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill.getSkillName() + " damage "+skill.getSkillDamage()+"!");
+                    statusPlayer.setManaCharacter(statusPlayer.getManaCharacter() - skill3.getmanaCost()); 
+                    System.out.println("Mana: " + statusPlayer.getManaCharacter());
+                    
+                    FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill3.getSkillName() + " damage "+skill3.getSkillDamage()+"!");
                     DamageHeroComponent.useSkill3();
                     count++;
                     check();
@@ -255,6 +246,28 @@ public class OrderCombat {
                 .forEach(ActionButtonUI::updateEnemySelectionUI); //LoopUI ให้เป็นของ ActionButtonUI  
 
 
+            }
+
+            
+            public void Check1(){
+
+
+                player = getPlayer();
+                targetEnemy = getTargetEnemy();
+
+                if (targetEnemy == null) {
+                    FXGL.getNotificationService().pushNotification("❌ No target selected!");
+                    return;
+                }
+                if (player == null) {
+                    FXGL.getNotificationService().pushNotification("❌ No player selected!");
+                    return;
+                }
+            
+                if (!player.hasComponent(SkillComponent3.class)) {
+                    FXGL.getNotificationService().pushNotification("❌ Player does not have SkillComponent!");
+                    return;
+                }
             }
             
             

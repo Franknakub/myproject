@@ -5,6 +5,7 @@ import java.util.List;
 import com.Factory.FactoryInCombat.CombatWithRexFactory;
 import com.Factory.FactoryInMain.BackgroundScene1Factory;
 import com.Factory.FactoryInMain.CharacterFactory;
+import com.Type.SceneType;
 import com.Type.Enemy.EnemyType;
 import com.Type.Player.PlayerType;
 import com.UI.ActionButtonUI;
@@ -30,6 +31,7 @@ public class SystemEvent {
     private static ActionButtonUI actionButtonUI = null;
     private static boolean isFactoryAdded = false;
     
+    
       
     
             public static void combat() {
@@ -45,9 +47,9 @@ public class SystemEvent {
                     isFactoryAdded = true; 
                 }
                   FXGL.setLevelFromMap("battle1.tmx");
-        
-                  camera = FXGL.getGameWorld().getEntitiesByType(PlayerType.Camera).get(0);
-    
+                FXGL.spawn("setcamera");
+                  camera = FXGL.getGameWorld().getEntitiesByType(SceneType.CombatCamera).get(0);
+                  
                   FXGL.getGameScene().getViewport().unbind();
                   FXGL.getGameScene().getViewport().bindToEntity(camera, FXGL.getAppWidth() /2, FXGL.getAppHeight() /2);
                   FXGL.getGameScene().getViewport().setZoom(0.75/1.05);
@@ -129,10 +131,13 @@ public class SystemEvent {
 
 
 
+  
+}
 
-      
+        public static void setFactory(boolean isFactoryAdde) {
+            SystemEvent.isFactoryAdded = isFactoryAdde;
+           
 
 
-     
-  }
+        }
 }

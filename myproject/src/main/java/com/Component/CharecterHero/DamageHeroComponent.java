@@ -2,7 +2,7 @@ package com.Component.CharecterHero;
 
 import com.Combat.OrderCombat;
 import com.Component.StatusComponent;
-import com.Component.Skill.SkillComponent;
+import com.Component.Skill.SkillComponent1;
 import com.Component.Skill.SkillComponent2;
 import com.Component.Skill.SkillComponent3;
 import com.almasb.fxgl.dsl.FXGL;
@@ -11,9 +11,6 @@ import com.almasb.fxgl.entity.action.Action;
 import com.almasb.fxgl.entity.component.Component;
 import com.GameEvent.BackMainScene;
 import com.GameEvent.SystemEvent;
-import com.Skill.HeavyAttack;
-import com.Skill.InfinityEdge;
-import com.Skill.Skill;
 import com.Type.Player.PlayerType;
 import com.UI.ActionButtonUI;
 
@@ -67,7 +64,7 @@ public class DamageHeroComponent extends Component {
 
             player = OrderCombat.getPlayer();
             
-            SkillComponent damage = player.getComponent(SkillComponent.class);
+            SkillComponent1 damage = player.getComponent(SkillComponent1.class);
             StatusComponent status = targetEnemy.getComponent(StatusComponent.class);
 
              status.setHPCharacter(status.getHPCharacter() - damage.getSkillDamage());
