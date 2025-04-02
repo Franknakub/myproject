@@ -16,10 +16,10 @@ import com.almasb.fxgl.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class BackgroundFactory implements EntityFactory {
+public class BackgroundScene1Factory implements EntityFactory {
     PhysicsComponent physics = new PhysicsComponent();   
 
-    @Spawns("abyss zone")
+    @Spawns("Wall")
     public Entity spawnWall(SpawnData data) {
         
         physics.setBodyType(BodyType.STATIC);
@@ -31,20 +31,25 @@ public class BackgroundFactory implements EntityFactory {
                 .build();
     }
 
-    @Spawns("prop")
-    public Entity spawnProp(SpawnData data) {
 
-        //physics.setBodyType(BodyType.STATIC);
+
+    @Spawns("NextScene")
+    public Entity spawnNextScene(SpawnData data) {
         return FXGL.entityBuilder(data)
-                .type(SceneType.Prop)
+                .type(SceneType.NextScene)
                 .at(data.getX(),data.getY())
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
                 .build();
     }
 
-   
-
-      
-    
+    @Spawns("backtoscene1")
+    public Entity spawnBackScene1(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(SceneType.BackScene1)
+                .at(data.getX(),data.getY())
+                
+                .build();
+            }
+            
 }

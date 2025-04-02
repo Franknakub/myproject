@@ -1,11 +1,14 @@
 package com.project;
 import com.badlogic.gdx.Game;
+import com.Component.SpawnComponent;
 import com.Component.CharecterHero.AnimationComponent;
 import com.Component.CharecterHero.ControllerComponent;
 import com.Component.CharecterHero.InteractComponent;
-import com.Factory.FactoryInMain.BackgroundFactory;
+import com.Factory.FactoryInMain.BackgroundScene1Factory;
 import com.Factory.FactoryInMain.CharacterFactory;
 import com.GameEvent.SystemEvent;
+import com.Physics.PlayerCollisionHandler;
+import com.Type.SceneType;
 import com.Type.Player.PlayerType;
 import com.UI.StatusUI;
 import com.almasb.fxgl.app.GameApplication;
@@ -27,6 +30,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -69,6 +73,8 @@ public class App extends GameApplication {
     protected void initPhysics() {
         PhysicsWorld gamephysic = FXGL.getPhysicsWorld();  
         gamephysic.setGravity(0,0 );
+       // gamephysic.addCollisionHandler(new PlayerCollisionHandler());
+        //FXGL.getPhysicsWorld().addCollisionHandler(new PlayerCollisionHandler());
     }
 
    
@@ -86,6 +92,7 @@ public class App extends GameApplication {
        
 
         vars.put("map1", "scene1.tmx");
+        vars.put("map2", "scene2.tmx");
         vars.put("Name", "Reid");
         vars.put("HP", 150);
         vars.put("Mana", 100);
@@ -126,7 +133,7 @@ public class App extends GameApplication {
         
         getGameScene().setBackgroundColor(Color.BLACK); 
         FXGL.getGameWorld().addEntityFactory(new CharacterFactory());
-        FXGL.getGameWorld().addEntityFactory(new BackgroundFactory());
+        FXGL.getGameWorld().addEntityFactory(new BackgroundScene1Factory());
 
        
         
@@ -135,6 +142,8 @@ public class App extends GameApplication {
         FXGL.setLevelFromMap("scene1.tmx");
 
         SystemEvent.combat();
+
+        getSpawnDefault();
         
         player = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
         
@@ -149,6 +158,15 @@ public class App extends GameApplication {
        
         
     }
+
+     public static void getSpawnDefault(){
+        List<Entity> entities = FXGL.getGameWorld().getEntitiesByType((SceneType.SpawnPoints));
+        for(Entity entity : entities){
+            SpawnComponent component = entity.getComponent(SpawnComponent.class);
+            FXGL.spawn(component.getName(),new SpawnData(component.getPosition()));     
+            }
+        }
+    
 
     
    

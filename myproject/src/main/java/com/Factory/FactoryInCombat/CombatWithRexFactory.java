@@ -38,7 +38,7 @@ public class CombatWithRexFactory implements EntityFactory {
                  .type(EnemyType.LowEnemy)
                  .viewWithBBox(texture("Rex.png",128*3,128*3))
                  .with(new StatusComponent("Rex",100,50,100,100))
-                 .with(new DamageEnemyComponent(30))
+                 .with(new DamageEnemyComponent(40))
                  .with(physics)
                  //.bbox(new HitBox(BoundingShape.box(64,64)))
                  //.at(0,100)

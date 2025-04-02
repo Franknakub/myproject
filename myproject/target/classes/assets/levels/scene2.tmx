@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="49">
  <tileset firstgid="1" name="zXiUl9" tilewidth="16" tileheight="16" spacing="16" margin="16" tilecount="1200" columns="40">
-  <image source="../../../../../../../../../../ForProject/Maps/zXiUl9.png" trans="29301b" width="1280" height="960"/>
+  <image source="zXiUl9.png" trans="29301b" width="1280" height="960"/>
  </tileset>
  <tileset firstgid="1201" name="Ground_rocks" tilewidth="16" tileheight="16" spacing="16" margin="16" tilecount="270" columns="15">
   <image source="Ground_rocks.png" trans="000000" width="496" height="592"/>
@@ -74,4 +74,50 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1260,1261,1229,1229,1229,1229,1229,1229,1229,1229,1229,1233,1286,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="2" name="abysszone" class="Wall">
+  <object id="1" x="624" y="561.333" width="20" height="460.667"/>
+  <object id="2" x="424.667" y="559.333" width="30.6667" height="464.667"/>
+  <object id="3" x="313.333" y="559.333" width="108" height="13.3333"/>
+  <object id="4" x="304.667" y="490.667" width="17.3333" height="78.6667"/>
+  <object id="5" x="285.333" y="448.667" width="22.6667" height="43.3333"/>
+  <object id="6" x="266" y="400.667" width="24" height="56"/>
+  <object id="7" x="243.333" y="340" width="18" height="18.6667"/>
+  <object id="8" x="258" y="356.667" width="18.6667" height="55.3333"/>
+  <object id="9" x="225.333" y="142" width="16.6667" height="211.333"/>
+  <object id="10" x="234.667" y="124.667" width="22" height="16"/>
+  <object id="11" x="248.667" y="106.667" width="25.3333" height="15.3333"/>
+  <object id="12" x="252" y="60" width="36.6667" height="44"/>
+  <object id="13" x="264.667" y="36.6667" width="98.6667" height="23.3333"/>
+  <object id="14" x="354.667" y="59.3333" width="30" height="132.667"/>
+  <object id="15" x="306" y="145.333" width="112" height="28"/>
+  <object id="16" x="345.333" y="173.333" width="101.333" height="285.333"/>
+  <object id="17" x="304" y="158.667" width="42.6667" height="213.333"/>
+  <object id="18" x="428" y="64" width="212" height="301.333"/>
+  <object id="19" x="634.667" y="40" width="102.667" height="418.667"/>
+  <object id="20" x="693.333" y="-4" width="90.6667" height="381.333"/>
+  <object id="21" x="645.333" y="558.667" width="78.6667" height="24"/>
+  <object id="22" x="710.667" y="529.333" width="53.3333" height="25.3333"/>
+  <object id="23" x="762.667" y="493.333" width="24" height="36"/>
+  <object id="24" x="780" y="478.667" width="33.3333" height="45.3333"/>
+  <object id="25" x="800" y="448" width="60" height="53.3333"/>
+  <object id="26" x="832" y="177.333" width="18.6667" height="265.333"/>
+  <object id="27" x="782.667" y="138.667" width="48" height="48"/>
+  <object id="28" x="1026.67" y="272"/>
+ </objectgroup>
+ <objectgroup id="3" name="NextScene" class="NextScene">
+  <object id="31" name="NextScene" type="NextScene" x="508.667" y="338" width="70" height="44.6667"/>
+  <object id="46" name="spawnback" type="spawnback" x="527.333" y="410.667">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="SpawnPoint">
+  <object id="32" name="spawnpoint" type="spawn point" x="515.333" y="924.666" width="44" height="40.6667"/>
+ </objectgroup>
+ <objectgroup id="6" name="BackScene">
+  <object id="48" name="backtoscene1" type="backtoscene1" x="450.667" y="1009.33" width="176" height="10"/>
+ </objectgroup>
+ <objectgroup id="5" name="SpawnEnemy" class="SpawnEnemy1">
+  <object id="42" name="Enemy1" type="SpawnEnemy1" x="420.667" y="434" width="146.667" height="114.667"/>
+  <object id="43" name="Enemy2" type="SpawnEnemy2" x="579.333" y="432.667" width="104" height="114"/>
+ </objectgroup>
 </map>

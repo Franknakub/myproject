@@ -3,7 +3,7 @@ package com.GameEvent;
 import java.util.List;
 
 import com.Factory.FactoryInCombat.CombatWithRexFactory;
-import com.Factory.FactoryInMain.BackgroundFactory;
+import com.Factory.FactoryInMain.BackgroundScene1Factory;
 import com.Factory.FactoryInMain.CharacterFactory;
 import com.Type.Enemy.EnemyType;
 import com.Type.Player.PlayerType;
@@ -74,10 +74,9 @@ public class SystemEvent {
               Level map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
               FXGL.getGameScene().setBackgroundColor(Color.BLACK);
     
-              Entity oldPlayer = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
-              FXGL.getGameWorld().removeEntity(oldPlayer);
+             
 
-              player = FXGL.spawn("spawn point", FXGL.getd("lastPlayerX"), FXGL.getd("lastPlayerY"));
+              player = FXGL.spawn("Reid", FXGL.getd("lastPlayerX"), FXGL.getd("lastPlayerY"));
               App.setPlayer(player);
               FXGL.getGameScene().getViewport().unbind();
               FXGL.getGameScene().getViewport().bindToEntity(player,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
@@ -105,11 +104,12 @@ public class SystemEvent {
         Level map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
         FXGL.getGameScene().setBackgroundColor(Color.BLACK);
         Entity enemy = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy).get(0);
-        Entity oldPlayer = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
-        FXGL.getGameWorld().removeEntity(oldPlayer);
+        
+
         FXGL.getGameWorld().removeEntity(enemy);
-        player = FXGL.spawn("spawn point", FXGL.getd("lastPlayerX"), FXGL.getd("lastPlayerY"));
+        player = FXGL.spawn("Reid", FXGL.getd("lastPlayerX"), FXGL.getd("lastPlayerY"));
         App.setPlayer(player);
+
         FXGL.getGameScene().getViewport().unbind();
         FXGL.getGameScene().getViewport().bindToEntity(player,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
         FXGL.getGameScene().getViewport().setZoom(1.5);
@@ -126,6 +126,9 @@ public class SystemEvent {
 
 
 });
+
+
+
 
       
 

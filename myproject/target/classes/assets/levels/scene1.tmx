@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="32" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="47">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="32" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="54">
  <tileset firstgid="1" name="Ground_rocks" tilewidth="16" tileheight="16" tilecount="1147" columns="31">
   <image source="Ground_rocks.png" trans="ff00ff" width="496" height="592"/>
  </tileset>
@@ -530,7 +530,6 @@
   <object id="20" type="abyss zone" x="403.5" y="207.75" width="1.25" height="0.25"/>
   <object id="21" type="abyss zone" x="410.25" y="206.25" width="79.75" height="35"/>
   <object id="22" type="abyss zone" x="334.75" y="207.75" width="80.75" height="14.25"/>
-  <object id="44" type="abyss zone" x="115.127" y="1.26513" width="203.687" height="2.53027"/>
   <object id="45" type="abyss zone" x="156.877" y="1019.7" width="212.543" height="3.7954"/>
   <object id="46" type="abyss zone" x="327.67" y="1275.26"/>
  </objectgroup>
@@ -554,8 +553,12 @@
   <object id="40" type="prop" x="143" y="291.5" width="43" height="39"/>
   <object id="41" type="prop" x="346" y="281.5" width="88" height="100"/>
  </objectgroup>
+ <objectgroup id="15" name="NextScene">
+  <object id="51" name="NextScene" type="NextScene" x="189.667" y="1.33333" width="117.333" height="2.66667"/>
+ </objectgroup>
  <objectgroup id="13" name="spawn point">
   <object id="42" type="spawn point" x="247.167" y="962.873" width="27.5" height="27"/>
+  <object id="53" name="backScene1" type="backScene1" x="241" y="10.3333" width="21.3333" height="18.6667"/>
  </objectgroup>
  <objectgroup id="14" name="spawn enemy" class="spawn enemy">
   <object id="43" type="spawn enemy" x="191.32" y="350.347" width="27.022" height="22.9789" rotation="359.988"/>

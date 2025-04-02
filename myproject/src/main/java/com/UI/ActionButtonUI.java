@@ -96,7 +96,7 @@ public class ActionButtonUI {
 
         hbox = new HBox(10);
         hbox.getChildren().addAll(scrollPane, vbox, skillBox);
-      //  hbox.setTranslateY(FXGL.getAppHeight() - 250);                
+                
         hbox.setTranslateX(50);
         hbox.setStyle("-fx-background-color: rgb(0, 0, 0); -fx-padding: 10; -fx-border-color: white; -fx-border-width: 2;");
         hbox.setPrefWidth(500); // กำหนดความกว้างของ hbox
@@ -114,7 +114,7 @@ public class ActionButtonUI {
    
     private void nextPlayerTurn() {
         playerIndex++; 
-        if (playerIndex >= players.size()) {
+        if (playerIndex == players.size()) {
             playerIndex = 0; 
 
         }
@@ -203,7 +203,7 @@ public class ActionButtonUI {
     public void updateEnemySelectionUI() {
         enemySelectionBox.getChildren().clear(); 
         
-        List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnermy, EnemyType.BossMonster)
+        List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnemy, EnemyType.BossMonster)
             .stream()
             .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
             .collect(Collectors.toList());

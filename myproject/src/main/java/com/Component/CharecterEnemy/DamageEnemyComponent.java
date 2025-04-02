@@ -54,8 +54,11 @@ public class DamageEnemyComponent extends Component {
         if (playerStatus.getHPCharacter() <= 0) {
             FXGL.getGameWorld().removeEntity(targetPlayer);
             FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+
+            if(players.isEmpty()){
             FXGL.getGameController().startNewGame();
             OrderCombat.setPlayerTurn (true);
+            }
 
             
         } 

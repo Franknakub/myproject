@@ -3,6 +3,7 @@ package com.Factory.FactoryInMain;
 
 import static com.almasb.fxgl.dsl.FXGL.texture;
 
+import com.Component.SpawnComponent;
 import com.Component.StatusComponent;
 import com.Component.CharecterHero.AnimationComponent;
 import com.Component.CharecterHero.ControllerComponent;
@@ -27,8 +28,9 @@ import javafx.scene.paint.Color;
 
 
 public class CharacterFactory implements EntityFactory{
-    @Spawns("spawn point")
-    public Entity newPlayerCharacter(SpawnData data){
+    
+    @Spawns("Reid")
+    public Entity Player(SpawnData data){
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
        
@@ -46,6 +48,17 @@ public class CharacterFactory implements EntityFactory{
    
     }
 
+    @Spawns("spawn point")
+    public Entity newSpawnPointPlayer(SpawnData data){
+            return FXGL.entityBuilder()
+                   .type(SceneType.SpawnPoints)
+                   .bbox(new HitBox(BoundingShape.box(10, 10)))
+                   .with(new SpawnComponent("Reid",data.getX(),data.getY()))
+                   .build();
+        
+
+        }
+
     @Spawns("spawn enemy")
     public Entity spawnEnermy(SpawnData data) {
         PhysicsComponent physics = new PhysicsComponent();
@@ -62,8 +75,15 @@ public class CharacterFactory implements EntityFactory{
                 
      }
 
+     @Spawns("backScene1")
+     public Entity spawnBackScene1(SpawnData data) {
+        return FXGL.entityBuilder(data)
+                .type(SceneType.BackScene1)
+                .build();
+
     
 
     
+}
 }
 
