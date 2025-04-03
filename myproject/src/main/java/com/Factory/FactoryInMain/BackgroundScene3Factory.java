@@ -15,12 +15,12 @@ import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 public class BackgroundScene3Factory implements EntityFactory {
     PhysicsComponent physics = new PhysicsComponent();   
 
-    @Spawns("Wall")
+    @Spawns("Wall3")
     public Entity spawnWall(SpawnData data) {
         
         physics.setBodyType(BodyType.STATIC);
         return FXGL.entityBuilder(data)
-                .type(SceneType.Wall)
+                .type(SceneType.Wall2)
                  .at(data.getX(),data.getY())
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"),data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
@@ -41,6 +41,17 @@ public class BackgroundScene3Factory implements EntityFactory {
                 .with(new PhysicsComponent())
                 .build();
             }
+       
+       
+       
+       
+       
+       
+
+
+       
+       
+
     
             
     }

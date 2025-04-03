@@ -68,7 +68,7 @@ public class CharacterFactory implements EntityFactory{
      
          return FXGL.entityBuilder(data)
                 .type(EnemyType.LowEnemy)
-                .bbox(new HitBox(BoundingShape.box(80,70)))    
+                //.bbox(new HitBox(BoundingShape.box(80,70)))    
                 .with(new AnimationEnemyComponent("Rafflesia.png" , 3,  1))
                 .with(physics)
                 //.bbox(new HitBox(BoundingShape.box(64,64)))

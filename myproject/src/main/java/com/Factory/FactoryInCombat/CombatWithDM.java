@@ -36,7 +36,7 @@ public class CombatWithDM implements EntityFactory {
       
           return FXGL.entityBuilder(data)
                  .type(EnemyType.HighEnemy)
-                 .viewWithBBox(texture("Dregan.png",128*3,128*3))
+                 .viewWithBBox(texture("Boss Thanatos.png",128*6,128*6))
                  .with(new StatusComponent("Dregan", "HB","",100, 50, 100, 100))
                  .with(new DamageEnemyComponent(20))
                  .with(physics)
@@ -53,7 +53,7 @@ public class CombatWithDM implements EntityFactory {
       
           return FXGL.entityBuilder(data)
                  .type(EnemyType.HighEnemy)
-                 .viewWithBBox(texture("Marlik.png",128*3,128*3))
+                 .viewWithBBox(texture("Cultist Mage.png",128*5,128*5))
                  .with(new StatusComponent("Marlik", "HB","",100, 50, 100, 100))
                  .with(new DamageEnemyComponent(20))
                  .with(physics)

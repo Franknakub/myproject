@@ -82,7 +82,47 @@ public class DamageEnemyComponent extends Component {
       
 
 
-}
+    }
+
+
+    public static void darkVoid() {
+
+        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Combat, PlayerType.Mage)
+                    .stream()
+                    .filter(player -> player.getComponent(StatusComponent.class).getHPCharacter() > 0)
+                    .collect(Collectors.toList());
+
+
+        Random random = new Random();
+        Entity targetPlayer = players.get(random.nextInt(players.size()));
+        StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+        
+
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - attack);
+        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - attack);  
+
+        FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+       
+        
+        if (playerStatus.getHPCharacter() <= 0) {
+            FXGL.getGameWorld().removeEntity(targetPlayer);
+            FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+
+            if(players.isEmpty()){
+              
+            OrderCombat.setPlayerTurn (true);
+           
+            }
+
+            
+        } 
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
 
     public static void CheckHPPlayer() {
         List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero ,PlayerType.Combat, PlayerType.Mage)

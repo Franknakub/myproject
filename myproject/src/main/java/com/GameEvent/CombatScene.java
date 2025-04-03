@@ -16,6 +16,9 @@ public class CombatScene extends Event{
     public static final EventType<CombatScene> DREGANMALRIK
     = new EventType<>(Event.ANY, "DREGANMALRIK");
 
+    public static final EventType<CombatScene> FINALJOURNEY
+    = new EventType<>(Event.ANY,"FINALJOURNEY");
+
     
    
 

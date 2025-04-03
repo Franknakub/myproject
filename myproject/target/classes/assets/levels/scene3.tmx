@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="128" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="20">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="128" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="21">
  <tileset firstgid="1" name="incastle" tilewidth="16" tileheight="16" spacing="16" margin="16" tilecount="1850" columns="50">
-  <image source="../../../../../../../../Downloads/incastle.png" trans="000000" width="1600" height="1200"/>
+  <image source="incastle.png" trans="000000" width="1600" height="1200"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="128" height="64">
   <data encoding="csv">
@@ -72,21 +72,24 @@
 </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="2" name="Wall" type="Wall" x="1392" y="480" width="45" height="333"/>
-  <object id="3" name="Wall" type="Wall" x="1121" y="576" width="290" height="44"/>
-  <object id="4" name="Wall" type="Wall" x="1203" y="227" width="26" height="365"/>
-  <object id="5" name="Wall" type="Wall" x="845" y="255" width="452" height="76"/>
-  <object id="6" name="Wall" type="Wall" x="817" y="240" width="56" height="382"/>
-  <object id="7" name="Wall" type="Wall" x="668" y="578" width="295" height="47"/>
-  <object id="8" name="Wall" type="Wall" x="645" y="555" width="27" height="269"/>
-  <object id="9" name="Wall" type="Wall" x="674" y="811" width="770" height="10"/>
-  <object id="12" name="Wall" type="Wall" x="992" y="419" width="88" height="75"/>
-  <object id="13" name="Wall" type="Wall" x="1082" y="418" width="37" height="38"/>
-  <object id="14" name="Wall" type="Wall" x="960" y="419" width="29" height="49"/>
-  <object id="15" name="Wall" type="Wall" x="1105" y="529" width="12" height="52"/>
-  <object id="16" name="Wall" type="Wall" x="1084" y="557" width="17" height="21"/>
-  <object id="17" name="Wall" type="Wall" x="962" y="562" width="30" height="14"/>
-  <object id="18" name="Wall" type="Wall" x="959" y="544" width="15" height="35"/>
+  <object id="2" name="Wall3" type="Wall3" x="1392" y="480" width="45" height="333"/>
+  <object id="3" name="Wall3" type="Wall3" x="1121" y="576" width="290" height="44"/>
+  <object id="4" name="Wall3" type="Wall3" x="1203" y="227" width="26" height="365"/>
+  <object id="5" name="Wall3" type="Wall3" x="845" y="255" width="452" height="76"/>
+  <object id="6" name="Wall3" type="Wall3" x="817" y="240" width="56" height="382"/>
+  <object id="7" name="Wall3" type="Wall3" x="668" y="578" width="295" height="47"/>
+  <object id="8" name="Wall3" type="Wall3" x="645" y="555" width="27" height="269"/>
+  <object id="9" name="Wall3" type="Wall3" x="674" y="811" width="770" height="10"/>
+  <object id="12" name="Wall3" type="Wall3" x="992" y="419" width="88" height="16"/>
+  <object id="13" name="Wall3" type="Wall3" x="1082" y="418" width="37" height="16.3333"/>
+  <object id="14" name="Wall3" type="Wall3" x="960" y="419" width="29" height="13.3333"/>
+  <object id="15" name="Wall3" type="Wall3" x="1105" y="529" width="12" height="52"/>
+  <object id="16" name="Wall3" type="Wall3" x="1084" y="557" width="17" height="21"/>
+  <object id="17" name="Wall3" type="Wall3" x="962" y="562" width="30" height="14"/>
+  <object id="18" name="Wall3" type="Wall3" x="959" y="544" width="15" height="35"/>
+  <object id="20" name="FleeFromJourney" type="FleeFromJourney" x="1008" y="502.5">
+   <point/>
+  </object>
  </objectgroup>
  <objectgroup id="3" name="Object Layer 2">
   <object id="10" name="sapwnpoint3" type="SpawnPoint3" x="797" y="650" width="41" height="37"/>

@@ -45,6 +45,7 @@ public void interact() {
 
         List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy);
         List<Entity> enemies2 = FXGL.getGameWorld().getEntitiesByType(EnemyType.HighEnemy);
+        List<Entity> enemies3 = FXGL.getGameWorld().getEntitiesByType(EnemyType.BossMonster);
       
 
         for (int i = 0; i < enemies.size(); i++) { 
@@ -91,6 +92,32 @@ public void interact() {
                 }
 
         }
+      
+        for (int i = 0; i < enemies3.size(); i++) { 
+            if (entity.distance(enemies3.get(i)) < 150) {
+
+                FXGL.set("lastPlayerX", player.getX());
+                FXGL.set("lastPlayerY", player.getY());
+
+                Cutscene cutscene = FXGL.getAssetLoader().loadCutscene(filename);
+                CutsceneService cutsceneService = FXGL.getCutsceneService();
+                    
+                
+                    //cutsceneService.startCutscene(cutscene, () -> {
+                        SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.FINALJOURNEY));
+                        
+                        
+                  // });
+                
+                
+                break;
+                        
+            }
+
+    }
+
+
+
     }
         
     

@@ -97,11 +97,7 @@ public class OrderCombat {
                 .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
                 .collect(Collectors.toList());
 
-                for(Entity enemy : enemies) {
-                   
-                    StatusComponent enemyStatus = enemy.getComponent(StatusComponent.class);
-                    enemyStatus.setHPCharacter(enemyStatus.getMaxHPCharacter()); // เพิ่ม HP ของศัตรูขึ้น 10
-                }
+                
 
 
                 if (isPlayerTurn == false) {
@@ -110,12 +106,34 @@ public class OrderCombat {
                     FXGL.getNotificationService().pushNotification("❌ It's not your turn!");
                    
                     return;
+                }else{
+
+                    for(Entity enemy : enemies) {
+                
+                    StatusComponent enemyStatus = enemy.getComponent(StatusComponent.class);
+                    enemyStatus.setHPCharacter(enemyStatus.getMaxHPCharacter()); 
                 }
                 
                 FXGL.getNotificationService().pushNotification("🏃‍♂ You fled from battle!");
 
-                SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENE));
-                isPlayerTurn = true;
+                FXGL.set("Nah", false);
+
+                if(FXGL.geti("scene") == 1){
+                   
+                    SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENEIFWIN)); 
+
+                    }else if (FXGL.geti("scene") == 2){
+
+                    SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENEIFWIN2));
+
+                    }else if(FXGL.geti("scene") == 3){
+
+                        SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENEIFWIN3));
+
+                    }
+                    isPlayerTurn = true;
+                }
+                
             }
 
             public void useSkill() {
@@ -230,16 +248,22 @@ public class OrderCombat {
 
 
                if(enemies.isEmpty()) {
-                System.out.print("Imin");
+                
                     count = 0;
+                    FXGL.set("Nah", true);
                     FXGL.getNotificationService().pushNotification("🎉 All enemies have been defeated!");
 
                     if(FXGL.geti("scene") == 1){
                    
                     SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENEIFWIN)); 
                     }else if (FXGL.geti("scene") == 2){
+                        
 
                         SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENEIFWIN2));
+
+                    }else if(FXGL.geti("scene") == 3){
+
+                        SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENEIFWIN3));
 
                     }
                 }

@@ -27,8 +27,7 @@ public class CharacterScene3Factory implements EntityFactory {
     @Spawns("SpawnPoint3")
     public Entity newSpawnPointPlayer(SpawnData data){
             return FXGL.entityBuilder()
-                   .type(SceneType.SpawnPoints)
-                   .bbox(new HitBox(BoundingShape.box(10, 10)))
+                   .type(SceneType.SpawnPoint3)
                    .with(new SpawnComponent("Reid",data.getX(),data.getY()))
                    .build();
         
@@ -42,7 +41,7 @@ public class CharacterScene3Factory implements EntityFactory {
      
      
          return FXGL.entityBuilder(data)
-                .type(EnemyType.HighEnemy)
+                .type(EnemyType.BossMonster)
                 .bbox(new HitBox(BoundingShape.box(64,64))) 
                 .with(new AnimationEnemyComponent("DuessaAni.png", 1, 3))
                 .with(physics)
@@ -51,6 +50,16 @@ public class CharacterScene3Factory implements EntityFactory {
                 .build();
                 
      }
+
+     @Spawns("FleeFromJourney")
+     public Entity FleeFromJourney(SpawnData data){
+        return FXGL.entityBuilder()
+               .type(SceneType.FleeFromJourney)
+               .with(new SpawnComponent("Reid",data.getX(),data.getY()))
+               .build();
+    
+
+    }
 
  
 

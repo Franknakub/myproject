@@ -37,7 +37,7 @@ public class CombatWithRexFactory implements EntityFactory {
           return FXGL.entityBuilder(data)
                  .type(EnemyType.LowEnemy)
                  .viewWithBBox(texture("Boss Dryad Queen Rafflesia.png",293*3,215*3))
-                 .with(new StatusComponent("Rex", "HB","",100, 50, 100, 100))
+                 .with(new StatusComponent("Rafflesia", "HB","",225, 50, 100, 100))
                  .with(new DamageEnemyComponent(20))
                  .with(physics)
                  //.bbox(new HitBox(BoundingShape.box(64,64)))

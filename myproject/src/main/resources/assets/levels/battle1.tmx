@@ -75,13 +75,13 @@
   <object id="3" name="setcamera" type="setcamera" x="1072" y="552" visible="0">
    <point/>
   </object>
-  <object id="4" type="setenemy" x="174.667" y="158.667">
+  <object id="4" type="setenemy" x="163.394" y="192.848">
    <point/>
   </object>
-  <object id="5" name="sethero" type="sethero" x="1371.33" y="464">
+  <object id="5" name="sethero" type="sethero" x="1369.76" y="383.03">
    <point/>
   </object>
-  <object id="6" name="setmage" type="setmage" x="1465.33" y="638.667">
+  <object id="6" name="setmage" type="setmage" x="1508.61" y="592.364">
    <point/>
   </object>
  </objectgroup>

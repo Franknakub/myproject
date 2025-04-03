@@ -6,14 +6,19 @@ import com.Component.CharecterHero.ControllerComponent;
 import com.Component.CharecterHero.InteractComponent;
 import com.Factory.FactoryInCombat.CombatWithDM;
 import com.Factory.FactoryInCombat.CombatWithRexFactory;
+import com.Factory.FactoryInCombat.FinalJourney;
 import com.Factory.FactoryInMain.BackgroundScene1Factory;
 import com.Factory.FactoryInMain.BackgroundScene2Factory;
+import com.Factory.FactoryInMain.BackgroundScene3Factory;
 import com.Factory.FactoryInMain.CharacterFactory;
 import com.Factory.FactoryInMain.CharacterScene2Factory;
+import com.Factory.FactoryInMain.CharacterScene3Factory;
 import com.GameEvent.CombatScene;
 import com.GameEvent.SystemEvent;
 import com.Physics.PlayerCollisionHandler;
 import com.Physics.PlayerCollisionHandler2;
+import com.Physics.PlayerCollisionHandler3;
+import com.Physics.PlayerCollisionHandler4;
 import com.Type.SceneType;
 import com.Type.Player.PlayerType;
 import com.UI.StatusUI;
@@ -82,6 +87,8 @@ public class App extends GameApplication {
             physics.setGravity(0, 0);
             physics.addCollisionHandler(new PlayerCollisionHandler(PlayerType.Hero,SceneType.Scene1to2));
             physics.addCollisionHandler(new PlayerCollisionHandler2(PlayerType.Hero,SceneType.Scene2to1));
+            physics.addCollisionHandler(new PlayerCollisionHandler3(PlayerType.Hero,SceneType.Scene2to3));
+            physics.addCollisionHandler(new PlayerCollisionHandler4(PlayerType.Hero,SceneType.Scene3to2));
            
         }
 
@@ -95,15 +102,16 @@ public class App extends GameApplication {
     @Override
     protected void initGameVars(Map<String, Object> vars) {
 
-       
+        vars.put("Phase", true);
 
         vars.put("map1", "scene1.tmx");
         vars.put("map2", "scene2.tmx");
+        vars.put("map3","scene3.tmx");
 
         vars.put("Name", "Reid");
         vars.put("HP", 150);
         vars.put("Mana", 100);
-        vars.put("Phase", true);
+       
         vars.put("maxHP", 150);
         vars.put("maxMana", 100);
 
@@ -120,7 +128,12 @@ public class App extends GameApplication {
         vars.put("lastPlayerX", lastX);
         vars.put("lastPlayerY", lastY);
         
-        FXGL.set("scene", 1);
+        vars.put("scene", 1);
+        vars.put("Nah",true);
+
+        vars.put("Checkd2",false);
+
+        vars.put("Checkd3",false);
 
     }
 
@@ -145,7 +158,10 @@ public class App extends GameApplication {
         FXGL.getGameWorld().addEntityFactory(new CombatWithRexFactory());
         FXGL.getGameWorld().addEntityFactory(new BackgroundScene2Factory());
         FXGL.getGameWorld().addEntityFactory(new CharacterScene2Factory());
+        FXGL.getGameWorld().addEntityFactory(new CharacterScene3Factory());
+        FXGL.getGameWorld().addEntityFactory(new BackgroundScene3Factory());
         FXGL.getGameWorld().addEntityFactory(new CombatWithDM());
+        FXGL.getGameWorld().addEntityFactory(new FinalJourney());
         
        
         

@@ -34,41 +34,75 @@ public class EnemyCombat {
         Random random = new Random();
 
         for(Entity enemy : enemies) { 
-        
-           int randomIndex = random.nextInt(enemies.size());
+           
+           int randomIndex = random.nextInt(100);
 
         StatusComponent enemyStatus = enemy.getComponent(StatusComponent.class);    
         DamageEnemyComponent enemyDamage = enemy.getComponent(DamageEnemyComponent.class);
             
 
-        switch (randomIndex) {
-            case 0:
+       if(enemyStatus.getName() == "Rafflesia"){
+        
 
-                if (enemyStatus.getManaCharacter() >= 10) {
-                    enemyStatus.setManaCharacter(enemyStatus.getManaCharacter() - 10);
-                    FXGL.getNotificationService().pushNotification("💥 Enemy attacks with " + enemyDamage.getDamage() + " damage!");
-                   enemyDamage.decreaseHP();
-                }else enemyDamage.decreaseHP();
-                    break;
-            case 1:
-                enemyDamage.decreaseHP();
-                break;
-            default:
-                enemyDamage.decreaseHP();
+                if(randomIndex < 40 ){
 
-                break;
-        }
-           
+                    //damage25
+
+                }else{
+
+                    enemyDamage.decreaseHP();
+                }
+
+            }else if(enemyStatus.getName() == "Dregan"){
+
+                if(randomIndex <= 30 ){
+
+                    //
+
+                }else if(randomIndex >= 31 && randomIndex <= 60){
+
+                   
+                    //
+
+
+                }else {enemyDamage.decreaseHP();}
+            
+        }else if(enemyStatus.getName() == "Marlik")  {
+            
+                if(randomIndex <= 20 ){
+
+                    //dealAoe20damage
+
+                }else if(randomIndex >= 21 && randomIndex <= 50){
+
+                    //deal
+                    
+                }else {enemyDamage.decreaseHP();}
+        
+            }else if(enemyStatus.getName() == "Knight Michael"){
+
+                if(randomIndex <= 20 ){
+
+                    //
+
+                // }else if(randomIndex >= 50)
+            }
+
+
+       
+
+
+      
  
             
-        }
+         }
 
         
 
-     OrderCombat.setPlayerTurn(true);
-    }
-
+      OrderCombat.setPlayerTurn(true);
     
 
+        }
+        }
 
 }

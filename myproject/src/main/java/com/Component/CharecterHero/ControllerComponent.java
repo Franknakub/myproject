@@ -67,7 +67,7 @@ public class ControllerComponent extends Component{
 
     public void moveUp() {
 
-        velocityY = -200;
+        velocityY = -500;
         entity.setScaleX(1);
         animation.walkUp();
     }
