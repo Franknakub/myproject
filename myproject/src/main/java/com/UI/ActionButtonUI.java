@@ -34,7 +34,9 @@ public class ActionButtonUI {
     private int playerIndex = 0; 
     private Entity player;
     private List<Entity> players;
-    private Entity targetEnemy; 
+    private Entity targetEnemy;
+    private OrderCombat orderCombat;
+    
 
     private List<Entity> getPlayers() {
         return FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero, PlayerType.Combat, PlayerType.Mage)
@@ -44,6 +46,7 @@ public class ActionButtonUI {
     }
 
     public ActionButtonUI() {
+        orderCombat = new OrderCombat();
         players = getPlayers();
 
         if(players == null){
@@ -60,14 +63,16 @@ public class ActionButtonUI {
         attackButton.setFont(Font.font(18));
         attackButton.setOnAction(e -> {
             player = getPlayers().get(playerIndex);
-            targetEnemy = combat.getTargetEnemy();             if(targetEnemy == null){
+            targetEnemy = combat.getTargetEnemy();             
+            if(targetEnemy == null){
                 FXGL.getNotificationService().pushNotification("❌ Please select a target enemy!");
                 return;
             }else{
                 combat.setPlayer(player);
                 combat.attack();
                 nextPlayerTurn(); 
-           
+                updateEnemySelectionUI();
+                orderCombat.setTargetEnemy(null);
         }
             
         });
@@ -88,7 +93,9 @@ public class ActionButtonUI {
                 FXGL.getNotificationService().pushNotification("❌ Please select a target enemy!");
                 return;
             }else{
+            updateEnemySelectionUI();    
             toggleSkillBox();
+            
         }
         
         
@@ -152,6 +159,8 @@ public class ActionButtonUI {
     
     
     private void updateSkillUI() {
+
+        
         skillBox.getChildren().clear(); 
 
         List<SkillComponent1> skills = player.getComponents().stream()
@@ -177,6 +186,8 @@ public class ActionButtonUI {
                 combat.useSkill();
                 skillBox.setVisible(false);
                 nextPlayerTurn(); 
+                updateEnemySelectionUI();
+                orderCombat.setTargetEnemy(null);
                 }
             });
 
@@ -207,6 +218,8 @@ public class ActionButtonUI {
                     combat.useSkill2();
                     skillBox.setVisible(false);
                     nextPlayerTurn(); 
+                    updateEnemySelectionUI();
+                    orderCombat.setTargetEnemy(null);
                     }
                 });
     
@@ -237,6 +250,8 @@ public class ActionButtonUI {
                     combat.useSkill3();
                     skillBox.setVisible(false);
                     nextPlayerTurn(); 
+                    updateEnemySelectionUI();
+                    orderCombat.setTargetEnemy(null);
                     }
                 });
     
@@ -259,6 +274,7 @@ public class ActionButtonUI {
         
         List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnemy, EnemyType.BossMonster)
             .stream()
+            .filter(enemy -> enemy.hasComponent(StatusComponent.class))
             .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
             .collect(Collectors.toList());
             

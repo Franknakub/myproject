@@ -20,7 +20,7 @@ import com.Combat.OrderCombat;
 import com.Component.StatusComponent;
 import com.Component.CharecterEnemy.DamageEnemyComponent;
 import com.Component.CharecterHero.AnimationControlComponent;
-import com.Component.CharecterHero.CheckTurnComponent;
+
 import com.Component.CharecterHero.CombatAnimationComponent;
 import com.Component.CharecterHero.DamageHeroComponent;
 import com.Component.Skill.SkillComponent1;
@@ -36,9 +36,9 @@ public class CombatWithRexFactory implements EntityFactory {
       
           return FXGL.entityBuilder(data)
                  .type(EnemyType.LowEnemy)
-                 .viewWithBBox(texture("Rex.png",128*3,128*3))
-                 .with(new StatusComponent("Rex", "HB","",1000, 50, 100, 100))
-                 .with(new DamageEnemyComponent(200))
+                 .viewWithBBox(texture("Boss Dryad Queen Rafflesia.png",293*3,215*3))
+                 .with(new StatusComponent("Rex", "HB","",100, 50, 100, 100))
+                 .with(new DamageEnemyComponent(20))
                  .with(physics)
                  //.bbox(new HitBox(BoundingShape.box(64,64)))
                  //.at(0,100)
@@ -62,7 +62,7 @@ public class CombatWithRexFactory implements EntityFactory {
               .with(new SkillComponent3("Omega Slash Genesis", 50, 30))
               .with(new CombatAnimationComponent("Reid.png", 9, 6))  
               .with(new AnimationControlComponent("Reid.png",9,6))
-              .with(new CheckTurnComponent()) 
+             
               .build();
                  
       }
@@ -81,7 +81,7 @@ public class CombatWithRexFactory implements EntityFactory {
                      new SkillComponent3("Vollzanbel", 50, 30))
               .with(new CombatAnimationComponent("marsha.png", 9, 6))  
               .with(new AnimationControlComponent("marsha.png",9,6))
-              .with(new CheckTurnComponent())
+              
               .build();
                   
        }

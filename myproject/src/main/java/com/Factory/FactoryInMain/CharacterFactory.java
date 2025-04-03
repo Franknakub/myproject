@@ -5,6 +5,7 @@ import static com.almasb.fxgl.dsl.FXGL.texture;
 
 import com.Component.SpawnComponent;
 import com.Component.StatusComponent;
+import com.Component.CharecterEnemy.AnimationEnemyComponent;
 import com.Component.CharecterHero.AnimationComponent;
 import com.Component.CharecterHero.ControllerComponent;
 import com.Component.CharecterHero.InteractComponent;
@@ -48,7 +49,7 @@ public class CharacterFactory implements EntityFactory{
    
     }
 
-    @Spawns("spawn point")
+    @Spawns("SpawnPoint1")
     public Entity newSpawnPointPlayer(SpawnData data){
             return FXGL.entityBuilder()
                    .type(SceneType.SpawnPoints)
@@ -59,7 +60,7 @@ public class CharacterFactory implements EntityFactory{
 
         }
 
-    @Spawns("spawn enemy")
+    @Spawns("SpawnEnemy1")
     public Entity spawnEnermy(SpawnData data) {
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.STATIC);
@@ -67,7 +68,8 @@ public class CharacterFactory implements EntityFactory{
      
          return FXGL.entityBuilder(data)
                 .type(EnemyType.LowEnemy)
-                .viewWithBBox(texture("Rex.png",128,128))
+                .bbox(new HitBox(BoundingShape.box(80,70)))    
+                .with(new AnimationEnemyComponent("Rafflesia.png" , 3,  1))
                 .with(physics)
                 //.bbox(new HitBox(BoundingShape.box(64,64)))
                 //.at(0,100)
@@ -75,10 +77,11 @@ public class CharacterFactory implements EntityFactory{
                 
      }
 
-     @Spawns("backScene1")
+     @Spawns("Spawn1from2")
      public Entity spawnBackScene1(SpawnData data) {
         return FXGL.entityBuilder(data)
-                .type(SceneType.BackScene1)
+                .with(new SpawnComponent("Reid", data.getX(), data.getY()))
+                .type(SceneType.Scene2to1)
                 .build();
 
     

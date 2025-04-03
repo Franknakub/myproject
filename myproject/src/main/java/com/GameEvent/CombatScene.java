@@ -13,6 +13,9 @@ public class CombatScene extends Event{
     public static final EventType<CombatScene> REXCOMBATMODE
     = new EventType<>(Event.ANY, "RexCombatMode");
 
+    public static final EventType<CombatScene> DREGANMALRIK
+    = new EventType<>(Event.ANY, "DREGANMALRIK");
+
     
    
 

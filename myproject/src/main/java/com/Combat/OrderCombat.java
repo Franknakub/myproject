@@ -21,6 +21,7 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 
+
 public class OrderCombat {
 
 
@@ -28,6 +29,7 @@ public class OrderCombat {
     private static int count = 0;
     private static Entity targetEnemy; 
     private static Entity player;
+    private ActionButtonUI actionButtonUI;
             
                 
             
@@ -135,15 +137,16 @@ public class OrderCombat {
                 else if (statusPlayer.getManaCharacter() >= skill1.getmanaCost()) {
 
                     FXGL.set(statusPlayer.getNameManaCharacter(), statusPlayer.getManaCharacter() - skill1.getmanaCost());
-                    System.out.println("Mana: " + statusPlayer.getManaCharacter());
+                  
                     statusPlayer.setManaCharacter(statusPlayer.getManaCharacter() - skill1.getmanaCost()); 
-                    System.out.println("Mana: " + statusPlayer.getManaCharacter());
+                    
                     
                     FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill1.getmanaCost()+ "!");
                     FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill1.getSkillName() + " damage "+skill1.getSkillDamage()+"!");
                     DamageHeroComponent.useSkill1();
-                    count++;
                     check();
+                    count++;
+                    
                 } else {
                     FXGL.getNotificationService().pushNotification("❌ Not enough mana!");
                 }
@@ -172,8 +175,9 @@ public class OrderCombat {
                     
                     FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill2.getSkillName() + " damage "+skill2.getSkillDamage()+"!");
                     DamageHeroComponent.useSkill2();
-                    count++;
                     check();
+                    count++;
+                    
                 } else {
                     FXGL.getNotificationService().pushNotification("❌ Not enough mana!");
                 }
@@ -199,12 +203,13 @@ public class OrderCombat {
                     FXGL.set(statusPlayer.getNameManaCharacter(), statusPlayer.getManaCharacter() - skill3.getmanaCost());
                     
                     statusPlayer.setManaCharacter(statusPlayer.getManaCharacter() - skill3.getmanaCost()); 
-                    System.out.println("Mana: " + statusPlayer.getManaCharacter());
+                    
                     
                     FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill3.getSkillName() + " damage "+skill3.getSkillDamage()+"!");
                     DamageHeroComponent.useSkill3();
-                    count++;
                     check();
+                    count++;
+                    
                 } else {
                     FXGL.getNotificationService().pushNotification("❌ Not enough mana!");
                 }
@@ -225,9 +230,18 @@ public class OrderCombat {
 
 
                if(enemies.isEmpty()) {
+                System.out.print("Imin");
                     count = 0;
                     FXGL.getNotificationService().pushNotification("🎉 All enemies have been defeated!");
+
+                    if(FXGL.geti("scene") == 1){
+                   
                     SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENEIFWIN)); 
+                    }else if (FXGL.geti("scene") == 2){
+
+                        SystemEvent.eventBus.fireEvent(new BackMainScene(BackMainScene.BACKTOMAINSCENEIFWIN2));
+
+                    }
                 }
 
                 if(count >= players.size()){
@@ -240,10 +254,6 @@ public class OrderCombat {
                  } 
                     
                 }
-                FXGL.getGameScene().getUINodes().stream() //เก็บUIทั้งหมดที่อยู่ใน Scene
-                .filter(ActionButtonUI.class::isInstance) //เลือกเฉพาะ UI ที่เป็น ActionButtonUI
-                .map(ActionButtonUI.class::cast)  //แปลงเป็น ActionButtonUI
-                .forEach(ActionButtonUI::updateEnemySelectionUI); //LoopUI ให้เป็นของ ActionButtonUI  
 
 
             }

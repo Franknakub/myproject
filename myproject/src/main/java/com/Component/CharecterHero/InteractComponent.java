@@ -2,6 +2,7 @@ package com.Component.CharecterHero;
 
 import static com.almasb.fxgl.dsl.FXGL.set;
 
+import java.util.EmptyStackException;
 import java.util.List;
 
 import com.GameEvent.CombatScene;
@@ -36,12 +37,15 @@ public class InteractComponent extends Component{
 
 public void interact() {
 
+    
     player = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
     if (entity.getType() == PlayerType.Hero) {
 
-        
+      
 
         List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy);
+        List<Entity> enemies2 = FXGL.getGameWorld().getEntitiesByType(EnemyType.HighEnemy);
+      
 
         for (int i = 0; i < enemies.size(); i++) { 
             if (entity.distance(enemies.get(i)) < 150) {
@@ -49,26 +53,49 @@ public void interact() {
                 FXGL.set("lastPlayerX", player.getX());
                 FXGL.set("lastPlayerY", player.getY());
 
-                Cutscene cutscene = FXGL.getAssetLoader().loadCutscene(filename);
-                   // CutsceneService cutsceneService = FXGL.getCutsceneService();
+                Cutscene cutscene = FXGL.getAssetLoader().loadCutscene("filetext.txt");
+                CutsceneService cutsceneService = FXGL.getCutsceneService();
                     
                 
                     //cutsceneService.startCutscene(cutscene, () -> {
 
                         SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.REXCOMBATMODE));
                         
-                   //});
+                  // });
                 
                 
                 break;
                         
             }
-            
+        }
+
+            for (int i = 0; i < enemies2.size(); i++) { 
+                if (entity.distance(enemies2.get(i)) < 150) {
+    
+                    FXGL.set("lastPlayerX", player.getX());
+                    FXGL.set("lastPlayerY", player.getY());
+    
+                    Cutscene cutscene = FXGL.getAssetLoader().loadCutscene(filename);
+                    CutsceneService cutsceneService = FXGL.getCutsceneService();
+                        
+                    
+                        //cutsceneService.startCutscene(cutscene, () -> {
+    
+                            SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.DREGANMALRIK));
+                            System.out.print("Yreah2");
+                      // });
+                    
+                    
+                    break;
+                            
+                }
 
         }
-        
     }
+        
+    
 }
+
         
 
    

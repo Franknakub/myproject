@@ -20,6 +20,7 @@ public class SpawnComponent extends Component{
     public Point2D getPosition(){
         return new Point2D(this.PositionX, this.PositionY);
     }
+    
     public String getName(){
         return name;
     }

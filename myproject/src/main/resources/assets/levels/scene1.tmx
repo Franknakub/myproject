@@ -554,13 +554,13 @@
   <object id="41" type="prop" x="346" y="281.5" width="88" height="100"/>
  </objectgroup>
  <objectgroup id="15" name="NextScene">
-  <object id="51" name="NextScene" type="NextScene" x="189.667" y="1.33333" width="117.333" height="2.66667"/>
+  <object id="51" name="NextScene" type="Scene1to2" x="189.667" y="1.33333" width="117.333" height="2.66667"/>
  </objectgroup>
  <objectgroup id="13" name="spawn point">
-  <object id="42" type="spawn point" x="247.167" y="962.873" width="27.5" height="27"/>
-  <object id="53" name="backScene1" type="backScene1" x="241" y="10.3333" width="21.3333" height="18.6667"/>
+  <object id="42" type="SpawnPoint1" x="247.167" y="962.873" width="27.5" height="27"/>
+  <object id="53" name="backScene1" type="Spawn1from2" x="241" y="10.3333" width="21.3333" height="18.6667"/>
  </objectgroup>
  <objectgroup id="14" name="spawn enemy" class="spawn enemy">
-  <object id="43" type="spawn enemy" x="191.32" y="350.347" width="27.022" height="22.9789" rotation="359.988"/>
+  <object id="43" type="SpawnEnemy1" x="200.82" y="353.347" width="88.0082" height="88.9917" rotation="359.988"/>
  </objectgroup>
 </map>

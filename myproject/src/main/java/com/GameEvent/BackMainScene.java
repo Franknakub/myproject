@@ -11,6 +11,8 @@ public class BackMainScene  extends Event{
     public static final EventType<BackMainScene> BACKTOMAINSCENEIFWIN
     = new EventType<>(Event.ANY, "BackMainScene2");
 
+    public static final EventType<BackMainScene> BACKTOMAINSCENEIFWIN2
+    = new EventType<>(Event.ANY,"BackToMainScene2");
 
     
     public BackMainScene(EventType<? extends Event> eventType) {

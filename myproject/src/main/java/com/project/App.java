@@ -4,10 +4,16 @@ import com.Component.SpawnComponent;
 import com.Component.CharecterHero.AnimationComponent;
 import com.Component.CharecterHero.ControllerComponent;
 import com.Component.CharecterHero.InteractComponent;
+import com.Factory.FactoryInCombat.CombatWithDM;
+import com.Factory.FactoryInCombat.CombatWithRexFactory;
 import com.Factory.FactoryInMain.BackgroundScene1Factory;
+import com.Factory.FactoryInMain.BackgroundScene2Factory;
 import com.Factory.FactoryInMain.CharacterFactory;
+import com.Factory.FactoryInMain.CharacterScene2Factory;
+import com.GameEvent.CombatScene;
 import com.GameEvent.SystemEvent;
 import com.Physics.PlayerCollisionHandler;
+import com.Physics.PlayerCollisionHandler2;
 import com.Type.SceneType;
 import com.Type.Player.PlayerType;
 import com.UI.StatusUI;
@@ -21,6 +27,7 @@ import com.almasb.fxgl.entity.level.tiled.TMXLevelLoader;
 
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.physics.PhysicsWorld;
 
 import javafx.scene.control.Label;
@@ -69,19 +76,18 @@ public class App extends GameApplication {
         settings.setDeveloperMenuEnabled(true);
     }
 
-    @Override
-    protected void initPhysics() {
-        PhysicsWorld gamephysic = FXGL.getPhysicsWorld();  
-        gamephysic.setGravity(0,0 );
-       // gamephysic.addCollisionHandler(new PlayerCollisionHandler());
-        //FXGL.getPhysicsWorld().addCollisionHandler(new PlayerCollisionHandler());
-    }
+        @Override
+        protected void initPhysics() {
+            PhysicsWorld physics = FXGL.getPhysicsWorld();
+            physics.setGravity(0, 0);
+            physics.addCollisionHandler(new PlayerCollisionHandler(PlayerType.Hero,SceneType.Scene1to2));
+            physics.addCollisionHandler(new PlayerCollisionHandler2(PlayerType.Hero,SceneType.Scene2to1));
+           
+        }
 
    
 
-    //   private static Entity getPlayer() {
-    //    return FXGL.getGameWorld().getSingleton(PlayerType.Hero);
-    //  }
+ 
             
             
                
@@ -104,7 +110,7 @@ public class App extends GameApplication {
        
         vars.put("Namem", "Magia");
         vars.put("HPm", 100);
-        vars.put("Manam", 100);
+        vars.put("Manam", 150);
         vars.put("Phasem", true);
         vars.put("maxHPm", 100);
         vars.put("maxManam", 200);
@@ -114,7 +120,8 @@ public class App extends GameApplication {
         vars.put("lastPlayerX", lastX);
         vars.put("lastPlayerY", lastY);
         
-       
+        FXGL.set("scene", 1);
+
     }
 
     public static void setPlayer(Entity newPlayer) {
@@ -135,7 +142,11 @@ public class App extends GameApplication {
         getGameScene().setBackgroundColor(Color.BLACK); 
         FXGL.getGameWorld().addEntityFactory(new CharacterFactory());
         FXGL.getGameWorld().addEntityFactory(new BackgroundScene1Factory());
-
+        FXGL.getGameWorld().addEntityFactory(new CombatWithRexFactory());
+        FXGL.getGameWorld().addEntityFactory(new BackgroundScene2Factory());
+        FXGL.getGameWorld().addEntityFactory(new CharacterScene2Factory());
+        FXGL.getGameWorld().addEntityFactory(new CombatWithDM());
+        
        
         
         map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
