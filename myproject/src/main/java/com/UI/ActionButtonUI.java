@@ -100,13 +100,13 @@ public class ActionButtonUI {
         
         
         }); 
+
         skillButton.setTextFill(Color.BLACK);
 
         enemySelectionBox = new VBox(10);
         updateEnemySelectionUI();
 
         scrollPane = new ScrollPane(enemySelectionBox);
-        scrollPane.setFitToWidth(true);
         scrollPane.setPrefHeight(200); 
 
 

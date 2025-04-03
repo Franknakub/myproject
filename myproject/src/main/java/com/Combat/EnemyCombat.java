@@ -46,7 +46,8 @@ public class EnemyCombat {
 
                 if(randomIndex < 40 ){
 
-                    //damage25
+                    //deal40
+                    enemyDamage.RafflesiaSkill1();
 
                 }else{
 
@@ -57,12 +58,14 @@ public class EnemyCombat {
 
                 if(randomIndex <= 30 ){
 
-                    //
+                    //30
+                    enemyDamage.DreganSkill1();
 
                 }else if(randomIndex >= 31 && randomIndex <= 60){
 
                    
-                    //
+                    //40
+                    enemyDamage.DreganSkill2();
 
 
                 }else {enemyDamage.decreaseHP();}
@@ -72,10 +75,12 @@ public class EnemyCombat {
                 if(randomIndex <= 20 ){
 
                     //dealAoe20damage
+                    enemyDamage.MarlikSkill1();
 
                 }else if(randomIndex >= 21 && randomIndex <= 50){
 
-                    //deal
+                    //deal30
+                    enemyDamage.MarlikSkill2();
                     
                 }else {enemyDamage.decreaseHP();}
         
@@ -83,26 +88,50 @@ public class EnemyCombat {
 
                 if(randomIndex <= 20 ){
 
-                    //
+                    //deal90
+                    enemyDamage.KnightMichaelSkill1();
 
-                // }else if(randomIndex >= 50)
-            }
+                }else if(randomIndex >= 21 && randomIndex <= 50){
 
+                    //deal40
+                    enemyDamage.KnightMichaelSkill2();
 
-       
+                }else {enemyDamage.decreaseHP();}
 
+            }else if(enemyStatus.getName() == "King Michael"){
 
-      
- 
+                if(randomIndex <= 20 ){
+
+                    //dealAOE90
+                    enemyDamage.KingMichaelSkill1();
+
+                }else if(randomIndex >= 21 && randomIndex <= 40){
+
+                    //dealAOE40
+                    enemyDamage.KingMichaelSkill2();
+
+                }else {enemyDamage.decreaseHP();}
+
+            }else if(enemyStatus.getName() == "Empress Duessa"){
+
+                if(randomIndex <= 10 ){
+
+                    //makeplayerhp 1
+                    enemyDamage.EmpressDuessaSkill1();
+
+                }else if(randomIndex >= 11 && randomIndex <= 40){
+
+                    //dealAOE60
+                    enemyDamage.EmpressDuessaSkill2();  
+
+                }else {enemyDamage.decreaseHP();}
             
-         }
-
-        
-
+}
       OrderCombat.setPlayerTurn(true);
-    
-
         }
         }
 
+
+
+  
 }

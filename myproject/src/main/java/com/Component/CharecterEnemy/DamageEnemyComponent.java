@@ -45,17 +45,21 @@ public class DamageEnemyComponent extends Component {
        attack = damage;
     }
 
+    private static List<Entity> getPlayers() {
+        return FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero, PlayerType.Combat, PlayerType.Mage)
+            .stream()
+            .filter(p -> p.getComponent(StatusComponent.class).getHPCharacter() > 0)
+            .collect(Collectors.toList());
+    }
+
     public static void decreaseHP() {
 
-        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Combat, PlayerType.Mage)
-                    .stream()
-                    .filter(player -> player.getComponent(StatusComponent.class).getHPCharacter() > 0)
-                    .collect(Collectors.toList());
-
+        System.out.print("Imin1");
 
         Random random = new Random();
-        Entity targetPlayer = players.get(random.nextInt(players.size()));
+        Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));
         StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+     
         
 
         FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - attack);
@@ -68,7 +72,7 @@ public class DamageEnemyComponent extends Component {
             FXGL.getGameWorld().removeEntity(targetPlayer);
             FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
 
-            if(players.isEmpty()){
+            if(getPlayers().isEmpty()){
               
             OrderCombat.setPlayerTurn (true);
            
@@ -84,22 +88,18 @@ public class DamageEnemyComponent extends Component {
 
     }
 
+    public static void RafflesiaSkill1() {
 
-    public static void darkVoid() {
-
-        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Combat, PlayerType.Mage)
-                    .stream()
-                    .filter(player -> player.getComponent(StatusComponent.class).getHPCharacter() > 0)
-                    .collect(Collectors.toList());
-
+       System.out.print("Imin");
 
         Random random = new Random();
-        Entity targetPlayer = players.get(random.nextInt(players.size()));
+        Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));
         StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+     
         
 
-        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - attack);
-        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - attack);  
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 40);
+        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 40);  
 
         FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
        
@@ -108,7 +108,7 @@ public class DamageEnemyComponent extends Component {
             FXGL.getGameWorld().removeEntity(targetPlayer);
             FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
 
-            if(players.isEmpty()){
+            if(getPlayers().isEmpty()){
               
             OrderCombat.setPlayerTurn (true);
            
@@ -116,6 +116,379 @@ public class DamageEnemyComponent extends Component {
 
             
         } 
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+
+    public static void DreganSkill1(){
+
+       
+
+        Random random = new Random();
+        Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));
+        StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+     
+        
+
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 30 );
+        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 30);  
+
+        FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+       
+        
+        if (playerStatus.getHPCharacter() <= 0) {
+            FXGL.getGameWorld().removeEntity(targetPlayer);
+            FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+
+            if(getPlayers().isEmpty()){
+              
+            OrderCombat.setPlayerTurn (true);
+           
+            }
+
+            
+        } 
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+    public static void DreganSkill2(){
+
+       
+
+        Random random = new Random();
+        Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));
+        StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+     
+        
+
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 40 );
+        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 40);  
+
+        FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+       
+        
+        if (playerStatus.getHPCharacter() <= 0) {
+            FXGL.getGameWorld().removeEntity(targetPlayer);
+            FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+
+            if(getPlayers().isEmpty()){
+              
+            OrderCombat.setPlayerTurn (true);
+           
+            }
+
+            
+        } 
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+
+    public static void MarlikSkill1(){
+
+        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero ,PlayerType.Combat, PlayerType.Mage)
+        .stream()
+        .filter(player -> player.getComponent(StatusComponent.class).getHPCharacter() > 0)
+        .collect(Collectors.toList());
+
+        for(Entity player : players) {
+            StatusComponent playerStatus = player.getComponent(StatusComponent.class);     
+
+            FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 20);
+            playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 20);  
+
+            FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+           
+            if (playerStatus.getHPCharacter() <= 0) {
+                FXGL.getGameWorld().removeEntity(player);
+                FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+            } 
+        }
+
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+
+    public static void MarlikSkill2(){
+
+       
+
+        Random random = new Random();
+        Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));
+        StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+     
+        
+
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 40 );
+        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 40);  
+
+        FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+       
+        
+        if (playerStatus.getHPCharacter() <= 0) {
+            FXGL.getGameWorld().removeEntity(targetPlayer);
+            FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+
+            if(getPlayers().isEmpty()){
+              
+            OrderCombat.setPlayerTurn (true);
+           
+            }
+
+            
+        } 
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+
+    public static void KnightMichaelSkill1(){
+
+       
+
+        Random random = new Random();
+        Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));
+        StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+     
+        
+
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 90 );
+        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 90);  
+
+        FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+       
+        
+        if (playerStatus.getHPCharacter() <= 0) {
+            FXGL.getGameWorld().removeEntity(targetPlayer);
+            FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+
+            if(getPlayers().isEmpty()){
+              
+            OrderCombat.setPlayerTurn (true);
+           
+            }
+
+            
+        } 
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+
+    public static void KnightMichaelSkill2(){
+
+       
+
+        Random random = new Random();
+        Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));
+        StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+     
+        
+
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 60 );
+        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 60);  
+
+        FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+       
+        
+        if (playerStatus.getHPCharacter() <= 0) {
+            FXGL.getGameWorld().removeEntity(targetPlayer);
+            FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+
+            if(getPlayers().isEmpty()){
+              
+            OrderCombat.setPlayerTurn (true);
+           
+            }
+
+            
+        } 
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+
+    public static void KingMichaelSkill1(){
+        Random random = new Random();
+        Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));
+        StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+     
+        
+
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 70 );
+        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 70);  
+
+        FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+       
+        
+        if (playerStatus.getHPCharacter() <= 0) {
+            FXGL.getGameWorld().removeEntity(targetPlayer);
+            FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+
+            if(getPlayers().isEmpty()){
+              
+            OrderCombat.setPlayerTurn (true);
+           
+            }
+
+            
+        } 
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+
+    public static void KingMichaelSkill2(){
+
+        Random random = new Random();
+        Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));
+        StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+     
+        
+
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 40 );
+        playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 40);  
+
+        FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+       
+        
+        if (playerStatus.getHPCharacter() <= 0) {
+            FXGL.getGameWorld().removeEntity(targetPlayer);
+            FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+
+            if(getPlayers().isEmpty()){
+              
+            OrderCombat.setPlayerTurn (true);
+           
+            }
+
+            
+        } 
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+
+    public static void EmpressDuessaSkill1(){
+
+       
+
+        Random random = new Random();
+        Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));
+        StatusComponent playerStatus = targetPlayer.getComponent(StatusComponent.class);
+     
+        
+
+        FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 40 );
+        playerStatus.setHPCharacter(1);  
+
+        FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+       
+        
+        if (playerStatus.getHPCharacter() <= 0) {
+            FXGL.getGameWorld().removeEntity(targetPlayer);
+            FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+
+            if(getPlayers().isEmpty()){
+              
+            OrderCombat.setPlayerTurn (true);
+           
+            }
+
+            
+        } 
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+
+    public static void EmpressDuessaSkill2(){
+
+        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero ,PlayerType.Combat, PlayerType.Mage)
+        .stream()
+        .filter(player -> player.getComponent(StatusComponent.class).getHPCharacter() > 0)
+        .collect(Collectors.toList());
+
+        for(Entity player : players) {
+            StatusComponent playerStatus = player.getComponent(StatusComponent.class);     
+
+            FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 60);
+            playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 60);  
+
+            FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+           
+            if (playerStatus.getHPCharacter() <= 0) {
+                FXGL.getGameWorld().removeEntity(player);
+                FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+            } 
+        }
+
+        
+       CheckHPPlayer();
+    
+      
+
+
+    }
+
+
+    
+    
+    
+    public static void darkVoid() {
+
+        List<Entity> players = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero ,PlayerType.Combat, PlayerType.Mage)
+        .stream()
+        .filter(player -> player.getComponent(StatusComponent.class).getHPCharacter() > 0)
+        .collect(Collectors.toList());
+
+        for(Entity player : players) {
+            StatusComponent playerStatus = player.getComponent(StatusComponent.class);     
+
+            FXGL.set(playerStatus.getNameHPCharacter(), playerStatus.getHPCharacter() - 20);
+            playerStatus.setHPCharacter(playerStatus.getHPCharacter() - 20);  
+
+            FXGL.getNotificationService().pushNotification("💥 " + playerStatus.getName() + " takes " + attack + " damage!");
+           
+            if (playerStatus.getHPCharacter() <= 0) {
+                FXGL.getGameWorld().removeEntity(player);
+                FXGL.getNotificationService().pushNotification("💀 " + playerStatus.getName() + " has been defeated!!");
+            } 
+        }
+
         
        CheckHPPlayer();
     

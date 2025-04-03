@@ -298,10 +298,7 @@ public class OrderCombat {
                     return;
                 }
             
-                if (!player.hasComponent(SkillComponent3.class)) {
-                    FXGL.getNotificationService().pushNotification("❌ Player does not have SkillComponent!");
-                    return;
-                }
+               
             }
             
             
