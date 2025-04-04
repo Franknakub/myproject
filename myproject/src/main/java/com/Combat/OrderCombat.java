@@ -91,14 +91,10 @@ public class OrderCombat {
         
             // ✅ หนีจากการต่อสู้
             public void flee() {
-
                 List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnemy, EnemyType.BossMonster);
-                
-
+            
 
                 if (isPlayerTurn == false) {
-                    
-                   
                     FXGL.getNotificationService().pushNotification("❌ It's not your turn!");
                    
                     return;
@@ -153,7 +149,6 @@ public class OrderCombat {
                     FXGL.set(statusPlayer.getNameManaCharacter(), statusPlayer.getManaCharacter() - skill1.getmanaCost());
                   
                     statusPlayer.setManaCharacter(statusPlayer.getManaCharacter() - skill1.getmanaCost()); 
-                    
                     
                     FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill1.getmanaCost()+ "!");
                     FXGL.getNotificationService().pushNotification(statusPlayer.getName()+" ⚡ used " + skill1.getSkillName() + " damage "+skill1.getSkillDamage()+"!");

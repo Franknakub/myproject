@@ -24,6 +24,8 @@ import com.Type.Player.PlayerType;
 import com.UI.StatusUI;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.app.MenuItem;
+import com.almasb.fxgl.core.serialization.Bundle;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
@@ -34,25 +36,23 @@ import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.physics.PhysicsWorld;
+import com.almasb.fxgl.profile.DataFile;
+import com.almasb.fxgl.profile.SaveLoadHandler;
 
+import javafx.geometry.Point2D;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.ApplicationListener;
-
-
+import org.w3c.dom.CharacterData;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 
@@ -65,6 +65,7 @@ public class App extends GameApplication {
     private static App instance;
     double lastX;
     double lastY;
+    private boolean isLoadedGame = false;
 
     public static void main(String[] args) {
         launch(args);
@@ -79,6 +80,87 @@ public class App extends GameApplication {
         settings.setFullScreenAllowed(true);
         settings.setFullScreenFromStart(true);
         settings.setDeveloperMenuEnabled(true);
+        settings.setMainMenuEnabled(true);
+        settings.setEnabledMenuItems(EnumSet.allOf(MenuItem.class));
+    }
+
+    @Override
+    protected void onPreInit() {
+        getSaveLoadService().addHandler(new SaveLoadHandler() {
+            
+            @Override
+            public void onSave(DataFile data) {
+
+    FXGL.set("isLoadedGame", true);
+    player = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
+
+    FXGL.set("lastPlayerX", player.getX());
+    FXGL.set("lastPlayerY", player.getY());
+
+    var bundle = new Bundle("gameData");
+
+    bundle.put("Name", FXGL.gets("Name"));
+    bundle.put("HP", FXGL.geti("HP"));
+    bundle.put("Mana", FXGL.geti("Mana"));
+    bundle.put("maxHP", FXGL.geti("maxHP"));
+    bundle.put("maxMana", FXGL.geti("maxMana"));
+
+    bundle.put("Namem", FXGL.gets("Namem"));
+    bundle.put("HPm", FXGL.geti("HPm"));
+    bundle.put("Manam", FXGL.geti("Manam"));
+    bundle.put("Phasem", FXGL.getb("Phasem"));
+    bundle.put("maxHPm", FXGL.geti("maxHPm"));
+    bundle.put("maxManam", FXGL.geti("maxManam"));
+
+    bundle.put("lastPlayerX", FXGL.getd("lastPlayerX"));
+    bundle.put("lastPlayerY", FXGL.getd("lastPlayerY"));
+
+    bundle.put("scene", FXGL.geti("scene"));
+    bundle.put("Nah", FXGL.getb("Nah"));
+
+    bundle.put("Checkd2", FXGL.getb("Checkd2"));
+    bundle.put("Checkd3", FXGL.getb("Checkd3"));
+
+    bundle.put("isLoadedGame", FXGL.getb("isLoadedGame"));
+    System.out.println("isLoadedGame: " + FXGL.getb("isLoadedGame"));
+
+    data.putBundle(bundle);
+            }
+
+    @Override
+    public void onLoad(DataFile data) {
+
+        
+       
+        // Retrieve the bundle from the data file
+        var bundle = data.getBundle("gameData");
+
+        FXGL.set("Name", bundle.get("Name"));
+        FXGL.set("HP", bundle.get("HP"));
+        FXGL.set("Mana", bundle.get("Mana"));
+        FXGL.set("maxHP", bundle.get("maxHP"));
+        FXGL.set("maxMana", bundle.get("maxMana"));
+    
+        FXGL.set("Namem", bundle.get("Namem"));
+        FXGL.set("HPm", bundle.get("HPm"));
+        FXGL.set("Manam", bundle.get("Manam"));
+        FXGL.set("Phasem", bundle.get("Phasem"));
+        FXGL.set("maxHPm",bundle.get("maxHPm"));
+        FXGL.set("maxManam", bundle.get("maxManam"));
+    
+        FXGL.set("lastPlayerX", bundle.get("lastPlayerX"));
+        FXGL.set("lastPlayerY", bundle.get("lastPlayerY"));
+    
+        FXGL.set("scene", bundle.get("scene"));
+        FXGL.set("Nah", bundle.get("Nah"));
+    
+        FXGL.set("Checkd2",bundle.get("Checkd2"));
+        FXGL.set("Checkd3", bundle.get("Checkd3"));
+    
+        FXGL.set("isLoadedGame", bundle.get("isLoadedGame"));
+   
+    }
+        });
     }
 
         @Override
@@ -109,19 +191,19 @@ public class App extends GameApplication {
         vars.put("map3","scene3.tmx");
 
         vars.put("Name", "Reid");
-        vars.put("HP", 400);
+        vars.put("HP", 350);
         vars.put("Mana", 200);
        
-        vars.put("maxHP", 400);
-        vars.put("maxMana", 100);
+        vars.put("maxHP", 350);
+        vars.put("maxMana", 200);
 
        
         vars.put("Namem", "Magia");
         vars.put("HPm", 200);
-        vars.put("Manam", 350);
+        vars.put("Manam", 250);
         vars.put("Phasem", true);
         vars.put("maxHPm", 200);
-        vars.put("maxManam", 350);
+        vars.put("maxManam", 250);
 
 
         
@@ -134,6 +216,10 @@ public class App extends GameApplication {
         vars.put("Checkd2",false);
 
         vars.put("Checkd3",false);
+
+        vars.put("time", 0.0);
+
+        vars.put("isLoadedGame", false);
 
     }
 
@@ -165,34 +251,60 @@ public class App extends GameApplication {
         
        
         
-        map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
+        
         //FXGL.getGameWorld().setLevel(map);
+
+
         FXGL.setLevelFromMap("scene1.tmx");
 
         SystemEvent.combat();
 
-        getSpawnDefault();
-        
+        System.out.println("isLoadedGame: " + FXGL.getb("isLoadedGame"));
+
+         if (FXGL.getb("isLoadedGame") == false) {
+            System.out.println("New Game");
+            this.getSpawnDefault();  
+        } else {
+            System.out.println("Loaded Game");
+            spawnPlayerAtSavedPosition();  
+        }
+
+        map = FXGL.getAssetLoader().loadLevel(FXGL.gets("map1"), new TMXLevelLoader());
+
         player = FXGL.getGameWorld().getEntitiesByType(PlayerType.Hero).get(0);
-        
-        FXGL.getGameScene().getViewport().bindToEntity(player,FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
+        FXGL.getGameScene().getViewport().bindToEntity(player, FXGL.getAppWidth()/2, FXGL.getAppHeight()/2);
         FXGL.getGameScene().getViewport().setZoom(1.5);
         int mapWidth = (int) map.getWidth();
         int mapHeight = (int) map.getHeight();
-
-        FXGL.getGameScene().getViewport().setBounds(-10000/2, 0, mapWidth+150, mapHeight);
+        FXGL.getGameScene().getViewport().setBounds(-10000/2, 0, mapWidth + 150, mapHeight);
         FXGL.getGameScene().getViewport().setLazy(true);
-
        
         
     }
 
-     public static void getSpawnDefault(){
+    public void spawnPlayerAtSavedPosition() {
+        double lastX = FXGL.getd("lastPlayerX");
+        double lastY = FXGL.getd("lastPlayerY");
+
+        player = FXGL.spawn("Reid", new SpawnData(lastX, lastY));
+
+      
+       
+
+    }
+
+      
+
+     public void getSpawnDefault(){
         List<Entity> entities = FXGL.getGameWorld().getEntitiesByType((SceneType.SpawnPoints));
         for(Entity entity : entities){
+            System.out.println(1);
             SpawnComponent component = entity.getComponent(SpawnComponent.class);
             FXGL.spawn(component.getName(),new SpawnData(component.getPosition()));     
             }
+
+       
+
         }
     
 

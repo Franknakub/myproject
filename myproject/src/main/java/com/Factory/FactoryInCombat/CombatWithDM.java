@@ -40,7 +40,7 @@ public class CombatWithDM implements EntityFactory {
                  .with(new StatusComponent("Dregan", "HB","",300, 50, 100, 100))
                  .with(new DamageEnemyComponent(20))
                  .with(physics)
-                 //.bbox(new HitBox(BoundingShape.box(64,64)))
+                 .bbox(new HitBox(BoundingShape.box(64,64)))
                  //.at(0,100)
                  .build();
                  

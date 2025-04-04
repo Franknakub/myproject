@@ -71,10 +71,10 @@ public class SystemEvent {
                   actionButtonUI = new ActionButtonUI();
                   FXGL.getGameScene().addUINode(actionButtonUI.getHBox());
 
-                   // สร้างอินสแตนซ์ของ StatusUIEnemy
+                   
                   statusUIEnemy = new StatusUIEnemy();
 
-                   // เพิ่ม UI ของศัตรูลงในหน้าจอเกม
+                  
                   FXGL.getGameScene().addUINode(statusUIEnemy.getEnemyStatusBox());
 
                   
@@ -101,10 +101,10 @@ public class SystemEvent {
             FXGL.getGameScene().setBackgroundColor(Color.BLACK);
             actionButtonUI = new ActionButtonUI();
             FXGL.getGameScene().addUINode(actionButtonUI.getHBox());
-            // สร้างอินสแตนซ์ของ StatusUIEnemy
+        
             statusUIEnemy = new StatusUIEnemy();
 
-            // เพิ่ม UI ของศัตรูลงในหน้าจอเกม
+            
            FXGL.getGameScene().addUINode(statusUIEnemy.getEnemyStatusBox());
 
             
@@ -131,10 +131,10 @@ public class SystemEvent {
       FXGL.getGameScene().setBackgroundColor(Color.BLACK);
       actionButtonUI = new ActionButtonUI();
       FXGL.getGameScene().addUINode(actionButtonUI.getHBox());
-      // สร้างอินสแตนซ์ของ StatusUIEnemy
+    
       statusUIEnemy = new StatusUIEnemy();
 
-      // เพิ่ม UI ของศัตรูลงในหน้าจอเกม
+      
      FXGL.getGameScene().addUINode(statusUIEnemy.getEnemyStatusBox());
 
       

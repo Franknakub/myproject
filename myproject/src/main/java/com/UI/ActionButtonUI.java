@@ -8,7 +8,6 @@ import com.Component.StatusComponent;
 import com.Component.Skill.SkillComponent1;
 import com.Component.Skill.SkillComponent2;
 import com.Component.Skill.SkillComponent3;
-import com.GameEvent.SystemEvent;
 import com.Type.Enemy.EnemyType;
 import com.Type.Player.PlayerType;
 import com.almasb.fxgl.dsl.FXGL;
@@ -37,6 +36,7 @@ public class ActionButtonUI {
     private List<Entity> players;
     private Entity targetEnemy;
     private OrderCombat orderCombat;
+    private StatusUIEnemy statusUIEnemy;
     
 
     private List<Entity> getPlayers() {
@@ -49,13 +49,10 @@ public class ActionButtonUI {
     public ActionButtonUI() {
         orderCombat = new OrderCombat();
         players = getPlayers();
+        statusUIEnemy = new StatusUIEnemy();
 
-        if(players == null){
-            FXGL.getNotificationService().pushNotification("❌ No player found!");
-            return;
-        }
-          
-        player = players.get(playerIndex);
+       
+        player = getPlayers().get(playerIndex);
         combat = new OrderCombat();
         vbox = new VBox(20);
         
@@ -71,12 +68,9 @@ public class ActionButtonUI {
             }else{
                 combat.setPlayer(player);
                 combat.attack();
-                 // อัปเดตสถานะศัตรูหลังการโจมตี
-        if (SystemEvent.statusUIEnemy != null) {
-            SystemEvent.statusUIEnemy.updateEnemyStatus();
-        }
                 nextPlayerTurn(); 
                 updateEnemySelectionUI();
+                statusUIEnemy.updateEnemyStatus();
                 orderCombat.setTargetEnemy(null);
         }
             
@@ -204,6 +198,7 @@ public class ActionButtonUI {
             .filter(component ->component instanceof SkillComponent2)
             .map(component -> (SkillComponent2) component)
             .collect(Collectors.toList());
+
             
 
         for (SkillComponent2 skill : skills1) {
@@ -255,7 +250,6 @@ public class ActionButtonUI {
                     skillBox.setVisible(false);
                     nextPlayerTurn(); 
                     updateEnemySelectionUI();
-                    
                     orderCombat.setTargetEnemy(null);
                     }
                 });
