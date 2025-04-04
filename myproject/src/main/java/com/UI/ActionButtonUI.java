@@ -8,6 +8,7 @@ import com.Component.StatusComponent;
 import com.Component.Skill.SkillComponent1;
 import com.Component.Skill.SkillComponent2;
 import com.Component.Skill.SkillComponent3;
+import com.GameEvent.SystemEvent;
 import com.Type.Enemy.EnemyType;
 import com.Type.Player.PlayerType;
 import com.almasb.fxgl.dsl.FXGL;
@@ -70,6 +71,10 @@ public class ActionButtonUI {
             }else{
                 combat.setPlayer(player);
                 combat.attack();
+                 // อัปเดตสถานะศัตรูหลังการโจมตี
+        if (SystemEvent.statusUIEnemy != null) {
+            SystemEvent.statusUIEnemy.updateEnemyStatus();
+        }
                 nextPlayerTurn(); 
                 updateEnemySelectionUI();
                 orderCombat.setTargetEnemy(null);
@@ -199,7 +204,6 @@ public class ActionButtonUI {
             .filter(component ->component instanceof SkillComponent2)
             .map(component -> (SkillComponent2) component)
             .collect(Collectors.toList());
-
             
 
         for (SkillComponent2 skill : skills1) {
@@ -251,6 +255,7 @@ public class ActionButtonUI {
                     skillBox.setVisible(false);
                     nextPlayerTurn(); 
                     updateEnemySelectionUI();
+                    
                     orderCombat.setTargetEnemy(null);
                     }
                 });

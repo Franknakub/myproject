@@ -92,11 +92,7 @@ public class OrderCombat {
             // ✅ หนีจากการต่อสู้
             public void flee() {
 
-                List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnemy, EnemyType.BossMonster)
-                .stream()
-                .filter(enemy -> enemy.getComponent(StatusComponent.class).getHPCharacter() > 0)
-                .collect(Collectors.toList());
-
+                List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnemy, EnemyType.BossMonster);
                 
 
 

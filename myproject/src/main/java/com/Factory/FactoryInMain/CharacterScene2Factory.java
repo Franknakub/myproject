@@ -43,7 +43,7 @@ public class CharacterScene2Factory implements EntityFactory {
      
          return FXGL.entityBuilder(data)
                 .type(EnemyType.HighEnemy)
-              //  .bbox(new HitBox(BoundingShape.box(150,120))) 
+                .bbox(new HitBox(BoundingShape.box(150,120))) 
                 .with(new AnimationEnemyComponent("CultistAni.png", 3, 1))
                 .with(physics)
                 //.bbox(new HitBox(BoundingShape.box(64,64)))

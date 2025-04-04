@@ -13,6 +13,7 @@ import com.Type.SceneType;
 import com.Type.Enemy.EnemyType;
 import com.Type.Player.PlayerType;
 import com.UI.ActionButtonUI;
+import com.UI.StatusUIEnemy;
 import com.almasb.fxgl.cutscene.Cutscene;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -40,6 +41,7 @@ public class SystemEvent {
     private static ActionButtonUI actionButtonUI = null;
     private static boolean isFactoryAdded = false;
     private static boolean isFactoryAdded2 = false;
+    private static StatusUIEnemy statusUIEnemy = null;
     
       
     
@@ -69,6 +71,12 @@ public class SystemEvent {
                   actionButtonUI = new ActionButtonUI();
                   FXGL.getGameScene().addUINode(actionButtonUI.getHBox());
 
+                   // สร้างอินสแตนซ์ของ StatusUIEnemy
+                  statusUIEnemy = new StatusUIEnemy();
+
+                   // เพิ่ม UI ของศัตรูลงในหน้าจอเกม
+                  FXGL.getGameScene().addUINode(statusUIEnemy.getEnemyStatusBox());
+
                   
           });
 
@@ -93,6 +101,11 @@ public class SystemEvent {
             FXGL.getGameScene().setBackgroundColor(Color.BLACK);
             actionButtonUI = new ActionButtonUI();
             FXGL.getGameScene().addUINode(actionButtonUI.getHBox());
+            // สร้างอินสแตนซ์ของ StatusUIEnemy
+            statusUIEnemy = new StatusUIEnemy();
+
+            // เพิ่ม UI ของศัตรูลงในหน้าจอเกม
+           FXGL.getGameScene().addUINode(statusUIEnemy.getEnemyStatusBox());
 
             
     });
@@ -118,6 +131,11 @@ public class SystemEvent {
       FXGL.getGameScene().setBackgroundColor(Color.BLACK);
       actionButtonUI = new ActionButtonUI();
       FXGL.getGameScene().addUINode(actionButtonUI.getHBox());
+      // สร้างอินสแตนซ์ของ StatusUIEnemy
+      statusUIEnemy = new StatusUIEnemy();
+
+      // เพิ่ม UI ของศัตรูลงในหน้าจอเกม
+     FXGL.getGameScene().addUINode(statusUIEnemy.getEnemyStatusBox());
 
       
 });
@@ -166,6 +184,11 @@ public class SystemEvent {
           actionButtonUI = null;
       }
 
+      if (statusUIEnemy != null) {
+        statusUIEnemy.remove();
+        statusUIEnemy = null;
+    }
+
 
 });
 
@@ -201,6 +224,10 @@ eventBus.addEventHandler(BackMainScene.BACKTOMAINSCENEIFWIN, event-> {
   if (actionButtonUI != null) {
     actionButtonUI.remove();
     actionButtonUI = null;
+}
+if (statusUIEnemy != null) {
+  statusUIEnemy.remove();
+  statusUIEnemy = null;
 }
 
 
@@ -411,6 +438,12 @@ eventBus.addEventHandler(BackMainScene.BACKTOMAINSCENEIFWIN, event-> {
     if (actionButtonUI != null) {
       actionButtonUI.remove();
       actionButtonUI = null;
+  }
+
+  
+  
+  if (statusUIEnemy != null) {
+    statusUIEnemy.remove();   
   }
   
 

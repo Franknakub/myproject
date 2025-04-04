@@ -109,19 +109,19 @@ public class App extends GameApplication {
         vars.put("map3","scene3.tmx");
 
         vars.put("Name", "Reid");
-        vars.put("HP", 150);
-        vars.put("Mana", 100);
+        vars.put("HP", 400);
+        vars.put("Mana", 200);
        
-        vars.put("maxHP", 150);
+        vars.put("maxHP", 400);
         vars.put("maxMana", 100);
 
        
         vars.put("Namem", "Magia");
-        vars.put("HPm", 100);
-        vars.put("Manam", 150);
+        vars.put("HPm", 200);
+        vars.put("Manam", 350);
         vars.put("Phasem", true);
-        vars.put("maxHPm", 100);
-        vars.put("maxManam", 200);
+        vars.put("maxHPm", 200);
+        vars.put("maxManam", 350);
 
 
         

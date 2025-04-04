@@ -1,6 +1,7 @@
 package com.UI;
 
 import com.Component.StatusComponent;
+import com.Type.Enemy.EnemyType;
 import com.Type.Player.PlayerType;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -16,14 +17,22 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+import java.util.List;
+
 public class StatusUI {
     private VBox vbox; 
     private VBox mvbox; 
     private HBox AHbox; 
+    private VBox enemyStatusBox;
 
     public StatusUI() {
 
-        
+        // Enemy's Status Box
+        enemyStatusBox = new VBox(10);
+        enemyStatusBox.setStyle("-fx-background-color: rgba(40, 20, 20, 0.92); -fx-padding: 10;");
+        enemyStatusBox.setTranslateX(FXGL.getAppWidth() - 800);
+        enemyStatusBox.setTranslateY(10);
+
         // Magia's Status Box
         mvbox = new VBox(10);
         mvbox.setStyle("-fx-background-color: rgba(40, 20, 20, 0.92); -fx-padding: 10;");
@@ -105,10 +114,9 @@ public class StatusUI {
 
         vbox.getChildren().addAll(nameHbox, hpHbox, manaHbox);
 
-
-        // Combine both status boxes
+        // Combine all status boxes
         AHbox = new HBox(10);
-        AHbox.getChildren().addAll(vbox, mvbox);
+        AHbox.getChildren().addAll(vbox, mvbox, enemyStatusBox);
     }
 
     public HBox getVBox() {
@@ -119,6 +127,38 @@ public class StatusUI {
         if (AHbox != null) {
             FXGL.getGameScene().removeUINode(AHbox);
             AHbox = null;
+        }
+    }
+
+    public void updateEnemyStatus() {
+        // Clear old data in VBox
+        enemyStatusBox.getChildren().clear();
+
+        // Retrieve all enemies in the game
+        List<Entity> enemies = FXGL.getGameWorld().getEntitiesByType(EnemyType.LowEnemy, EnemyType.HighEnemy, EnemyType.BossMonster);
+
+        // Loop through each enemy
+        for (Entity enemy : enemies) {
+            if (enemy.hasComponent(StatusComponent.class)) {
+                StatusComponent status = enemy.getComponent(StatusComponent.class);
+
+                // Create Label for enemy name
+                Label nameLabel = new Label("Enemy: " + status.getName());
+                nameLabel.setFont(new Font(16));
+                nameLabel.setTextFill(Color.WHITE);
+
+                // Create Label for enemy HP
+                Label hpLabel = new Label("HP: " + status.getHPCharacter());
+                hpLabel.setFont(new Font(16));
+                hpLabel.setTextFill(Color.RED);
+
+                // Create VBox for each enemy
+                VBox enemyBox = new VBox(5);
+                enemyBox.getChildren().addAll(nameLabel, hpLabel);
+
+                // Add enemy VBox to enemyStatusBox
+                enemyStatusBox.getChildren().add(enemyBox);
+            }
         }
     }
 }

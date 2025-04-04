@@ -54,7 +54,7 @@ public class DamageEnemyComponent extends Component {
 
     public static void decreaseHP() {
 
-        System.out.print("Imin1");
+        
 
         Random random = new Random();
         Entity targetPlayer = getPlayers().get(random.nextInt(getPlayers().size()));

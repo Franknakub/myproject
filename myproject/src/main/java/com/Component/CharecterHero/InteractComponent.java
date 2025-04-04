@@ -54,15 +54,15 @@ public void interact() {
                 FXGL.set("lastPlayerX", player.getX());
                 FXGL.set("lastPlayerY", player.getY());
 
-                Cutscene cutscene = FXGL.getAssetLoader().loadCutscene("filetext.txt");
+                Cutscene cutscene = FXGL.getAssetLoader().loadCutscene("CutScene1.txt");
                 CutsceneService cutsceneService = FXGL.getCutsceneService();
                     
                 
-                    //cutsceneService.startCutscene(cutscene, () -> {
+                    cutsceneService.startCutscene(cutscene, () -> {
 
                         SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.REXCOMBATMODE));
                         
-                  // });
+                   });
                 
                 
                 break;
@@ -76,15 +76,15 @@ public void interact() {
                     FXGL.set("lastPlayerX", player.getX());
                     FXGL.set("lastPlayerY", player.getY());
     
-                    Cutscene cutscene = FXGL.getAssetLoader().loadCutscene(filename);
+                    Cutscene cutscene = FXGL.getAssetLoader().loadCutscene("CutScene2.txt");
                     CutsceneService cutsceneService = FXGL.getCutsceneService();
                         
                     
-                        //cutsceneService.startCutscene(cutscene, () -> {
+                        cutsceneService.startCutscene(cutscene, () -> {
     
                             SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.DREGANMALRIK));
-                            System.out.print("Yreah2");
-                      // });
+                            
+                       });
                     
                     
                     break;
@@ -99,15 +99,15 @@ public void interact() {
                 FXGL.set("lastPlayerX", player.getX());
                 FXGL.set("lastPlayerY", player.getY());
 
-                Cutscene cutscene = FXGL.getAssetLoader().loadCutscene(filename);
+                Cutscene cutscene = FXGL.getAssetLoader().loadCutscene("CutScene3.txt");
                 CutsceneService cutsceneService = FXGL.getCutsceneService();
                     
                 
-                    //cutsceneService.startCutscene(cutscene, () -> {
+                    cutsceneService.startCutscene(cutscene, () -> {
                         SystemEvent.eventBus.fireEvent(new CombatScene(CombatScene.FINALJOURNEY));
                         
                         
-                  // });
+                  });
                 
                 
                 break;
